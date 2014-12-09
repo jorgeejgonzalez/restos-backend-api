@@ -1,4 +1,4 @@
-package org.idisoft.restos.unit.model.jpa.usuario;
+package org.idisoft.restos.test.unit.model.jpa.usuario;
 
 import static org.junit.Assert.*;
 

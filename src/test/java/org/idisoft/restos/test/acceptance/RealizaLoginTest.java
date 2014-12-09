@@ -1,4 +1,4 @@
-package org.idisoft.restos.acceptance;
+package org.idisoft.restos.test.acceptance;
 
 import static org.junit.Assert.*;
 
