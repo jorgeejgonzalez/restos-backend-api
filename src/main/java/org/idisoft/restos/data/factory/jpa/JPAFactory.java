@@ -1,10 +1,8 @@
 package org.idisoft.restos.data.factory.jpa;
 
-import org.idisoft.restos.data.factory.Factory;
+import org.idisoft.restos.data.factory.ModelFactory;
 
-public abstract class JPAFactory<T> extends Factory<T> {
+public abstract class JPAFactory<T> extends ModelFactory<T> {
 	
-	@Override
-	public abstract T createEntity();
-
+	
 }

@@ -61,6 +61,22 @@ public class BeanValidationTest {
 	}
 	
 	@Test
+	public void BeanValidation_FirstLetterIsV_Valid()
+	{
+		Usuario validusuario=validUsuario();
+		validusuario.setCedula("V987654321");
+		assertTrue(isValid(validusuario));
+	}
+	
+	@Test
+	public void BeanValidation_FirstLetterIsE_Valid()
+	{
+		Usuario validusuario=validUsuario();
+		validusuario.setCedula("E987654321");
+		assertTrue(isValid(validusuario));
+	}
+	
+	@Test
 	public void BeanValidation_CedulaIsNull_NotValid()
 	{
 		Usuario invalidusuario= validUsuario();
