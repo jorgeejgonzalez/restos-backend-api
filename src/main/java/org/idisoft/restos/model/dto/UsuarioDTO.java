@@ -7,6 +7,7 @@ public class UsuarioDTO implements Usuario {
 	private String cedula;
 	private String login;
 	private String password;
+	private String nombre;
 	
 	@Override
 	public String getCedula() {
@@ -36,6 +37,18 @@ public class UsuarioDTO implements Usuario {
 	@Override
 	public void setPassword(String password) {
 		this.password=password;
+	}
+	
+	@Override
+	public String getNombre()
+	{
+		return nombre;
+	}
+	
+	@Override
+	public void setNombre(String nombre)
+	{
+		this.nombre=nombre;
 	}
 
 }

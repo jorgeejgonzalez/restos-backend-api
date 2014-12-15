@@ -1,8 +1,11 @@
 package org.idisoft.restos.data.factory.jpa;
 
+import javax.enterprise.context.RequestScoped;
+
 import org.idisoft.restos.model.Usuario;
 import org.idisoft.restos.model.jpa.UsuarioJPA;
 
+@RequestScoped
 public class UsuarioJPAFactory extends JPAFactory<Usuario> {
 
 	private Usuario defaultUsuario()

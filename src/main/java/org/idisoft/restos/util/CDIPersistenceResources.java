@@ -7,8 +7,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 
 public class CDIPersistenceResources {
 	
-	@SuppressWarnings("unused")
-    @Produces
+	@Produces
     @PersistenceContext
     private EntityManager entitymanager;
 	

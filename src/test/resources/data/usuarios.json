@@ -1,0 +1,17 @@
+{
+	"usuarios":
+	[
+		{
+			"cedula": "V123456789",
+  			"login": "test",
+  			"clave": "integration",
+  			"tipo": 0,
+  			"email": "test@integration.com",
+  			"nombre": "test",
+  			"apellido": "test",
+  			"direccion": "test",
+  			"telefono": "12345678901",
+  			"estatus_registro": 0
+  		}
+	]		
+}

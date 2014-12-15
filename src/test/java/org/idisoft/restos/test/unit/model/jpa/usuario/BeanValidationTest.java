@@ -29,11 +29,13 @@ public class BeanValidationTest {
 		String validCedula="V12345678";
 		String validLogin="abcdef";
 		String validPassword="abcd1234";
+		String validNombre="name";
 		
 		Usuario retorno=new UsuarioJPA();
 		retorno.setCedula(validCedula);
 		retorno.setLogin(validLogin);
 		retorno.setPassword(validPassword);
+		retorno.setNombre(validNombre);
 		
 		return retorno;
 	}
@@ -125,6 +127,30 @@ public class BeanValidationTest {
 	}
 	
 	@Test
+	public void BeanValidation_LoginWithNumbers_Valid()
+	{
+		Usuario validusuario=validUsuario();
+		validusuario.setLogin("abc123");
+		assertTrue(isValid(validusuario));
+	}
+	
+	@Test
+	public void BeanValidation_LoginWithUnderscore_Valid()
+	{
+		Usuario validusuario=validUsuario();
+		validusuario.setLogin("abc_123");
+		assertTrue(isValid(validusuario));
+	}
+	
+	@Test
+	public void BeanValidation_LoginWithDash_Valid()
+	{
+		Usuario validusuario=validUsuario();
+		validusuario.setLogin("abc-123");
+		assertTrue(isValid(validusuario));
+	}
+	
+	@Test
 	public void BeanValidation_PasswordIsNull_NotValid()
 	{
 		Usuario invalidusuario= validUsuario();
@@ -146,6 +172,46 @@ public class BeanValidationTest {
 		Usuario invalidusuario=validUsuario();
 		invalidusuario.setPassword("abcdehijklmnopqrstuvwx");
 		assertFalse(isValid(invalidusuario));
+	}
+	
+	@Test
+	public void BeanValidation_NombreIsLessThanMinSize_NotValid()
+	{
+		Usuario invalidusuario=validUsuario();
+		invalidusuario.setNombre("ab");
+		assertFalse(isValid(invalidusuario));
+	}
+	
+	@Test
+	public void BeanValidation_NombreIsMoreThanMaxSize_NotValid()
+	{
+		Usuario invalidusuario=validUsuario();
+		invalidusuario.setNombre("abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz");
+		assertFalse(isValid(invalidusuario));
+	}
+	
+	@Test
+	public void BeanValidation_NombreIsNull_NotValid()
+	{
+		Usuario invalidusuario=validUsuario();
+		invalidusuario.setNombre(null);
+		assertFalse(isValid(invalidusuario));
+	}
+	
+	@Test
+	public void BeanValidation_NombreHasNumbers_NotValid()
+	{
+		Usuario invalidusuario=validUsuario();
+		invalidusuario.setNombre("name1");
+		assertFalse(isValid(invalidusuario));
+	}
+	
+	@Test
+	public void BeanValidation_NombreHasEmptySpaces_Valid()
+	{
+		Usuario validusuario=validUsuario();
+		validusuario.setNombre("name name");
+		assertTrue(isValid(validusuario));
 	}
 
 }

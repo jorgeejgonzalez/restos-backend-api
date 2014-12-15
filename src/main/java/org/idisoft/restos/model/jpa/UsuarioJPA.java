@@ -19,8 +19,7 @@ import org.idisoft.restos.model.Usuario;
 		name = ConstantesORM.USUARIO_TABLE_NAME,
 		uniqueConstraints=
 		{
-				@UniqueConstraint(columnNames="email"),
-				@UniqueConstraint(columnNames="login")
+				@UniqueConstraint(columnNames=ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME)
 		}
 )
 public class UsuarioJPA implements Usuario, Serializable {
@@ -35,6 +34,7 @@ public class UsuarioJPA implements Usuario, Serializable {
 	
 	@Column(name=ConstantesORM.USUARIO_LOGIN_COLUMN_NAME)
 	@NotNull
+	@Pattern(regexp=ConstantesBeanValidation.USUARIO_LOGIN_REGEXP)
 	@Size(min=ConstantesBeanValidation.USUARIO_LOGIN_MIN_SIZE,
 			max=ConstantesBeanValidation.USUARIO_LOGIN_MAX_SIZE)
 	private String login;
@@ -44,6 +44,13 @@ public class UsuarioJPA implements Usuario, Serializable {
 	@Size(min=ConstantesBeanValidation.USUARIO_PASSWORD_MIN_SIZE,
 			max=ConstantesBeanValidation.USUARIO_PASSWORD_MAX_SIZE)
 	private String password;
+	
+	@Column(name=ConstantesORM.USUARIO_NOMBRE_COLUMN_NAME)
+	@NotNull
+	@Pattern(regexp=ConstantesBeanValidation.USUARIO_NOMBRE_REGEXP)
+	@Size(min=ConstantesBeanValidation.USUARIO_NOMBRE_MIN_SIZE,
+			max=ConstantesBeanValidation.USUARIO_NOMBRE_MAX_SIZE)
+	private String nombre;
 
 	@Override
 	public String getCedula() {
@@ -64,7 +71,7 @@ public class UsuarioJPA implements Usuario, Serializable {
 	public void setCedula(String cedula) {
 		this.cedula=cedula;
 	}
-
+	
 	@Override
 	public void setLogin(String login) {
 		this.login=login;
@@ -74,5 +81,16 @@ public class UsuarioJPA implements Usuario, Serializable {
 	public void setPassword(String password) {
 		this.password=password;
 	}
-
+	
+	@Override
+	public String getNombre()
+	{
+		return nombre;
+	}
+	
+	@Override
+	public void setNombre(String nombre)
+	{
+		this.nombre=nombre;
+	}
 }

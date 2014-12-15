@@ -1,22 +1,33 @@
 package org.idisoft.restos.data.repository;
 
-import javax.ejb.Stateless;
+import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaQuery;
 
-@Stateless
+@Dependent
 public class DataAccessObject<T> {
 	
 	@Inject
 	private EntityManager entitymanager;
 	
-	public T querySingle(CriteriaQuery<T> criteria) throws NoResultException
+	public DataAccessObject()
 	{
-		TypedQuery<T> query=entitymanager.createQuery(criteria);
-		return query.getSingleResult();
+		
+	}
+	
+	public DataAccessObject(EntityManager entitymanager)
+	{
+		this.entitymanager=entitymanager;
+	}
+	
+	public T getSingleResult(CriteriaQuery<T> query) throws NoResultException
+	{
+		TypedQuery<T> typedquery=entitymanager.createQuery(query);
+		return typedquery.getSingleResult();
 	}
 
+	
 }
