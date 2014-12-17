@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 
 @Dependent
@@ -12,6 +13,8 @@ public class DataAccessObject<T> {
 	
 	@Inject
 	private EntityManager entitymanager;
+	
+	private Class<T> entityclass;
 	
 	public DataAccessObject()
 	{
@@ -23,10 +26,19 @@ public class DataAccessObject<T> {
 		this.entitymanager=entitymanager;
 	}
 	
-	public T getSingleResult(CriteriaQuery<T> query) throws NoResultException
+	public CriteriaBuilder getCriteriaBuilder()
 	{
-		TypedQuery<T> typedquery=entitymanager.createQuery(query);
-		return typedquery.getSingleResult();
+		return entitymanager.getCriteriaBuilder();
+	}
+	
+	public CriteriaQuery<T> getCriteriaQuery()
+	{
+		return entitymanager.getCriteriaBuilder().createQuery(entityclass);
+	}
+	
+	public TypedQuery<T> getTypedQuery(CriteriaQuery<T> criteriaquery) throws NoResultException
+	{
+		return entitymanager.createQuery(criteriaquery);
 	}
 
 	

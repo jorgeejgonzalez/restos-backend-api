@@ -19,13 +19,16 @@ import org.junit.runner.RunWith;
 public class AuthenticateTest extends AbstractRestServiceTest {
 	
 	@Inject
-	private UsuariosService usuarioservice; 
+	private UsuariosService usuarioservice;
+	
+	private String loginindataset="test";
+	private String passwordindataset="integration";
+	private String loginnotindataset="abcdef";
+	private String passwordnotindataset="abc123";
 	
 	@Test
 	public void AuthenticateUser_LoginAndPasswordMatch_ResponseOK()
 	{
-		String loginindataset="jorgeejgonzalez";
-		String passwordindataset="algoalgo";
 		Response response=usuarioservice.authenticateUser(loginindataset, passwordindataset);
 		assertOK(response);
 	}
@@ -33,8 +36,6 @@ public class AuthenticateTest extends AbstractRestServiceTest {
 	@Test
 	public void AuthenticateUser_LoginAndPasswordMatch_EntityUsuario()
 	{
-		String loginindataset="jorgeejgonzalez";
-		String passwordindataset="algoalgo";
 		Response response=usuarioservice.authenticateUser(loginindataset, passwordindataset);
 		Usuario entity=(Usuario)response.getEntity();
 		assertEquals(loginindataset, entity.getLogin());
@@ -43,8 +44,6 @@ public class AuthenticateTest extends AbstractRestServiceTest {
 	@Test
 	public void AuthenticateUser_LoginAndPasswordMatch_EntityUsuarioDTO()
 	{
-		String loginindataset="jorgeejgonzalez";
-		String passwordindataset="algoalgo";
 		Response response=usuarioservice.authenticateUser(loginindataset, passwordindataset);
 		Usuario entity=(Usuario)response.getEntity();
 		assertTrue(entity instanceof UsuarioDTO);
@@ -53,17 +52,13 @@ public class AuthenticateTest extends AbstractRestServiceTest {
 	@Test
 	public void AuthenticateUser_LoginIsNotInDatabase_ResponseNotFound()
 	{
-		String login="abcdefg";
-		String password="abcdef";
-		Response response=usuarioservice.authenticateUser(login, password);
+		Response response=usuarioservice.authenticateUser(loginnotindataset, passwordnotindataset);
 		assertNotFound(response);
 	}
 	
 	@Test
 	public void AuthenticateUser_LoginAndPassworDoNotMatch_ResponseUnauthorized()
 	{
-		String loginindataset="jorgeejgonzalez";
-		String passwordnotindataset="abcdefgij";
 		Response response=usuarioservice.authenticateUser(loginindataset, passwordnotindataset);
 		assertUnauthorized(response);
 	}
@@ -72,8 +67,7 @@ public class AuthenticateTest extends AbstractRestServiceTest {
 	public void AuthenticateUser_LoginIsNull_ResponseNotAcceptable()
 	{
 		String login=null;
-		String password="abcdef";
-		Response response=usuarioservice.authenticateUser(login, password);
+		Response response=usuarioservice.authenticateUser(login, passwordindataset);
 		assertNotAcceptable(response);
 	}
 	
@@ -81,26 +75,23 @@ public class AuthenticateTest extends AbstractRestServiceTest {
 	public void AuthenticateUser_LoginIsEmpty_ResponseNotAcceptable()
 	{
 		String login="";
-		String password="abcdef";
-		Response response=usuarioservice.authenticateUser(login, password);
+		Response response=usuarioservice.authenticateUser(login, passwordindataset);
 		assertNotAcceptable(response);
 	}
 	
 	@Test
 	public void AuthenticateUser_PasswordIsNull_ResponseNotAcceptable()
 	{
-		String login="abcdefgh";
 		String password=null;
-		Response response=usuarioservice.authenticateUser(login, password);
+		Response response=usuarioservice.authenticateUser(loginindataset, password);
 		assertNotAcceptable(response);
 	}
 	
 	@Test
 	public void AuthenticateUser_PasswordIsEmpty_ResponseNotAcceptable()
 	{
-		String login="abcdefgh";
 		String password="";
-		Response response=usuarioservice.authenticateUser(login, password);
+		Response response=usuarioservice.authenticateUser(loginindataset, password);
 		assertNotAcceptable(response);
 	}
 
