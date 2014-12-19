@@ -45,4 +45,9 @@ public class UsuariosRepository extends Repository<UsuarioJPA> {
 		
 		return retorno;
 	}
+	
+	public Usuario add(final Usuario usuario)
+	{
+		return null;
+	}
 }

@@ -14,7 +14,7 @@ public interface UsuariosService {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Path(ConstantesREST.USUARIOS_FUNCION_AUTHENTICATE)
+	@Path(ConstantesREST.USUARIOS_FUNCTION_AUTHENTICATE)
 	public Response authenticateUsuario(@PathParam("login") final String login, final String password);
 
 }
