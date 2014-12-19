@@ -13,4 +13,4 @@ Tecnologias utilizadas:
 
 Agradecimientos:
 -----------
-- Carlos Chacin(@carloschacin) por la estructura del .gitignore
+- Carlos Chacin([@carloschacin](https://twitter.com/carloschacin)) por la estructura del .gitignore
