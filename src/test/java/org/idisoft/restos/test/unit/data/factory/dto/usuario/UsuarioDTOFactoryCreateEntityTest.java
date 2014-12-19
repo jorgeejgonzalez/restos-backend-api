@@ -8,7 +8,7 @@ import org.idisoft.restos.model.dto.UsuarioDTO;
 import org.junit.Before;
 import org.junit.Test;
 
-public class CreateEntityTest {
+public class UsuarioDTOFactoryCreateEntityTest {
 
 	private UsuarioDTOFactory factory;
 	

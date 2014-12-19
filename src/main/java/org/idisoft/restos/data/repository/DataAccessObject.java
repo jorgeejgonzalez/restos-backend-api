@@ -10,18 +10,13 @@ import javax.persistence.criteria.CriteriaQuery;
 
 @Dependent
 public class DataAccessObject<T> {
-	
-	@Inject
-	private EntityManager entitymanager;
+
+	private final EntityManager entitymanager;
 	
 	private Class<T> entityclass;
 	
-	public DataAccessObject()
-	{
-		
-	}
-	
-	public DataAccessObject(EntityManager entitymanager)
+	@Inject
+	public DataAccessObject(final EntityManager entitymanager)
 	{
 		this.entitymanager=entitymanager;
 	}
@@ -36,7 +31,7 @@ public class DataAccessObject<T> {
 		return entitymanager.getCriteriaBuilder().createQuery(entityclass);
 	}
 	
-	public TypedQuery<T> getTypedQuery(CriteriaQuery<T> criteriaquery) throws NoResultException
+	public TypedQuery<T> getTypedQuery(final CriteriaQuery<T> criteriaquery) throws NoResultException
 	{
 		return entitymanager.createQuery(criteriaquery);
 	}

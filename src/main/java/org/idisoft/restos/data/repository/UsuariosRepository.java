@@ -1,8 +1,11 @@
 package org.idisoft.restos.data.repository;
 
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.persistence.NoResultException;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 import org.idisoft.restos.model.Usuario;
 import org.idisoft.restos.model.jpa.ConstantesORM;
@@ -16,26 +19,29 @@ public class UsuariosRepository extends Repository<UsuarioJPA> {
 		this.entityclass=UsuarioJPA.class;
 	}
 	
-	public UsuariosRepository(DataAccessObject<UsuarioJPA> daousuariojpa)
+	@Inject
+	public UsuariosRepository(final DataAccessObject<UsuarioJPA> daousuariojpa)
 	{
+		super(daousuariojpa);
 		this.entityclass=UsuarioJPA.class;
-		this.dataaccessobject=daousuariojpa;
 	}
 	
-	public Usuario findByLogin(String login) throws NoResultException, IllegalArgumentException
+	public Usuario findByLogin(final String login) throws NoResultException, IllegalArgumentException
 	{
 		if(login==null || login.isEmpty())
 		{
 			throw new IllegalArgumentException();
 		}
 		
-		setUpCriteriaElements();
+		Root<UsuarioJPA> criteriaroot=criteriaquery.from(entityclass);
 		
-		Predicate condition=criteriabuilder.equal(
+		Predicate criteriacondition=criteriabuilder.equal(
 				criteriaroot.get(ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME),
 				login);
 		
-		UsuarioJPA retorno=assembleTypedQuery(condition).getSingleResult();
+		TypedQuery<UsuarioJPA> typedquery=assembleTypedQuery(criteriaquery, criteriaroot, criteriacondition);
+		
+		UsuarioJPA retorno=typedquery.getSingleResult();
 		
 		return retorno;
 	}

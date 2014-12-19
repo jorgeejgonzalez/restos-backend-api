@@ -18,72 +18,78 @@
     <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
     <tr>
       <td class='line'></td><td>&nbsp;</td>
-      <td><pre class='imports prettyprint' onclick='showHideLines(this)'><div>import org.idisoft.restos.model.Usuario;
+      <td><pre class='imports prettyprint' onclick='showHideLines(this)'><div>import javax.enterprise.context.RequestScoped;
+
+import org.idisoft.restos.model.Usuario;
 import org.idisoft.restos.model.jpa.UsuarioJPA;
 </div><span>import ...</span></pre></td>
     </tr>
     <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
     <tr>
-      <td class='line'>6</td><td>&nbsp;</td>
+      <td class='line'>8</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>@RequestScoped</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>9</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>public class UsuarioJPAFactory extends JPAFactory&lt;Usuario> {</pre></td>
     </tr>
     <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
     <tr>
-      <td class='line'>8</td><td>&nbsp;</td>
+      <td class='line'>11</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>	private Usuario defaultUsuario()</pre></td>
     </tr>
     <tr>
-      <td class='line'>9</td><td>&nbsp;</td>
+      <td class='line'>12</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>	{</pre></td>
     </tr>
     <tr>
-      <td class='line'>10</td><td>&nbsp;</td>
+      <td class='line'>13</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>		Usuario retorno=new UsuarioJPA();</pre></td>
     </tr>
     <tr>
-      <td class='line'>11</td><td>&nbsp;</td>
+      <td class='line'>14</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>		retorno.setCedula("V00000000");</pre></td>
     </tr>
     <tr>
-      <td class='line'>12</td><td>&nbsp;</td>
+      <td class='line'>15</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>		retorno.setLogin("");</pre></td>
     </tr>
     <tr>
-      <td class='line'>13</td><td>&nbsp;</td>
+      <td class='line'>16</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>		retorno.setPassword("");</pre></td>
     </tr>
     <tr>
-      <td class='line'>14</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>		return retorno;</pre></td>
-    </tr>
-    <tr>
-      <td class='line'>15</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>	}</pre></td>
-    </tr>
-    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
-    <tr>
       <td class='line'>17</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>	@Override</pre></td>
+      <td><pre class='prettyprint'>		return retorno;</pre></td>
     </tr>
     <tr>
       <td class='line'>18</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>	public Usuario createEntity() {</pre></td>
-    </tr>
-    <tr>
-      <td class='line'>19</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>		Usuario retorno=defaultUsuario();</pre></td>
-    </tr>
-    <tr>
-      <td class='line'>20</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>		return retorno;</pre></td>
-    </tr>
-    <tr>
-      <td class='line'>21</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>	}</pre></td>
     </tr>
     <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
     <tr>
+      <td class='line'>20</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	@Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>21</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	public Usuario createEntity() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>22</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>		Usuario retorno=defaultUsuario();</pre></td>
+    </tr>
+    <tr>
       <td class='line'>23</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>		return retorno;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>24</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	}</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>26</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>}</pre></td>
     </tr>
   </table>

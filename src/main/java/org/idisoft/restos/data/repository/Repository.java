@@ -11,26 +11,31 @@ public abstract class Repository<T> {
 	
 	protected Class<T> entityclass;
 	
-	@Inject
 	protected DataAccessObject<T> dataaccessobject;
 	
 	protected CriteriaBuilder criteriabuilder;
 	protected CriteriaQuery<T> criteriaquery;
-	protected Root<T> criteriaroot;
 	
-	protected void setUpCriteriaElements()
+	public Repository()
 	{
-		criteriabuilder=dataaccessobject.getCriteriaBuilder();
-		criteriaquery=dataaccessobject.getCriteriaQuery();
-		criteriaroot=criteriaquery.from(entityclass);
 	}
 	
-	protected TypedQuery<T> assembleTypedQuery(Predicate condition)
+	@Inject
+	public Repository(final DataAccessObject<T> dataaccessobject)
 	{
-		criteriaquery.select(criteriaroot);
-		criteriaquery.where(condition);
+		this.dataaccessobject=dataaccessobject;
+		this.criteriabuilder=dataaccessobject.getCriteriaBuilder();
+		this.criteriaquery=dataaccessobject.getCriteriaQuery();
+	}
+	
+	protected TypedQuery<T> assembleTypedQuery(final CriteriaQuery<T> query,
+			final Root<T> root, 
+			final Predicate condition)
+	{
+		CriteriaQuery<T> criteria =query.select(root);
+		criteria.where(condition);
 		
-		TypedQuery<T> typedquery=dataaccessobject.getTypedQuery(criteriaquery);
+		TypedQuery<T> typedquery=dataaccessobject.getTypedQuery(criteria);
 		
 		return typedquery;
 	}

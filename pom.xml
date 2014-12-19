@@ -64,6 +64,9 @@
         <version.jmockit>1.13</version.jmockit>
         <version.jmockit.coverage>1.13</version.jmockit.coverage>
         
+        <!-- Mockito version -->
+        <version.mockito>1.10.17</version.mockito>
+        
         <!-- Arquillian DBUnit version -->
         <version.arquillian.persistence.dbunit>1.0.0.Alpha7</version.arquillian.persistence.dbunit>
     
@@ -200,7 +203,7 @@
         	<artifactId>jmockit-coverage</artifactId>
         	<version>${version.jmockit.coverage}</version>
         	<scope>runtime</scope>
-        </dependency> -->
+        </dependency> --> 
         
         <!-- Needed for running tests (you may also use TestNG) -->
         <dependency>
@@ -208,6 +211,13 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+        
+        <!-- Mockito for mocks -->
+        <dependency>
+        	<groupId>org.mockito</groupId>
+    		<artifactId>mockito-core</artifactId>
+    		<version>${version.mockito}</version>
+		</dependency>
 
         <!-- Optional, but highly recommended -->
         <!-- Arquillian allows you to test enterprise code such as EJBs and Transactional(JTA) 
@@ -333,6 +343,8 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <version>${version.surefire.plugin}</version>
                         <configuration>
+                        	<!-- <argLine>-javaagent:${settings.localRepository}/org/jmockit/jmockit/${version.jmockit}/jmockit-${version.jmockit}.jar</argLine>
+      						<useSystemClassLoader>true</useSystemClassLoader>  -->
                             <skip>true</skip>
                         </configuration>
                     </plugin>

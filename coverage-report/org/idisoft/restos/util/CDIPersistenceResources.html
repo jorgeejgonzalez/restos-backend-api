@@ -22,54 +22,96 @@
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
+import org.idisoft.restos.model.jpa.UsuarioJPA;
 </div><span>import ...</span></pre></td>
     </tr>
     <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
     <tr>
-      <td class='line'>8</td><td>&nbsp;</td>
+      <td class='line'>12</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>public class CDIPersistenceResources {</pre></td>
     </tr>
     <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
     <tr>
-      <td class='line'>10</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>	@SuppressWarnings("unused")</pre></td>
+      <td class='line'>14</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	@Produces</pre></td>
     </tr>
     <tr>
-      <td class='line'>11</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>    @Produces</pre></td>
-    </tr>
-    <tr>
-      <td class='line'>12</td><td>&nbsp;</td>
+      <td class='line'>15</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>    @PersistenceContext</pre></td>
     </tr>
     <tr>
-      <td class='line'>13</td><td>&nbsp;</td>
+      <td class='line'>16</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>    private EntityManager entitymanager;</pre></td>
     </tr>
     <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
     <tr>
-      <td class='line'>15</td><td>&nbsp;</td>
+      <td class='line'>18</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>	@Produces</pre></td>
     </tr>
     <tr>
-      <td class='line'>16</td><td>&nbsp;</td>
+      <td class='line'>19</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>	public CriteriaBuilder getCriteriaBuilder()</pre></td>
     </tr>
     <tr>
-      <td class='line'>17</td><td>&nbsp;</td>
+      <td class='line'>20</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>	{</pre></td>
     </tr>
     <tr>
-      <td class='line'>18</td><td>&nbsp;</td>
+      <td class='line'>21</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>		return entitymanager.getCriteriaBuilder();</pre></td>
     </tr>
     <tr>
-      <td class='line'>19</td><td>&nbsp;</td>
+      <td class='line'>22</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>	}</pre></td>
     </tr>
     <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
     <tr>
-      <td class='line'>21</td><td>&nbsp;</td>
+      <td class='line'>24</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	@Produces</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>25</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	public CriteriaQuery&lt;UsuarioJPA> getCriteriaUsuarioJPA()</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>26</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	{</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>27</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>		return entitymanager.getCriteriaBuilder().createQuery(UsuarioJPA.class);		</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>28</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	}</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>30</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	@Produces</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>31</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	public Root&lt;UsuarioJPA> getRootUsuarioJPA()</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>32</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	{</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>33</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>		return entitymanager.getCriteriaBuilder().createQuery(UsuarioJPA.class).from(UsuarioJPA.class);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>34</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	}</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>36</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>}</pre></td>
     </tr>
   </table>

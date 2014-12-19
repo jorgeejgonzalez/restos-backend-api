@@ -32,7 +32,8 @@ public class ArquillianArchiver {
 		
 		war.addClass(org.idisoft.restos.util.CDIPersistenceResources.class);
 		
-		war.addClass(org.idisoft.restos.test.integration.services.AbstractRestServiceTest.class);
+		war.addClass(org.idisoft.restos.test.unit.service.AbstractRestServiceTest.class);
+		war.addClass(org.idisoft.restos.test.integration.services.AbstractRestServiceIntegrationTest.class);
 		
 		war.addClass(javax.persistence.EntityManager.class);
 		war.addClass(javax.persistence.criteria.CriteriaBuilder.class);

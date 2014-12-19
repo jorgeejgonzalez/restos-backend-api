@@ -28,7 +28,7 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 @UsingDataSet("data/usuarios.json")
 @Cleanup(phase = TestExecutionPhase.AFTER, strategy = CleanupStrategy.USED_ROWS_ONLY)
-public class TypedQueryTest {
+public class DataAccessObjectGetTypedQueryTest {
 	
 	@Inject
 	private DataAccessObject<UsuarioJPA> daousuariojpa;
