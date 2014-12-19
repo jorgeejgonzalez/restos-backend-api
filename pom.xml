@@ -23,10 +23,8 @@
     <artifactId>restos-backend-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>WildFly Quickstarts: Kitchensink</name>
-    <description>A starter Java EE 7 webapp project for use on JBoss WildFly / WildFly, generated from the jboss-javaee6-webapp archetype</description>
+    <name>Restos Backend API</name>
 
-    <url>http://wildfly.org</url>
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
@@ -412,4 +410,5 @@
         </profile>
 
     </profiles>
+    <description>El api de soporte para la app restos</description>
 </project>
