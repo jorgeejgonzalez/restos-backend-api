@@ -10,6 +10,7 @@ Tecnologias utilizadas:
 - Mockito
 - Arquillian
 - Wildfly
+
 Agradecimientos:
 -----------
 - Carlos Chacin(@carloschacin) por la estructura del .gitignore
