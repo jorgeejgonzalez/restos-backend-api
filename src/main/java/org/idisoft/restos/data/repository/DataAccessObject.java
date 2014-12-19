@@ -2,6 +2,7 @@ package org.idisoft.restos.data.repository;
 
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
+import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
@@ -19,6 +20,12 @@ public class DataAccessObject<T> {
 	public DataAccessObject(final EntityManager entitymanager)
 	{
 		this.entitymanager=entitymanager;
+	}
+	
+	public T persist(T entity) throws EntityExistsException
+	{
+		entitymanager.persist(entity);
+		return entity;
 	}
 	
 	public CriteriaBuilder getCriteriaBuilder()

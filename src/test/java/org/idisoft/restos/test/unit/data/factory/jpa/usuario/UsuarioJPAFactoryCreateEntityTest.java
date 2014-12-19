@@ -10,7 +10,13 @@ import org.junit.Test;
 
 public class UsuarioJPAFactoryCreateEntityTest {
 	
-	UsuarioJPAFactory factory;
+	private UsuarioJPAFactory factory;
+	
+	private String ceduladefault="V00000000";
+	private String logindefault="";
+	private String passworddefault="";
+	private String nombredefault="";
+	
 	
 	@Before
 	public void instantiateFactory()
@@ -27,25 +33,29 @@ public class UsuarioJPAFactoryCreateEntityTest {
 	@Test
 	public void CreateEntity_DefaultInvocation_DefaultCedulaData()
 	{
-		String defaultCedula="V00000000";
 		Usuario usuariotest=factory.createEntity();
-		assertTrue(defaultCedula.equals(usuariotest.getCedula()));
+		assertTrue(ceduladefault.equals(usuariotest.getCedula()));
 	}
 	
 	@Test
 	public void CreateEntity_DefaultInvocation_DefaultLoginData()
 	{
-		String defaultLogin="";
 		Usuario usuariotest=factory.createEntity();
-		assertTrue(defaultLogin.equals(usuariotest.getLogin()));
+		assertTrue(logindefault.equals(usuariotest.getLogin()));
 	}
 	
 	@Test
 	public void CreateEntity_DefaultInvocation_DefaultPasswordData()
 	{
-		String defaultPassword="";
 		Usuario usuariotest=factory.createEntity();
-		assertTrue(defaultPassword.equals(usuariotest.getPassword()));
+		assertTrue(passworddefault.equals(usuariotest.getPassword()));
+	}
+	
+	@Test
+	public void CreateEntity_DefaultInvocation_DefaultNombreData()
+	{
+		Usuario usuariotest=factory.createEntity();
+		assertTrue(nombredefault.equals(usuariotest.getNombre()));
 	}
 
 }

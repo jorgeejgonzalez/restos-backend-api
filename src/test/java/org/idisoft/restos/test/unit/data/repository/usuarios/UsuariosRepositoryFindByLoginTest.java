@@ -9,6 +9,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import org.idisoft.restos.data.factory.jpa.UsuarioJPAFactory;
 import org.idisoft.restos.data.repository.DataAccessObject;
 import org.idisoft.restos.data.repository.UsuariosRepository;
 import org.idisoft.restos.model.Usuario;
@@ -25,6 +26,8 @@ public class UsuariosRepositoryFindByLoginTest {
 	
 	private UsuariosRepository repository;
 	
+	@Mock
+	private UsuarioJPAFactory usuariojpafactorystub;
 	@Mock
 	private DataAccessObject<UsuarioJPA> usuariojpadaostub;
 	@Mock
@@ -52,10 +55,10 @@ public class UsuariosRepositoryFindByLoginTest {
 		when(usuariojpadaostub.getTypedQuery(criteriaqueryusuariostub)).thenReturn(typedqueryusuariostub);
 	}
 	
-	@Before
-	public void setUpEntities()
+	public void instantiateObjects()
 	{
 		validusuario=TestEntitiesFactory.validUsuarioJPA();
+		repository=new UsuariosRepository(usuariojpadaostub,usuariojpafactorystub);
 	}
 	
 	@Test
@@ -63,7 +66,8 @@ public class UsuariosRepositoryFindByLoginTest {
 	{
 		when(typedqueryusuariostub.getSingleResult()).thenReturn(validusuario);
 		
-		repository=new UsuariosRepository(usuariojpadaostub);
+		instantiateObjects();
+		
 		Usuario usuariocheck= repository.findByLogin(loginsuccess);
 		assertNotNull(usuariocheck);
 	}
@@ -74,7 +78,7 @@ public class UsuariosRepositoryFindByLoginTest {
 	{
 		when(typedqueryusuariostub.getSingleResult()).thenThrow(new NoResultException());
 		
-		repository=new UsuariosRepository(usuariojpadaostub);
+		instantiateObjects();
 		Usuario usuariocheck= repository.findByLogin(loginfail);
 	}
 	
@@ -82,7 +86,7 @@ public class UsuariosRepositoryFindByLoginTest {
 	@Test(expected=IllegalArgumentException.class)
 	public void FindByLogin_LoginIsNull_ThrowsIllegalArgumenException()
 	{
-		repository=new UsuariosRepository(usuariojpadaostub);
+		instantiateObjects();
 		Usuario usuariocheck= repository.findByLogin(loginnull);
 	}
 	
@@ -90,7 +94,7 @@ public class UsuariosRepositoryFindByLoginTest {
 	@Test(expected=IllegalArgumentException.class)
 	public void FindByLogin_LoginIsEmpty_ThrowsIllegalArgumenException()
 	{
-		repository=new UsuariosRepository(usuariojpadaostub);
+		instantiateObjects();
 		Usuario usuariocheck= repository.findByLogin(loginempty);
 	}
 

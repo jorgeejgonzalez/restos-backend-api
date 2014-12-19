@@ -3,12 +3,9 @@ package org.idisoft.restos.test.unit.data.repository.usuarios;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-import javax.persistence.NoResultException;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
+import javax.persistence.EntityExistsException;
 
+import org.idisoft.restos.data.factory.jpa.UsuarioJPAFactory;
 import org.idisoft.restos.data.repository.DataAccessObject;
 import org.idisoft.restos.data.repository.UsuariosRepository;
 import org.idisoft.restos.model.Usuario;
@@ -26,26 +23,47 @@ public class UsuariosRepositoryAddTest {
 	private UsuariosRepository repository;
 	
 	@Mock
+	private UsuarioJPAFactory usuariojpafactorystub;
+	@Mock
 	private DataAccessObject<UsuarioJPA> usuariojpadaostub;
 	
-	private UsuarioJPA validusuario;
+	private Usuario validusuario;
+	private UsuarioJPA validusuariojpa;
 	
 	@Before
 	public void setUpMockitoRules()
 	{
+		validusuario=TestEntitiesFactory.validUsuario();
+		validusuariojpa=TestEntitiesFactory.validUsuarioJPA();
+		
+		when(usuariojpafactorystub.copyEntity(validusuario)).thenReturn(validusuariojpa);
 	}
 	
-	@Before
-	public void setUpEntities()
+	
+	public void instantiateRepository()
 	{
-		validusuario=TestEntitiesFactory.validUsuarioJPA();
+		repository=new UsuariosRepository(usuariojpadaostub,usuariojpafactorystub);
 	}
 	
 	@Test
 	public void Add_UsuarioIsNotInRepository_ReturnsUsuario() throws Exception
 	{
-		repository=new UsuariosRepository(usuariojpadaostub);
+		when(usuariojpadaostub.persist(validusuariojpa)).thenReturn(validusuariojpa);
+		
+		instantiateRepository();
+		
 		Usuario added=repository.add(validusuario);
 		assertNotNull(added);
+	}
+	
+	@SuppressWarnings("unused")
+	@Test(expected=EntityExistsException.class)
+	public void Add_UsuarioIsNInRepository_ThrowEntityExistsException() throws Exception
+	{
+		when(usuariojpadaostub.persist(validusuariojpa)).thenThrow(new EntityExistsException());
+		
+		instantiateRepository();
+		
+		Usuario added=repository.add(validusuario);
 	}
 }
