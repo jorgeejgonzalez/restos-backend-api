@@ -113,204 +113,212 @@ import org.idisoft.restos.model.Usuario;
     </tr>
     <tr>
       <td class='line'>37</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>	@Size(min=ConstantesBeanValidation.USUARIO_LOGIN_MIN_SIZE,</pre></td>
+      <td><pre class='prettyprint'>	@Pattern(regexp=ConstantesBeanValidation.USUARIO_LOGIN_REGEXP)</pre></td>
     </tr>
     <tr>
       <td class='line'>38</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>			max=ConstantesBeanValidation.USUARIO_LOGIN_MAX_SIZE)</pre></td>
+      <td><pre class='prettyprint'>	@Size(min=ConstantesBeanValidation.USUARIO_LOGIN_MIN_SIZE,</pre></td>
     </tr>
     <tr>
       <td class='line'>39</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>			max=ConstantesBeanValidation.USUARIO_LOGIN_MAX_SIZE)</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>40</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>	private String login;</pre></td>
     </tr>
     <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
     <tr>
-      <td class='line'>41</td><td>&nbsp;</td>
+      <td class='line'>42</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>	@Column(name=ConstantesORM.USUARIO_PASSWORD_COLUMN_NAME)</pre></td>
     </tr>
     <tr>
-      <td class='line'>42</td><td>&nbsp;</td>
+      <td class='line'>43</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>	@NotNull</pre></td>
     </tr>
     <tr>
-      <td class='line'>43</td><td>&nbsp;</td>
+      <td class='line'>44</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>	@Size(min=ConstantesBeanValidation.USUARIO_PASSWORD_MIN_SIZE,</pre></td>
     </tr>
     <tr>
-      <td class='line'>44</td><td>&nbsp;</td>
+      <td class='line'>45</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>			max=ConstantesBeanValidation.USUARIO_PASSWORD_MAX_SIZE)</pre></td>
     </tr>
     <tr>
-      <td class='line'>45</td><td>&nbsp;</td>
+      <td class='line'>46</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>	private String password;</pre></td>
     </tr>
     <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
     <tr>
-      <td class='line'>47</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>	@NotNull</pre></td>
-    </tr>
-    <tr>
       <td class='line'>48</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>	@Pattern(regexp=ConstantesBeanValidation.USUARIO_NOMBRE_REGEXP)</pre></td>
+      <td><pre class='prettyprint'>	@Column(name=ConstantesORM.USUARIO_NOMBRE_COLUMN_NAME)</pre></td>
     </tr>
     <tr>
       <td class='line'>49</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>	@Size(min=ConstantesBeanValidation.USUARIO_NOMBRE_MIN_SIZE,</pre></td>
+      <td><pre class='prettyprint'>	@NotNull</pre></td>
     </tr>
     <tr>
       <td class='line'>50</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>			max=ConstantesBeanValidation.USUARIO_NOMBRE_MAX_SIZE)</pre></td>
+      <td><pre class='prettyprint'>	@Pattern(regexp=ConstantesBeanValidation.USUARIO_NOMBRE_REGEXP)</pre></td>
     </tr>
     <tr>
       <td class='line'>51</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	@Size(min=ConstantesBeanValidation.USUARIO_NOMBRE_MIN_SIZE,</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>52</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>			max=ConstantesBeanValidation.USUARIO_NOMBRE_MAX_SIZE)</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>53</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>	private String nombre;</pre></td>
     </tr>
     <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
     <tr>
-      <td class='line'>53</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>	@Override</pre></td>
-    </tr>
-    <tr>
-      <td class='line'>54</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>	public String getCedula() {</pre></td>
-    </tr>
-    <tr>
       <td class='line'>55</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>		return cedula;</pre></td>
+      <td><pre class='prettyprint'>	@Override</pre></td>
     </tr>
     <tr>
       <td class='line'>56</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	public String getCedula() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>57</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>		return cedula;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>58</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>	}</pre></td>
     </tr>
     <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
     <tr>
-      <td class='line'>58</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>	@Override</pre></td>
-    </tr>
-    <tr>
-      <td class='line'>59</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>	public String getLogin() {</pre></td>
-    </tr>
-    <tr>
       <td class='line'>60</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>		return login;</pre></td>
+      <td><pre class='prettyprint'>	@Override</pre></td>
     </tr>
     <tr>
       <td class='line'>61</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	public String getLogin() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>62</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>		return login;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>63</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>	}</pre></td>
     </tr>
     <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
     <tr>
-      <td class='line'>63</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>	@Override</pre></td>
-    </tr>
-    <tr>
-      <td class='line'>64</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>	public String getPassword() {</pre></td>
-    </tr>
-    <tr>
       <td class='line'>65</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>		return password;</pre></td>
+      <td><pre class='prettyprint'>	@Override</pre></td>
     </tr>
     <tr>
       <td class='line'>66</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	public String getPassword() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>67</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>		return password;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>68</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>	}</pre></td>
     </tr>
     <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
     <tr>
-      <td class='line'>68</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>	@Override</pre></td>
-    </tr>
-    <tr>
-      <td class='line'>69</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>	public void setCedula(String cedula) {</pre></td>
-    </tr>
-    <tr>
       <td class='line'>70</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>		this.cedula=cedula;</pre></td>
+      <td><pre class='prettyprint'>	@Override</pre></td>
     </tr>
     <tr>
       <td class='line'>71</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	public void setCedula(String cedula) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>72</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>		this.cedula=cedula;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>73</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>	}</pre></td>
     </tr>
     <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
     <tr>
-      <td class='line'>73</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>	@Override</pre></td>
-    </tr>
-    <tr>
-      <td class='line'>74</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>	public void setLogin(String login) {</pre></td>
-    </tr>
-    <tr>
       <td class='line'>75</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>		this.login=login;</pre></td>
+      <td><pre class='prettyprint'>	@Override</pre></td>
     </tr>
     <tr>
       <td class='line'>76</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	public void setLogin(String login) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>77</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>		this.login=login;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>78</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>	}</pre></td>
     </tr>
     <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
     <tr>
-      <td class='line'>78</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>	@Override</pre></td>
-    </tr>
-    <tr>
-      <td class='line'>79</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>	public void setPassword(String password) {</pre></td>
-    </tr>
-    <tr>
       <td class='line'>80</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>		this.password=password;</pre></td>
+      <td><pre class='prettyprint'>	@Override</pre></td>
     </tr>
     <tr>
       <td class='line'>81</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	public void setPassword(String password) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>82</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>		this.password=password;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>83</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>	}</pre></td>
     </tr>
     <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
     <tr>
-      <td class='line'>83</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>	@Override</pre></td>
-    </tr>
-    <tr>
-      <td class='line'>84</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>	public String getNombre()</pre></td>
-    </tr>
-    <tr>
       <td class='line'>85</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>	{</pre></td>
+      <td><pre class='prettyprint'>	@Override</pre></td>
     </tr>
     <tr>
       <td class='line'>86</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>		return nombre;</pre></td>
+      <td><pre class='prettyprint'>	public String getNombre()</pre></td>
     </tr>
     <tr>
       <td class='line'>87</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	{</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>88</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>		return nombre;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>89</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>	}</pre></td>
     </tr>
     <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
     <tr>
-      <td class='line'>89</td><td>&nbsp;</td>
+      <td class='line'>91</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>	@Override</pre></td>
     </tr>
     <tr>
-      <td class='line'>90</td><td>&nbsp;</td>
+      <td class='line'>92</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>	public void setNombre(String nombre)</pre></td>
     </tr>
     <tr>
-      <td class='line'>91</td><td>&nbsp;</td>
+      <td class='line'>93</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>	{</pre></td>
     </tr>
     <tr>
-      <td class='line'>92</td><td>&nbsp;</td>
+      <td class='line'>94</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>		this.nombre=nombre;</pre></td>
     </tr>
     <tr>
-      <td class='line'>93</td><td>&nbsp;</td>
+      <td class='line'>95</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>	}</pre></td>
     </tr>
     <tr>
-      <td class='line'>94</td><td>&nbsp;</td>
+      <td class='line'>96</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>}</pre></td>
     </tr>
   </table>

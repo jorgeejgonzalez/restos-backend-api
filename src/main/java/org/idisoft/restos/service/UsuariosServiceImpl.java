@@ -12,14 +12,24 @@ import org.idisoft.restos.model.Usuario;
 
 public class UsuariosServiceImpl implements UsuariosService {
 	
-	@Inject
 	private UsuariosRepository usuariosrepository;
+	private UsuarioDTOFactory usuariodtofactory;
+	
+	public UsuariosServiceImpl()
+	{
+		
+	}
 	
 	@Inject
-	private UsuarioDTOFactory usuariodtofactory;
+	public UsuariosServiceImpl(final UsuariosRepository usuariosrepository,
+			final UsuarioDTOFactory usuariodtofactory)
+	{
+		this.usuariosrepository=usuariosrepository;
+		this.usuariodtofactory=usuariodtofactory;
+	}
 
 	@Override
-	public Response authenticateUser(String login, String password) {
+	public Response authenticateUsuario(final String login, final String password) {
 		
 		Response.ResponseBuilder builder=null;
 		

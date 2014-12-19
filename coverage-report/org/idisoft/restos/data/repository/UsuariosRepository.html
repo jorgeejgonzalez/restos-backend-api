@@ -18,11 +18,10 @@
     <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
     <tr>
       <td class='line'></td><td>&nbsp;</td>
-      <td><pre class='imports prettyprint' onclick='showHideLines(this)'><div>import javax.ejb.Stateless;
+      <td><pre class='imports prettyprint' onclick='showHideLines(this)'><div>import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.naming.OperationNotSupportedException;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.NoResultException;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
@@ -33,41 +32,51 @@ import org.idisoft.restos.model.jpa.UsuarioJPA;
     </tr>
     <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
     <tr>
+      <td class='line'>14</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>@RequestScoped</pre></td>
+    </tr>
+    <tr>
       <td class='line'>15</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>@Stateless</pre></td>
-    </tr>
-    <tr>
-      <td class='line'>16</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>public class UsuariosRepository extends Repository&lt;Usuario> {</pre></td>
+      <td><pre class='prettyprint'>public class UsuariosRepository extends Repository&lt;UsuarioJPA> {</pre></td>
     </tr>
     <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
     <tr>
-      <td class='line'>18</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>	@Inject</pre></td>
-    </tr>
-    <tr>
-      <td class='line'>19</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>	private CriteriaBuilder criteriabuilder;</pre></td>
-    </tr>
-    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
-    <tr>
-      <td class='line'>21</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>	@Inject</pre></td>
-    </tr>
-    <tr>
-      <td class='line'>22</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>	private DataAccessObject&lt;UsuarioJPA> usuariojpadao;</pre></td>
-    </tr>
-    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
-    <tr>
-      <td class='line'>24</td><td>&nbsp;</td>
+      <td class='line'>17</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>	public UsuariosRepository()</pre></td>
     </tr>
     <tr>
-      <td class='line'>25</td><td>&nbsp;</td>
+      <td class='line'>18</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>	{</pre></td>
     </tr>
+    <tr>
+      <td class='line'>19</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>		this.entityclass=UsuarioJPA.class;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>20</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	}</pre></td>
+    </tr>
     <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>22</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	@Inject</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>23</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	public UsuariosRepository(final DataAccessObject&lt;UsuarioJPA> daousuariojpa)</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>24</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>	{</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>25</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>		super(daousuariojpa);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>26</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>		this.entityclass=UsuarioJPA.class;</pre></td>
+    </tr>
     <tr>
       <td class='line'>27</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>	}</pre></td>
@@ -75,7 +84,7 @@ import org.idisoft.restos.model.jpa.UsuarioJPA;
     <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
     <tr>
       <td class='line'>29</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>	public UsuariosRepository(CriteriaBuilder cb, DataAccessObject&lt;UsuarioJPA> dao)</pre></td>
+      <td><pre class='prettyprint'>	public Usuario findByLogin(final String login) throws NoResultException, IllegalArgumentException</pre></td>
     </tr>
     <tr>
       <td class='line'>30</td><td>&nbsp;</td>
@@ -83,50 +92,47 @@ import org.idisoft.restos.model.jpa.UsuarioJPA;
     </tr>
     <tr>
       <td class='line'>31</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>		this.criteriabuilder=cb;</pre></td>
+      <td><pre class='prettyprint'>		if(login==null || login.isEmpty())</pre></td>
     </tr>
     <tr>
       <td class='line'>32</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>		this.usuariojpadao=dao;</pre></td>
+      <td><pre class='prettyprint'>		{</pre></td>
     </tr>
     <tr>
       <td class='line'>33</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>	}</pre></td>
+      <td><pre class='prettyprint'>			throw new IllegalArgumentException();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>34</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>		}</pre></td>
     </tr>
     <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
     <tr>
-      <td class='line'>35</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>	public Usuario findByLogin(String login)</pre></td>
-    </tr>
-    <tr>
       <td class='line'>36</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>	{</pre></td>
+      <td><pre class='prettyprint'>		Root&lt;UsuarioJPA> criteriaroot=criteriaquery.from(entityclass);</pre></td>
     </tr>
-    <tr>
-      <td class='line'>37</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>		CriteriaQuery&lt;UsuarioJPA> criteria=criteriabuilder.createQuery(UsuarioJPA.class);		</pre></td>
-    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
     <tr>
       <td class='line'>38</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>		Root&lt;UsuarioJPA> root=criteria.from(UsuarioJPA.class);</pre></td>
+      <td><pre class='prettyprint'>		Predicate criteriacondition=criteriabuilder.equal(</pre></td>
     </tr>
     <tr>
       <td class='line'>39</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>		Predicate condition=criteriabuilder.equal(root.get(ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME),login);</pre></td>
+      <td><pre class='prettyprint'>				criteriaroot.get(ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME),</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>40</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>				login);</pre></td>
     </tr>
     <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
     <tr>
-      <td class='line'>41</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>		criteria=criteria.select(root);</pre></td>
-    </tr>
-    <tr>
       <td class='line'>42</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>		criteria=criteria.where(condition);</pre></td>
+      <td><pre class='prettyprint'>		TypedQuery&lt;UsuarioJPA> typedquery=assembleTypedQuery(criteriaquery, criteriaroot, criteriacondition);</pre></td>
     </tr>
     <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
     <tr>
       <td class='line'>44</td><td>&nbsp;</td>
-      <td><pre class='prettyprint'>		UsuarioJPA retorno=usuariojpadao.getSingleResult(criteria);</pre></td>
+      <td><pre class='prettyprint'>		UsuarioJPA retorno=typedquery.getSingleResult();</pre></td>
     </tr>
     <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
     <tr>
@@ -137,9 +143,8 @@ import org.idisoft.restos.model.jpa.UsuarioJPA;
       <td class='line'>47</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>	}</pre></td>
     </tr>
-    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
     <tr>
-      <td class='line'>49</td><td>&nbsp;</td>
+      <td class='line'>48</td><td>&nbsp;</td>
       <td><pre class='prettyprint'>}</pre></td>
     </tr>
   </table>

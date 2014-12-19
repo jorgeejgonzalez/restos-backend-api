@@ -49,7 +49,7 @@ public class RealizaLoginTest {
 		final String passwordindataset="testasclient";
 		
 		//	When
-		final Response response=usuarioservice.authenticateUser(loginindataset, passwordindataset);
+		final Response response=usuarioservice.authenticateUsuario(loginindataset, passwordindataset);
 		
 		//	Then
 		assertEquals(HttpStatus.SC_OK, response.getStatus());
@@ -65,7 +65,7 @@ public class RealizaLoginTest {
 		final String passwordindataset="abcd1234";
 		
 		//	When
-		final Response response=usuarioservice.authenticateUser(loginindataset, passwordindataset);
+		final Response response=usuarioservice.authenticateUsuario(loginindataset, passwordindataset);
 		
 		//	Then
 		assertEquals(HttpStatus.SC_UNAUTHORIZED, response.getStatus());
@@ -81,7 +81,7 @@ public class RealizaLoginTest {
 		final String passwordindataset="abcd1234";
 		
 		//	When
-		final Response response=usuarioservice.authenticateUser(loginindataset, passwordindataset);
+		final Response response=usuarioservice.authenticateUsuario(loginindataset, passwordindataset);
 		
 		//	Then
 		assertEquals(HttpStatus.SC_NOT_FOUND, response.getStatus());

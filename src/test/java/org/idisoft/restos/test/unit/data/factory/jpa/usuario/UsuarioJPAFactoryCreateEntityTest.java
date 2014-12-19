@@ -8,7 +8,7 @@ import org.idisoft.restos.model.jpa.UsuarioJPA;
 import org.junit.Before;
 import org.junit.Test;
 
-public class CreateEntityTest {
+public class UsuarioJPAFactoryCreateEntityTest {
 	
 	UsuarioJPAFactory factory;
 	

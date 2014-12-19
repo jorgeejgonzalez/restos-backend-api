@@ -10,11 +10,10 @@ import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
 import org.idisoft.restos.model.Usuario;
-import org.idisoft.restos.model.jpa.UsuarioJPA;
+import org.idisoft.restos.test.util.TestEntitiesFactory;
 import org.junit.Test;
 
 public class BeanValidationTest {
-	
 	
 	private boolean isValid(Usuario usuario)
 	{
@@ -26,18 +25,7 @@ public class BeanValidationTest {
 	
 	private Usuario validUsuario()
 	{
-		String validCedula="V12345678";
-		String validLogin="abcdef";
-		String validPassword="abcd1234";
-		String validNombre="name";
-		
-		Usuario retorno=new UsuarioJPA();
-		retorno.setCedula(validCedula);
-		retorno.setLogin(validLogin);
-		retorno.setPassword(validPassword);
-		retorno.setNombre(validNombre);
-		
-		return retorno;
+		return TestEntitiesFactory.validUsuario();
 	}
 
 	@Test
