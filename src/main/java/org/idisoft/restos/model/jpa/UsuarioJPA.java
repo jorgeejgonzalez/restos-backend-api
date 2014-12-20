@@ -11,6 +11,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
+import org.idisoft.restos.model.EstatusRegistro;
+import org.idisoft.restos.model.TipoUsuario;
 import org.idisoft.restos.model.Usuario;
 
 @SuppressWarnings("serial")
@@ -45,12 +48,44 @@ public class UsuarioJPA implements Usuario, Serializable {
 			max=ConstantesBeanValidation.USUARIO_PASSWORD_MAX_SIZE)
 	private String password;
 	
+	@Column(name=ConstantesORM.USUARIO_EMAIL_COLUMN_NAME)
+	@NotNull
+	@Email
+	private String email;
+	
+	@Column(name=ConstantesORM.USUARIO_TIPO_COLUMN_NAME)
+	@NotNull
+	private TipoUsuario tipo;
+	
 	@Column(name=ConstantesORM.USUARIO_NOMBRE_COLUMN_NAME)
 	@NotNull
 	@Pattern(regexp=ConstantesBeanValidation.USUARIO_NOMBRE_REGEXP)
 	@Size(min=ConstantesBeanValidation.USUARIO_NOMBRE_MIN_SIZE,
 			max=ConstantesBeanValidation.USUARIO_NOMBRE_MAX_SIZE)
 	private String nombre;
+	
+	@Column(name=ConstantesORM.USUARIO_APELLIDO_COLUMN_NAME)
+	@NotNull
+	@Pattern(regexp=ConstantesBeanValidation.USUARIO_APELLIDO_REGEXP)
+	@Size(min=ConstantesBeanValidation.USUARIO_APELLIDO_MIN_SIZE,
+			max=ConstantesBeanValidation.USUARIO_APELLIDO_MAX_SIZE)
+	private String apellido;
+	
+	@Column(name=ConstantesORM.USUARIO_DIRECCION_COLUMN_NAME)
+	@NotNull
+	@Size(max=ConstantesBeanValidation.USUARIO_DIRECCION_MAX_SIZE)
+	private String direccion;
+	
+	@Column(name=ConstantesORM.USUARIO_TELEFONO_COLUMN_NAME)
+	@NotNull
+	@Pattern(regexp=ConstantesBeanValidation.USUARIO_TELEFONO_REGEXP)
+	@Size(min=ConstantesBeanValidation.USUARIO_TELEFONO_MIN_SIZE, 
+			max=ConstantesBeanValidation.USUARIO_TELEFONO_MAX_SIZE)
+	private String telefono;
+	
+	@Column(name=ConstantesORM.USUARIO_ESTATUSREGISTRO_COLUMN_NAME)
+	@NotNull
+	private EstatusRegistro estatusregistro;
 
 	@Override
 	public String getCedula() {
@@ -68,17 +103,17 @@ public class UsuarioJPA implements Usuario, Serializable {
 	}
 
 	@Override
-	public void setCedula(String cedula) {
+	public void setCedula(final String cedula) {
 		this.cedula=cedula;
 	}
 	
 	@Override
-	public void setLogin(String login) {
+	public void setLogin(final String login) {
 		this.login=login;
 	}
 
 	@Override
-	public void setPassword(String password) {
+	public void setPassword(final String password) {
 		this.password=password;
 	}
 	
@@ -89,8 +124,68 @@ public class UsuarioJPA implements Usuario, Serializable {
 	}
 	
 	@Override
-	public void setNombre(String nombre)
+	public void setNombre(final String nombre)
 	{
 		this.nombre=nombre;
+	}
+
+	@Override
+	public String getApellido() {
+		return apellido;
+	}
+
+	@Override
+	public void setApellido(final String apellido) {
+		this.apellido=apellido;
+	}
+
+	@Override
+	public String getEmail() {
+		return email;
+	}
+
+	@Override
+	public void setEmail(final String email) {
+		this.email=email;
+	}
+
+	@Override
+	public TipoUsuario getTipo() {
+		return tipo;
+	}
+
+	@Override
+	public void setTipo(final TipoUsuario tipo) {
+		this.tipo=tipo;
+	}
+
+	@Override
+	public String getDireccion() {
+		return direccion;
+	}
+
+	@Override
+	public void setDireccion(final String direccion) {
+		this.direccion=direccion;
+	}
+
+	@Override
+	public String getTelefono() {
+		return telefono;
+	}
+
+	@Override
+	public void setTelefono(final String telefono) {
+		this.telefono=telefono;
+	}
+
+	@Override
+	public EstatusRegistro getEstatusRegistro() {
+		return estatusregistro;
+	}
+
+	@Override
+	public void setEstatusRegistro(final EstatusRegistro estatusregistro) {
+		this.estatusregistro=estatusregistro;
 	}
 }

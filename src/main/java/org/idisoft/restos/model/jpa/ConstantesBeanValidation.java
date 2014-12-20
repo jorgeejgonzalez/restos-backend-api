@@ -14,6 +14,12 @@ public class ConstantesBeanValidation {
 	public static final String USUARIO_NOMBRE_REGEXP="[A-Z,a-z, ]*";
 	public static final int USUARIO_NOMBRE_MIN_SIZE=4;
 	public static final int USUARIO_NOMBRE_MAX_SIZE=50;
-	
+	public static final String USUARIO_APELLIDO_REGEXP="[A-Z,a-z, ]*";
+	public static final int USUARIO_APELLIDO_MIN_SIZE=4;
+	public static final int USUARIO_APELLIDO_MAX_SIZE=50;
+	public static final int USUARIO_DIRECCION_MAX_SIZE=100;
+	public static final String USUARIO_TELEFONO_REGEXP="[0-9]*";
+	public static final int USUARIO_TELEFONO_MIN_SIZE=11;
+	public static final int USUARIO_TELEFONO_MAX_SIZE=11;
 	
 }
