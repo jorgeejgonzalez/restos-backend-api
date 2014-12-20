@@ -38,7 +38,6 @@ public class TestEntitiesFactory {
 		usuario.setEstatusRegistro(validEstatusRegistro);
 		
 		return usuario;
-		
 	}
 	
 	public static UsuarioJPA validUsuarioJPA()

@@ -2,7 +2,10 @@ package org.idisoft.restos.model.jpa;
 
 public class ConstantesORM 
 {
-	
+	/*
+	 * Entity: Usuario
+	 * Table: usuarios
+	 */
 	public static final String USUARIO_TABLE_NAME="usuarios";
 	public static final String USUARIO_CEDULA_COLUMN_NAME="cedula";
 	public static final String USUARIO_CEDULA_ATTRIBUTE_NAME="cedula";

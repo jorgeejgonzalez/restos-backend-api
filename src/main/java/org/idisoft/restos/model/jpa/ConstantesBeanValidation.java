@@ -1,7 +1,10 @@
 package org.idisoft.restos.model.jpa;
 
-public class ConstantesBeanValidation {
-	
+public class ConstantesBeanValidation 
+{
+	/*
+	 * Entity: Usuario
+	 */
 	public static final String USUARIO_CEDULA_REGEXP="[V,E]{1}[0-9]+";
 	public static final int USUARIO_CEDULA_MIN_SIZE=8;
 	public static final int USUARIO_CEDULA_MAX_SIZE=10;
