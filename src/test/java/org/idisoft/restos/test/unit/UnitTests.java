@@ -14,7 +14,9 @@ import org.idisoft.restos.test.unit.service.usuarios.*;
 	BeanValidationTest.class, 
 	UsuarioDTOFactoryCreateEntityTest.class,
 	UsuarioJPAFactoryCreateEntityTest.class,
+	UsuarioJPAFactoryCopyEntityTest.class,
 	UsuariosRepositoryFindByLoginTest.class,
+	UsuariosRepositoryAddTest.class,
 	UsuariosServiceAuthenticateUsuarioTest.class
 	})
 public class UnitTests {

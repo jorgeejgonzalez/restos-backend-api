@@ -2,6 +2,8 @@ package org.idisoft.restos.test.unit.model.jpa.usuario;
 
 import static org.junit.Assert.*;
 
+import javax.validation.Validation;
+
 import org.idisoft.restos.model.Usuario;
 import org.idisoft.restos.model.jpa.BeanValidator;
 import org.idisoft.restos.test.util.TestEntitiesFactory;
@@ -11,7 +13,7 @@ public class BeanValidationTest {
 	
 	private boolean isValid(Usuario usuario)
 	{
-		BeanValidator<Usuario> usuariobeanvalidator=new BeanValidator<Usuario>();
+		BeanValidator<Usuario> usuariobeanvalidator=new BeanValidator<Usuario>(Validation.buildDefaultValidatorFactory());
 		usuariobeanvalidator.validate(usuario);
 		return usuariobeanvalidator.isValid();
 	}

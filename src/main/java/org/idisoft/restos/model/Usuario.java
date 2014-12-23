@@ -1,6 +1,6 @@
 package org.idisoft.restos.model;
 
-public interface Usuario {
+public interface Usuario extends Registro{
 	
 	public String getCedula();
 	public void setCedula(final String cedula);
@@ -28,8 +28,5 @@ public interface Usuario {
 	
 	public String getTelefono();
 	public void setTelefono(final String telefono);
-	
-	public EstatusRegistro getEstatusRegistro();
-	public void setEstatusRegistro(final EstatusRegistro estatusregistro);
 	
 }

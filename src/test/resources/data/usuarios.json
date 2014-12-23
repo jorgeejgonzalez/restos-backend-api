@@ -3,8 +3,8 @@
 	[
 		{
 			"cedula": "V123456789",
-  			"login": "test",
-  			"clave": "integration",
+  			"login": "integrationtest",
+  			"clave": "integrationtest",
   			"tipo": 0,
   			"email": "test@integration.com",
   			"nombre": "test",
@@ -12,6 +12,18 @@
   			"direccion": "test",
   			"telefono": "12345678901",
   			"estatus_registro": 0
+  		},
+  		{
+			"cedula": "V987654321",
+  			"login": "testdeleted",
+  			"clave": "integrationtest",
+  			"tipo": 0,
+  			"email": "testdeleted@integration.com",
+  			"nombre": "test",
+  			"apellido": "test",
+  			"direccion": "test",
+  			"telefono": "12345678901",
+  			"estatus_registro": 2
   		}
 	]		
 }

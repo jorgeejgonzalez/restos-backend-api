@@ -48,7 +48,31 @@ public class TestEntitiesFactory {
 	
 	public static UsuarioDTO validUsuarioDTO()
 	{	
-		UsuarioDTO retorno=(UsuarioDTO)assembleUsuario(new UsuarioJPA());
+		UsuarioDTO retorno=(UsuarioDTO)assembleUsuario(new UsuarioDTO());
+		return retorno;
+	}
+	
+	public Usuario usuarioDeleted()
+	{
+		UsuarioJPA retorno=(UsuarioJPA)assembleUsuario(new UsuarioJPA());
+		retorno.setCedula("V00000000");
+		retorno.setEstatusRegistro(EstatusRegistro.ELIMINADO);
+		return retorno;
+	}
+	
+	public static Usuario usuarioIntegration()
+	{
+		UsuarioJPA retorno=new UsuarioJPA();
+		retorno.setCedula("V123456789");
+		retorno.setLogin("integrationtest");
+		retorno.setPassword("integrationtest");
+		retorno.setTipo(TipoUsuario.FINAL);
+		retorno.setEmail("test@integration.com");
+		retorno.setNombre("integration");
+		retorno.setApellido("test");
+		retorno.setDireccion("integration test");
+		retorno.setTelefono("12345678901");
+		retorno.setEstatusRegistro(EstatusRegistro.ACTIVO);
 		return retorno;
 	}
 

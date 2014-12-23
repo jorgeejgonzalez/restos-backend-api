@@ -22,7 +22,8 @@ import org.idisoft.restos.model.Usuario;
 		name = ConstantesORM.USUARIO_TABLE_NAME,
 		uniqueConstraints=
 		{
-				@UniqueConstraint(columnNames=ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME)
+				@UniqueConstraint(columnNames=ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME),
+				@UniqueConstraint(columnNames=ConstantesORM.USUARIO_EMAIL_ATTRIBUTE_NAME)
 		}
 )
 public class UsuarioJPA implements Usuario, Serializable {

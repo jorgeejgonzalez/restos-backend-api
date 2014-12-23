@@ -9,16 +9,14 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
+import org.idisoft.restos.model.Registro;
+
 @Dependent
-public class BeanValidator<T> {
+public class BeanValidator<T extends Registro> {
 	
 	private ValidatorFactory validatorfactory;
 	private Set<ConstraintViolation<T>> violations;
 	
-	public BeanValidator()
-	{
-		this.validatorfactory= Validation.buildDefaultValidatorFactory();
-	}
 	
 	@Inject
 	public BeanValidator(ValidatorFactory validatorfactory)
