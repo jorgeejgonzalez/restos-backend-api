@@ -13,6 +13,11 @@ public class TestEntitiesFactory {
 		return validUsuarioJPA();
 	}
 	
+	public static Usuario invalidUsuario()
+	{
+		return invalidUsuarioJPA();
+	}
+	
 	private static Usuario assembleUsuario(Usuario usuario)
 	{
 		String validCedula="V123456789";
@@ -43,6 +48,13 @@ public class TestEntitiesFactory {
 	public static UsuarioJPA validUsuarioJPA()
 	{
 		UsuarioJPA retorno=(UsuarioJPA)assembleUsuario(new UsuarioJPA());
+		return retorno;
+	}
+	
+	public static UsuarioJPA invalidUsuarioJPA()
+	{
+		UsuarioJPA retorno=(UsuarioJPA)assembleUsuario(new UsuarioJPA());
+		retorno.setLogin("");
 		return retorno;
 	}
 	

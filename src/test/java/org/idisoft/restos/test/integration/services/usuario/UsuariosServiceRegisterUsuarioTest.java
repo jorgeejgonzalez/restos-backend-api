@@ -1,29 +1,48 @@
-package org.idisoft.restos.test.unit.service.usuarios;
+package org.idisoft.restos.test.integration.services.usuario;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
+import javax.inject.Inject;
 import javax.persistence.EntityExistsException;
 import javax.validation.ValidationException;
 import javax.ws.rs.core.Response;
 
+import org.idisoft.restos.model.Usuario;
 import org.idisoft.restos.model.dto.UsuarioDTO;
+import org.idisoft.restos.service.UsuariosService;
+import org.idisoft.restos.test.integration.services.AbstractRestServiceIntegrationTest;
+import org.idisoft.restos.test.util.TestEntitiesFactory;
+import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.arquillian.persistence.Cleanup;
+import org.jboss.arquillian.persistence.CleanupStrategy;
+import org.jboss.arquillian.persistence.TestExecutionPhase;
+import org.jboss.arquillian.persistence.UsingDataSet;
+import org.jboss.arquillian.transaction.api.annotation.TransactionMode;
+import org.jboss.arquillian.transaction.api.annotation.Transactional;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
-@RunWith(MockitoJUnitRunner.class)
-public class UsuariosServiceRegisterUsuarioTest extends AbstractUsuarioServiceTest
+@RunWith(Arquillian.class)
+@Transactional(TransactionMode.ROLLBACK)
+@Cleanup(phase = TestExecutionPhase.AFTER, strategy = CleanupStrategy.USED_ROWS_ONLY)
+public class UsuariosServiceRegisterUsuarioTest extends AbstractRestServiceIntegrationTest
 {	
+	@Inject
+	private UsuariosService usuarioService;
+	
+	private Usuario validUsuario;
+	private Usuario invalidUsuario;
 	
 	@Before
 	public void setUpTest()
 	{
-		setUpEntities();
-		when(usuariosrepository.add(validUsuario)).thenReturn(validUsuario);
-		when(usuariosrepository.add(invalidUsuario)).thenThrow(new ValidationException());
-		setUpService();
+		invalidUsuario=TestEntitiesFactory.usuarioIntegration();
+		invalidUsuario.setCedula("");
+		validUsuario=TestEntitiesFactory.usuarioIntegration();
+		
 	}
 	
 	@Test
@@ -54,9 +73,9 @@ public class UsuariosServiceRegisterUsuarioTest extends AbstractUsuarioServiceTe
 	}
 	
 	@Test
+	@UsingDataSet("data/usuarios.json")
 	public void RegisterUsuario_RepositoryThrowsEntityExistsException_ResponseConflict()
 	{
-		when(usuariosrepository.add(validUsuario)).thenThrow(new EntityExistsException());
 		Response response=usuarioService.registerUsuario(validUsuario.getCedula(), validUsuario.getLogin(), validUsuario.getPassword(), 
 				validUsuario.getEmail(),validUsuario.getNombre(), validUsuario.getApellido(), 
 				validUsuario.getDireccion(), validUsuario.getTelefono());

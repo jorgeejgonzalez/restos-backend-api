@@ -26,5 +26,10 @@ public abstract class AbstractRestServiceTest {
 	{
 		assertEquals(Status.NOT_ACCEPTABLE.getStatusCode(),response.getStatus());
 	}
+	
+	protected void assertConflict(Response response)
+	{
+		assertEquals(Status.CONFLICT.getStatusCode(),response.getStatus());
+	}
 
 }

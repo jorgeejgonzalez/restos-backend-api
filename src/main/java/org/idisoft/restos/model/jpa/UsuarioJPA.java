@@ -1,6 +1,7 @@
 package org.idisoft.restos.model.jpa;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -188,5 +189,34 @@ public class UsuarioJPA implements Usuario, Serializable {
 	@Override
 	public void setEstatusRegistro(final EstatusRegistro estatusregistro) {
 		this.estatusregistro=estatusregistro;
+	}
+	
+	@Override
+	public boolean equals(Object o)
+	{
+		boolean check=false;
+		if(o instanceof UsuarioJPA)
+		{
+			UsuarioJPA usuariocheck=(UsuarioJPA) o;
+			check=cedula.equals(usuariocheck.getCedula())
+					&& login.equals(usuariocheck.getLogin())
+					&& password.equals(usuariocheck.getPassword())
+					&& email.equals(usuariocheck.getEmail())
+					&& nombre.equals(usuariocheck.getNombre())
+					&& apellido.equals(usuariocheck.getApellido())
+					&& direccion.equals(usuariocheck.getDireccion())
+					&& telefono.equals(usuariocheck.getTelefono());
+		}
+		return check;
+	}
+	
+	@Override
+	public int hashCode()
+	{
+		int hash=Objects.hash(cedula,login,
+				password,email,
+				nombre,apellido,
+				direccion,telefono);
+		return hash;
 	}
 }

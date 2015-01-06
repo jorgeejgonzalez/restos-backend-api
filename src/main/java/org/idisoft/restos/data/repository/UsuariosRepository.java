@@ -55,7 +55,7 @@ public class UsuariosRepository extends Repository<UsuarioJPA> {
 		return retorno;
 	}
 	
-	public Usuario add(final Usuario usuario) throws EntityExistsException
+	public Usuario add(final Usuario usuario) throws ValidationException, EntityExistsException
 	{	
 		UsuarioJPA entity=(UsuarioJPA)factory.copyEntity(usuario);
 		

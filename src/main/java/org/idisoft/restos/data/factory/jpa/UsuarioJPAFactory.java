@@ -31,6 +31,28 @@ public class UsuarioJPAFactory extends JPAFactory<Usuario> {
 		Usuario retorno=defaultUsuario();
 		return retorno;
 	}
+	
+	public Usuario createEntity(
+			String cedula,
+			String login,
+			String password,
+			String email,
+			String nombre,
+			String apellido,
+			String direccion,
+			String telefono)
+	{
+		Usuario retorno=defaultUsuario();
+		retorno.setCedula(cedula);
+		retorno.setLogin(login);
+		retorno.setPassword(password);
+		retorno.setEmail(email);
+		retorno.setNombre(nombre);
+		retorno.setApellido(apellido);
+		retorno.setDireccion(direccion);
+		retorno.setTelefono(telefono);
+		return retorno;
+	}
 
 	@Override
 	public Usuario copyEntity(Usuario original) {

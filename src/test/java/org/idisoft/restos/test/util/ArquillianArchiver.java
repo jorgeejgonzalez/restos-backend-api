@@ -35,7 +35,7 @@ public class ArquillianArchiver {
 		
 		war.addClasses(org.idisoft.restos.service.JaxRsActivator.class,
 				org.idisoft.restos.service.UsuariosService.class,
-				org.idisoft.restos.service.UsuariosServiceImpl.class);
+				org.idisoft.restos.service.UsuariosServiceRest.class);
 		
 		
 		war.addClass(org.idisoft.restos.util.CDIPersistenceResources.class);

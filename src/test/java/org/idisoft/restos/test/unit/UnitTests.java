@@ -11,13 +11,15 @@ import org.idisoft.restos.test.unit.service.usuarios.*;
 
 @RunWith(Suite.class)
 @SuiteClasses({ 
-	BeanValidationTest.class, 
+	UsuarioJPABeanValidationTest.class,
+	UsuarioJPAEqualsTest.class,
 	UsuarioDTOFactoryCreateEntityTest.class,
 	UsuarioJPAFactoryCreateEntityTest.class,
 	UsuarioJPAFactoryCopyEntityTest.class,
 	UsuariosRepositoryFindByLoginTest.class,
 	UsuariosRepositoryAddTest.class,
-	UsuariosServiceAuthenticateUsuarioTest.class
+	UsuariosServiceAuthenticateUsuarioTest.class,
+	UsuariosServiceRegisterUsuarioTest.class
 	})
 public class UnitTests {
 

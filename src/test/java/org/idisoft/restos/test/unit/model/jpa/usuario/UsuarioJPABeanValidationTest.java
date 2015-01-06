@@ -9,7 +9,7 @@ import org.idisoft.restos.model.jpa.BeanValidator;
 import org.idisoft.restos.test.util.TestEntitiesFactory;
 import org.junit.Test;
 
-public class BeanValidationTest {
+public class UsuarioJPABeanValidationTest {
 	
 	private boolean isValid(Usuario usuario)
 	{
@@ -61,13 +61,6 @@ public class BeanValidationTest {
 		assertTrue(isValid(validusuario));
 	}
 	
-	@Test
-	public void BeanValidation_CedulaIsNull_NotValid()
-	{
-		Usuario invalidusuario= validUsuario();
-		invalidusuario.setCedula(null);
-		assertFalse(isValid(invalidusuario));
-	}
 	
 	@Test
 	public void BeanValidation_CedulaIsLessThanSize_NotValid()
@@ -85,13 +78,6 @@ public class BeanValidationTest {
 		assertFalse(isValid(invalidusuario));
 	}
 	
-	@Test
-	public void BeanValidation_LoginIsNull_NotValid()
-	{
-		Usuario invalidusuario= validUsuario();
-		invalidusuario.setLogin(null);
-		assertFalse(isValid(invalidusuario));
-	}
 	
 	@Test
 	public void BeanValidation_LoginIsLessThanSize_NotValid()
@@ -133,13 +119,6 @@ public class BeanValidationTest {
 		assertTrue(isValid(validusuario));
 	}
 	
-	@Test
-	public void BeanValidation_PasswordIsNull_NotValid()
-	{
-		Usuario invalidusuario= validUsuario();
-		invalidusuario.setPassword(null);
-		assertFalse(isValid(invalidusuario));
-	}
 	
 	@Test
 	public void BeanValidation_PasswordIsLessThanSize_NotValid()
@@ -157,13 +136,6 @@ public class BeanValidationTest {
 		assertFalse(isValid(invalidusuario));
 	}
 	
-	@Test
-	public void BeanValidation_EmailIsNull_NotValid()
-	{
-		Usuario invalidusuario=validUsuario();
-		invalidusuario.setEmail(null);
-		assertFalse(isValid(invalidusuario));
-	}
 	
 	@Test
 	public void BeanValidation_EmailDoesNotHaveAt_NotValid()
@@ -189,13 +161,6 @@ public class BeanValidationTest {
 		assertFalse(isValid(invalidusuario));
 	}
 	
-	@Test
-	public void BeanValidation_NombreIsNull_NotValid()
-	{
-		Usuario invalidusuario=validUsuario();
-		invalidusuario.setNombre(null);
-		assertFalse(isValid(invalidusuario));
-	}
 	
 	@Test
 	public void BeanValidation_NombreIsLessThanMinSize_NotValid()
@@ -229,13 +194,7 @@ public class BeanValidationTest {
 		assertTrue(isValid(validusuario));
 	}
 	
-	@Test
-	public void BeanValidation_ApellidoIsNull_NotValid()
-	{
-		Usuario invalidusuario=validUsuario();
-		invalidusuario.setApellido(null);
-		assertFalse(isValid(invalidusuario));
-	}
+	
 	
 	@Test
 	public void BeanValidation_ApellidoIsLessThanMinSize_NotValid()
@@ -269,13 +228,6 @@ public class BeanValidationTest {
 		assertTrue(isValid(validusuario));
 	}
 	
-	@Test
-	public void BeanValidation_DireccionIsNull_NotValid()
-	{
-		Usuario invalidusuario=validUsuario();
-		invalidusuario.setDireccion(null);
-		assertFalse(isValid(invalidusuario));
-	}
 	
 	@Test
 	public void BeanValidation_DireccionIsMoreThanMaxSize_NotValid()
@@ -285,13 +237,6 @@ public class BeanValidationTest {
 		assertFalse(isValid(invalidusuario));
 	}
 	
-	@Test
-	public void BeanValidation_TelefonoIsNull_NotValid()
-	{
-		Usuario invalidusuario=validUsuario();
-		invalidusuario.setTelefono(null);
-		assertFalse(isValid(invalidusuario));
-	}
 	
 	@Test
 	public void BeanValidation_TelefonoIsLessThanMinSize_NotValid()
