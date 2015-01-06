@@ -48,27 +48,21 @@ public class UsuariosServiceRegisterUsuarioTest extends AbstractRestServiceInteg
 	@Test
 	public void RegisterUsuario_ValidParameters_ResponseOK()
 	{	
-		Response response=usuarioService.registerUsuario(validUsuario.getCedula(), validUsuario.getLogin(), validUsuario.getPassword(), 
-				validUsuario.getEmail(),validUsuario.getNombre(), validUsuario.getApellido(), 
-				validUsuario.getDireccion(), validUsuario.getTelefono());
+		Response response=usuarioService.registerUsuario(validUsuario);
 		assertOK(response);
 	}
 	
 	@Test
 	public void RegisterUsuario_ValidParameters_EntityNotNull()
 	{	
-		Response response=usuarioService.registerUsuario(validUsuario.getCedula(), validUsuario.getLogin(), validUsuario.getPassword(), 
-				validUsuario.getEmail(),validUsuario.getNombre(), validUsuario.getApellido(), 
-				validUsuario.getDireccion(), validUsuario.getTelefono());
+		Response response=usuarioService.registerUsuario(validUsuario);
 		assertNotNull(response.getEntity());
 	}
 	
 	@Test
 	public void RegisterUsuario_ValidParameters_EntityUsuarioDTO()
 	{
-		Response response=usuarioService.registerUsuario(validUsuario.getCedula(), validUsuario.getLogin(), validUsuario.getPassword(), 
-				validUsuario.getEmail(),validUsuario.getNombre(), validUsuario.getApellido(), 
-				validUsuario.getDireccion(), validUsuario.getTelefono());
+		Response response=usuarioService.registerUsuario(validUsuario);
 		assertTrue(response.getEntity() instanceof UsuarioDTO);
 	}
 	
@@ -76,18 +70,14 @@ public class UsuariosServiceRegisterUsuarioTest extends AbstractRestServiceInteg
 	@UsingDataSet("data/usuarios.json")
 	public void RegisterUsuario_RepositoryThrowsEntityExistsException_ResponseConflict()
 	{
-		Response response=usuarioService.registerUsuario(validUsuario.getCedula(), validUsuario.getLogin(), validUsuario.getPassword(), 
-				validUsuario.getEmail(),validUsuario.getNombre(), validUsuario.getApellido(), 
-				validUsuario.getDireccion(), validUsuario.getTelefono());
+		Response response=usuarioService.registerUsuario(validUsuario);
 		assertConflict(response);
 	}
 	
 	@Test
 	public void RegisterUsuario_RepositoryThrowsValidationException_ResponseNotAcceptable()
 	{
-		Response response=usuarioService.registerUsuario(invalidUsuario.getCedula(), invalidUsuario.getLogin(), invalidUsuario.getPassword(), 
-				invalidUsuario.getEmail(),invalidUsuario.getNombre(), invalidUsuario.getApellido(), 
-				invalidUsuario.getDireccion(), invalidUsuario.getTelefono());
+		Response response=usuarioService.registerUsuario(invalidUsuario);
 		assertNotAcceptable(response);
 	}
 }

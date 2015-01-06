@@ -10,7 +10,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.idisoft.restos.model.jpa.ConstantesORM;
+import org.idisoft.restos.model.Usuario;
 
 @Path(ConstantesREST.USUARIOS_SERVICE)
 public interface UsuariosService {
@@ -27,14 +27,6 @@ public interface UsuariosService {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path(ConstantesREST.USUARIOS_FUNCTION_REGISTER)
-	public Response registerUsuario(
-			@PathParam("cedula") final String cedula,
-			@FormParam("login") final String login,
-			@FormParam("password") final String password,
-			@FormParam("email") final String email,
-			@FormParam("nombre") final String nombre,
-			@FormParam("apellido") final String apellido,
-			@FormParam("direccion") final String direccion,
-			@FormParam("telefono") final String telefono);
+	public Response registerUsuario(final Usuario usuario);
 
 }

@@ -8,6 +8,6 @@ public class ConstantesREST {
 	
 	public static final String USUARIOS_SERVICE="/usuarios";
 	public static final String USUARIOS_FUNCTION_AUTHENTICATE="/{login:"+ConstantesBeanValidation.USUARIO_LOGIN_REGEXP+"}";
-	public static final String USUARIOS_FUNCTION_REGISTER="/{cedula:[V,E][0-9]*}";
+	public static final String USUARIOS_FUNCTION_REGISTER="/";
 
 }

@@ -58,9 +58,9 @@
         <maven.compiler.source>1.7</maven.compiler.source>
         <m2e.apt.activation>jdt_apt</m2e.apt.activation>
         
-        <!-- jMockit versioning -->
-        <version.jmockit>1.13</version.jmockit>
-        <version.jmockit.coverage>1.13</version.jmockit.coverage>
+        <!-- Cucumber and Cukespace versions -->
+        <version.cucumber>1.1.7</version.cucumber>
+        <version.cucumber.cukespace>1.5.10</version.cucumber.cukespace>
         
         <!-- Mockito version -->
         <version.mockito>1.10.17</version.mockito>
@@ -188,20 +188,18 @@
             <scope>provided</scope>
         </dependency>
         
-        <!-- jMockit and code coverage tools
         <dependency>
-        	<groupId>org.jmockit</groupId>
-        	<artifactId>jmockit</artifactId>
-        	<version>${version.jmockit}</version>
-        	<scope>test</scope>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${version.cucumber}</version>
+            <scope>test</scope>
         </dependency>
-        
         <dependency>
-        	<groupId>org.jmockit</groupId>
-        	<artifactId>jmockit-coverage</artifactId>
-        	<version>${version.jmockit.coverage}</version>
-        	<scope>runtime</scope>
-        </dependency> --> 
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>${version.cucumber}</version>
+            <scope>test</scope>
+        </dependency> 
         
         <!-- Needed for running tests (you may also use TestNG) -->
         <dependency>
@@ -252,6 +250,13 @@
 			<artifactId>arquillian-persistence-dbunit</artifactId>
 			<version>${version.arquillian.persistence.dbunit}</version>
 			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+    		<groupId>com.github.cukespace</groupId>
+    		<artifactId>cukespace-core</artifactId>
+    		<version>${version.cucumber.cukespace}</version>
+    		<scope>test</scope>
 		</dependency>
 		
 		<!-- Arquillian REST Client for Acceptance tests -->

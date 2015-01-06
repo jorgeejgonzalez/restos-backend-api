@@ -73,24 +73,12 @@ public class UsuariosServiceRest implements UsuariosService {
 	}
 
 	@Override
-	public Response registerUsuario(final String cedula, final String login,
-			final String password, final String email, 
-			final String nombre, final String apellido,
-			final String direccion, final String telefono) 
+	public Response registerUsuario(final Usuario usuario) 
 	{
 		Response.ResponseBuilder builder=null;
 		try
 		{
-			Usuario usuariojpa= usuariojpafactory.createEntity();
-			
-			usuariojpa.setCedula(cedula);
-			usuariojpa.setLogin(login);
-			usuariojpa.setPassword(password);
-			usuariojpa.setEmail(email);
-			usuariojpa.setNombre(nombre);
-			usuariojpa.setApellido(apellido);
-			usuariojpa.setDireccion(direccion);
-			usuariojpa.setTelefono(telefono);
+			Usuario usuariojpa= usuariojpafactory.copyEntity(usuario);
 			
 			Usuario usuarioregistro=usuariosrepository.add(usuariojpa);
 			
