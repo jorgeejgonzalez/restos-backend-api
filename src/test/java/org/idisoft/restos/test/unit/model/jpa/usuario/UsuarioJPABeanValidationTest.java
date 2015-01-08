@@ -4,278 +4,251 @@ import static org.junit.Assert.*;
 
 import javax.validation.Validation;
 
-import org.idisoft.restos.model.Usuario;
 import org.idisoft.restos.model.jpa.BeanValidator;
+import org.idisoft.restos.model.jpa.UsuarioJPA;
 import org.idisoft.restos.test.util.TestEntitiesFactory;
+import org.junit.Before;
 import org.junit.Test;
 
 public class UsuarioJPABeanValidationTest {
 	
-	private boolean isValid(Usuario usuario)
+	private UsuarioJPA validUsuario;
+	private UsuarioJPA invalidUsuario;
+	
+	private boolean isValid(UsuarioJPA usuario)
 	{
-		BeanValidator<Usuario> usuariobeanvalidator=new BeanValidator<Usuario>(Validation.buildDefaultValidatorFactory());
+		BeanValidator<UsuarioJPA> usuariobeanvalidator=new BeanValidator<UsuarioJPA>(Validation.buildDefaultValidatorFactory());
 		usuariobeanvalidator.validate(usuario);
 		return usuariobeanvalidator.isValid();
 	}
 	
-	private Usuario validUsuario()
+	@Before
+	public void SetUpUsuariosForTest()
 	{
-		return TestEntitiesFactory.validUsuarioJPA();
+		validUsuario=TestEntitiesFactory.validUsuarioJPA();
+		invalidUsuario=TestEntitiesFactory.validUsuarioJPA();
 	}
 
 	@Test
 	public void BeanValidation_UsuarioValid_NoViolations() {
-		Usuario validusuario= validUsuario();
-		assertTrue(isValid(validusuario));
+		assertTrue(isValid(validUsuario));
 	}
 	
 	@Test
 	public void BeanValidation_CedulaDoesNotHaveLetter_NotValid()
 	{
-		Usuario invalidusuario=validUsuario();
-		invalidusuario.setCedula("0123456789");
-		assertFalse(isValid(invalidusuario));
+		invalidUsuario.setCedula("0123456789");
+		assertFalse(isValid(invalidUsuario));
 	}
 	
 	@Test
 	public void BeanValidation_CedulaDoesNotBeginWithLetter_NotValid()
 	{
-		Usuario invalidusuario=validUsuario();
-		invalidusuario.setCedula("123456789V");
-		assertFalse(isValid(invalidusuario));
+		invalidUsuario.setCedula("123456789V");
+		assertFalse(isValid(invalidUsuario));
 	}
 	
 	@Test
 	public void BeanValidation_FirstLetterIsV_Valid()
 	{
-		Usuario validusuario=validUsuario();
-		validusuario.setCedula("V987654321");
-		assertTrue(isValid(validusuario));
+		validUsuario.setCedula("V987654321");
+		assertTrue(isValid(validUsuario));
 	}
 	
 	@Test
 	public void BeanValidation_FirstLetterIsE_Valid()
 	{
-		Usuario validusuario=validUsuario();
-		validusuario.setCedula("E987654321");
-		assertTrue(isValid(validusuario));
+		validUsuario.setCedula("E987654321");
+		assertTrue(isValid(validUsuario));
 	}
 	
 	
 	@Test
 	public void BeanValidation_CedulaIsLessThanSize_NotValid()
 	{
-		Usuario invalidusuario=validUsuario();
-		invalidusuario.setCedula("V123456");
-		assertFalse(isValid(invalidusuario));
+		invalidUsuario.setCedula("V123456");
+		assertFalse(isValid(invalidUsuario));
 	}
 	
 	@Test
 	public void BeanValidation_CedulaIsMoreThanSize_NotValid()
 	{
-		Usuario invalidusuario=validUsuario();
-		invalidusuario.setCedula("V1234567890");
-		assertFalse(isValid(invalidusuario));
+		invalidUsuario.setCedula("V1234567890");
+		assertFalse(isValid(invalidUsuario));
 	}
 	
 	
 	@Test
 	public void BeanValidation_LoginIsLessThanSize_NotValid()
 	{
-		Usuario invalidusuario=validUsuario();
-		invalidusuario.setLogin("abcde");
-		assertFalse(isValid(invalidusuario));
+		invalidUsuario.setLogin("abcde");
+		assertFalse(isValid(invalidUsuario));
 	}
 	
 	@Test
 	public void BeanValidation_LoginIsMoreThanSize_NotValid()
 	{
-		Usuario invalidusuario=validUsuario();
-		invalidusuario.setLogin("abcdehijklmnopqrstuvwx");
-		assertFalse(isValid(invalidusuario));
+		invalidUsuario.setLogin("abcdehijklmnopqrstuvwx");
+		assertFalse(isValid(invalidUsuario));
 	}
 	
 	@Test
 	public void BeanValidation_LoginWithNumbers_Valid()
 	{
-		Usuario validusuario=validUsuario();
-		validusuario.setLogin("abc123");
-		assertTrue(isValid(validusuario));
+		validUsuario.setLogin("abc123");
+		assertTrue(isValid(validUsuario));
 	}
 	
 	@Test
 	public void BeanValidation_LoginWithUnderscore_Valid()
 	{
-		Usuario validusuario=validUsuario();
-		validusuario.setLogin("abc_123");
-		assertTrue(isValid(validusuario));
+		validUsuario.setLogin("abc_123");
+		assertTrue(isValid(validUsuario));
 	}
 	
 	@Test
 	public void BeanValidation_LoginWithDash_Valid()
 	{
-		Usuario validusuario=validUsuario();
-		validusuario.setLogin("abc-123");
-		assertTrue(isValid(validusuario));
+		validUsuario.setLogin("abc-123");
+		assertTrue(isValid(validUsuario));
 	}
 	
 	
 	@Test
 	public void BeanValidation_PasswordIsLessThanSize_NotValid()
 	{
-		Usuario invalidusuario=validUsuario();
-		invalidusuario.setPassword("abcdefg");
-		assertFalse(isValid(invalidusuario));
+		invalidUsuario.setPassword("abcdefg");
+		assertFalse(isValid(invalidUsuario));
 	}
 	
 	@Test
 	public void BeanValidation_PasswordIsMoreThanSize_NotValid()
 	{
-		Usuario invalidusuario=validUsuario();
-		invalidusuario.setPassword("abcdehijklmnopqrstuvwx");
-		assertFalse(isValid(invalidusuario));
+		invalidUsuario.setPassword("abcdehijklmnopqrstuvwx");
+		assertFalse(isValid(invalidUsuario));
 	}
 	
 	
 	@Test
 	public void BeanValidation_EmailDoesNotHaveAt_NotValid()
 	{
-		Usuario invalidusuario=validUsuario();
-		invalidusuario.setEmail("unittest.com");
-		assertFalse(isValid(invalidusuario));
+		invalidUsuario.setEmail("unittest.com");
+		assertFalse(isValid(invalidUsuario));
 	}
 	
 	@Test
 	public void BeanValidation_EmailDoesNotHaveDot_Valid()
 	{
-		Usuario validusuario=validUsuario();
-		validusuario.setEmail("unit@testcom");
-		assertTrue(isValid(validusuario));
+		validUsuario.setEmail("unit@testcom");
+		assertTrue(isValid(validUsuario));
 	}
 	
 	@Test
 	public void BeanValidation_TipoIsNull_NotValid()
 	{
-		Usuario invalidusuario=validUsuario();
-		invalidusuario.setTipo(null);
-		assertFalse(isValid(invalidusuario));
+		invalidUsuario.setTipo(null);
+		assertFalse(isValid(invalidUsuario));
 	}
 	
 	
 	@Test
 	public void BeanValidation_NombreIsLessThanMinSize_NotValid()
 	{
-		Usuario invalidusuario=validUsuario();
-		invalidusuario.setNombre("ab");
-		assertFalse(isValid(invalidusuario));
+		invalidUsuario.setNombre("ab");
+		assertFalse(isValid(invalidUsuario));
 	}
 	
 	@Test
 	public void BeanValidation_NombreIsMoreThanMaxSize_NotValid()
 	{
-		Usuario invalidusuario=validUsuario();
-		invalidusuario.setNombre("abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz");
-		assertFalse(isValid(invalidusuario));
+		invalidUsuario.setNombre("abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz");
+		assertFalse(isValid(invalidUsuario));
 	}
 	
 	@Test
 	public void BeanValidation_NombreHasNumbers_NotValid()
 	{
-		Usuario invalidusuario=validUsuario();
-		invalidusuario.setNombre("unit1");
-		assertFalse(isValid(invalidusuario));
+		invalidUsuario.setNombre("unit1");
+		assertFalse(isValid(invalidUsuario));
 	}
 	
 	@Test
 	public void BeanValidation_NombreHasEmptySpaces_Valid()
 	{
-		Usuario validusuario=validUsuario();
-		validusuario.setNombre("unit test");
-		assertTrue(isValid(validusuario));
+		validUsuario.setNombre("unit test");
+		assertTrue(isValid(validUsuario));
 	}
-	
-	
 	
 	@Test
 	public void BeanValidation_ApellidoIsLessThanMinSize_NotValid()
 	{
-		Usuario invalidusuario=validUsuario();
-		invalidusuario.setApellido("ab");
-		assertFalse(isValid(invalidusuario));
+		invalidUsuario.setApellido("ab");
+		assertFalse(isValid(invalidUsuario));
 	}
 	
 	@Test
 	public void BeanValidation_ApellidoIsMoreThanMaxSize_NotValid()
 	{
-		Usuario invalidusuario=validUsuario();
-		invalidusuario.setNombre("abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz");
-		assertFalse(isValid(invalidusuario));
+		invalidUsuario.setNombre("abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz");
+		assertFalse(isValid(invalidUsuario));
 	}
 	
 	@Test
 	public void BeanValidation_ApellidoHasNumbers_NotValid()
 	{
-		Usuario invalidusuario=validUsuario();
-		invalidusuario.setApellido("unit1");
-		assertFalse(isValid(invalidusuario));
+		invalidUsuario.setApellido("unit1");
+		assertFalse(isValid(invalidUsuario));
 	}
 	
 	@Test
 	public void BeanValidation_ApellidoHasEmptySpaces_Valid()
 	{
-		Usuario validusuario=validUsuario();
-		validusuario.setNombre("unit test");
-		assertTrue(isValid(validusuario));
+		validUsuario.setNombre("unit test");
+		assertTrue(isValid(validUsuario));
 	}
 	
 	
 	@Test
 	public void BeanValidation_DireccionIsMoreThanMaxSize_NotValid()
 	{
-		Usuario invalidusuario=validUsuario();
-		invalidusuario.setDireccion("abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz");
-		assertFalse(isValid(invalidusuario));
+		invalidUsuario.setDireccion("abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz");
+		assertFalse(isValid(invalidUsuario));
 	}
 	
 	
 	@Test
 	public void BeanValidation_TelefonoIsLessThanMinSize_NotValid()
 	{
-		Usuario invalidusuario=validUsuario();
-		invalidusuario.setTelefono("1234567890");
-		assertFalse(isValid(invalidusuario));
+		invalidUsuario.setTelefono("1234567890");
+		assertFalse(isValid(invalidUsuario));
 	}
 	
 	@Test
 	public void BeanValidation_TelefonoIsMoreThanMaxSize_NotValid()
 	{
-		Usuario invalidusuario=validUsuario();
-		invalidusuario.setTelefono("123456789012");
-		assertFalse(isValid(invalidusuario));
+		invalidUsuario.setTelefono("123456789012");
+		assertFalse(isValid(invalidUsuario));
 	}
 	
 	@Test
 	public void BeanValidation_TelefonoHasLetters_NotValid()
 	{
-		Usuario invalidusuario=validUsuario();
-		invalidusuario.setTelefono("1234567890A");
-		assertFalse(isValid(invalidusuario));
+		invalidUsuario.setTelefono("1234567890A");
+		assertFalse(isValid(invalidUsuario));
 	}
 	
 	@Test
 	public void BeanValidation_TelefonoHasDash_NotValid()
 	{
-		Usuario invalidusuario=validUsuario();
-		invalidusuario.setTelefono("1-234567890");
-		assertFalse(isValid(invalidusuario));
+		invalidUsuario.setTelefono("1-234567890");
+		assertFalse(isValid(invalidUsuario));
 	}
 	
 	@Test
 	public void BeanValidation_EstatusRegistroIsNull_NotValid()
 	{
-		Usuario invalidusuario=validUsuario();
-		invalidusuario.setEstatusRegistro(null);
-		assertFalse(isValid(invalidusuario));
+		invalidUsuario.setEstatusRegistro(null);
+		assertFalse(isValid(invalidUsuario));
 	}
 
 }

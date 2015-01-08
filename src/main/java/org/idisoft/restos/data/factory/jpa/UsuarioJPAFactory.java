@@ -10,9 +10,9 @@ import org.idisoft.restos.model.jpa.UsuarioJPA;
 @RequestScoped
 public class UsuarioJPAFactory extends JPAFactory<Usuario> {
 
-	private Usuario defaultUsuario()
+	private Usuario defaultUsuarioJPA()
 	{
-		Usuario retorno=new UsuarioJPA();
+		UsuarioJPA retorno=new UsuarioJPA();
 		retorno.setCedula("V00000000");
 		retorno.setLogin("");
 		retorno.setPassword("");
@@ -28,7 +28,7 @@ public class UsuarioJPAFactory extends JPAFactory<Usuario> {
 	
 	@Override
 	public Usuario createEntity() {
-		Usuario retorno=defaultUsuario();
+		Usuario retorno=defaultUsuarioJPA();
 		return retorno;
 	}
 	
@@ -42,7 +42,7 @@ public class UsuarioJPAFactory extends JPAFactory<Usuario> {
 			String direccion,
 			String telefono)
 	{
-		Usuario retorno=defaultUsuario();
+		Usuario retorno=defaultUsuarioJPA();
 		retorno.setCedula(cedula);
 		retorno.setLogin(login);
 		retorno.setPassword(password);
@@ -56,7 +56,7 @@ public class UsuarioJPAFactory extends JPAFactory<Usuario> {
 
 	@Override
 	public Usuario copyEntity(Usuario original) {
-		Usuario copia=defaultUsuario();
+		Usuario copia=defaultUsuarioJPA();
 		copia.setCedula(original.getCedula());
 		copia.setLogin(original.getLogin());
 		copia.setPassword(original.getPassword());
@@ -66,7 +66,6 @@ public class UsuarioJPAFactory extends JPAFactory<Usuario> {
 		copia.setApellido(original.getApellido());
 		copia.setDireccion(original.getDireccion());
 		copia.setTelefono(original.getTelefono());
-		copia.setEstatusRegistro(original.getEstatusRegistro());
 		return copia;
 	}
 

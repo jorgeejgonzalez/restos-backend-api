@@ -21,8 +21,8 @@ public class UsuariosServiceAuthenticateUserTest extends AbstractRestServiceInte
 	@Inject
 	private UsuariosService usuarioservice;
 	
-	private String loginindataset="test";
-	private String passwordindataset="integration";
+	private String loginindataset="integrationtest";
+	private String passwordindataset="integrationtest";
 	private String loginnotindataset="abcdef";
 	private String passwordnotindataset="abc123";
 	

@@ -19,7 +19,6 @@ public abstract class Repository<T extends Registro> {
 	protected CriteriaBuilder criteriabuilder;
 	protected CriteriaQuery<T> criteriaquery;
 	
-	
 	public Repository()
 	{
 	}

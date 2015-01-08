@@ -1,6 +1,5 @@
 package org.idisoft.restos.model.dto;
 
-import org.idisoft.restos.model.EstatusRegistro;
 import org.idisoft.restos.model.TipoUsuario;
 import org.idisoft.restos.model.Usuario;
 
@@ -15,7 +14,6 @@ public class UsuarioDTO implements Usuario {
 	private String apellido;
 	private String direccion;
 	private String telefono;
-	private EstatusRegistro estatusregistro;
 	
 	@Override
 	public String getCedula() {
@@ -108,16 +106,6 @@ public class UsuarioDTO implements Usuario {
 	@Override
 	public void setTelefono(final String telefono) {
 		this.telefono=telefono;
-	}
-
-	@Override
-	public EstatusRegistro getEstatusRegistro() {
-		return estatusregistro;
-	}
-
-	@Override
-	public void setEstatusRegistro(final EstatusRegistro estatusregistro) {
-		this.estatusregistro=estatusregistro;
 	}
 
 }

@@ -37,7 +37,7 @@ public class UsuariosRepositoryFindByLoginTest {
 	@Cleanup(phase = TestExecutionPhase.AFTER, strategy = CleanupStrategy.USED_ROWS_ONLY)
 	public void FindByLogin_LoginIsInDatabase_ReturnsUsuario() throws Exception
 	{
-		String loginindataset="test";
+		String loginindataset="integrationtest";
 		Usuario usuariocheck= repository.findByLogin(loginindataset);
 		assertNotNull(usuariocheck);
 	}

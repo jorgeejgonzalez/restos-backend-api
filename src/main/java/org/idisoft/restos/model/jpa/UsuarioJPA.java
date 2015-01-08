@@ -14,6 +14,7 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 import org.idisoft.restos.model.EstatusRegistro;
+import org.idisoft.restos.model.Registro;
 import org.idisoft.restos.model.TipoUsuario;
 import org.idisoft.restos.model.Usuario;
 
@@ -27,7 +28,7 @@ import org.idisoft.restos.model.Usuario;
 				@UniqueConstraint(columnNames=ConstantesORM.USUARIO_EMAIL_ATTRIBUTE_NAME)
 		}
 )
-public class UsuarioJPA implements Usuario, Serializable {
+public class UsuarioJPA implements Usuario, Registro, Serializable {
 	
 	@Column(name=ConstantesORM.USUARIO_CEDULA_COLUMN_NAME)
 	@Id

@@ -1,12 +1,9 @@
 package org.idisoft.restos.test.integration.data.repository.usuarios;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.when;
 
 import javax.inject.Inject;
 import javax.persistence.EntityExistsException;
-import javax.persistence.NoResultException;
-import javax.persistence.PersistenceException;
 import javax.validation.ValidationException;
 
 import org.idisoft.restos.data.repository.UsuariosRepository;

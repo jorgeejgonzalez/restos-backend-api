@@ -1,7 +1,6 @@
 package org.idisoft.restos.data.factory.dto;
 
 
-import org.idisoft.restos.model.EstatusRegistro;
 import org.idisoft.restos.model.TipoUsuario;
 import org.idisoft.restos.model.Usuario;
 import org.idisoft.restos.model.dto.UsuarioDTO;
@@ -10,7 +9,7 @@ public class UsuarioDTOFactory extends DTOFactory<Usuario> {
 	
 	public static final String RESTRICTED_PASSWORD="********";
 	
-	private Usuario defaultUsuario()
+	private Usuario defaultUsuarioDTO()
 	{
 		Usuario retorno=new UsuarioDTO();
 		retorno.setCedula("V00000000");
@@ -22,20 +21,19 @@ public class UsuarioDTOFactory extends DTOFactory<Usuario> {
 		retorno.setApellido("");
 		retorno.setDireccion("");
 		retorno.setTelefono("");
-		retorno.setEstatusRegistro(EstatusRegistro.ACTIVO);
 		return retorno;	
 	}
 
 	@Override
 	public Usuario createEntity() {
-		Usuario retorno=defaultUsuario();
+		Usuario retorno=defaultUsuarioDTO();
 		return retorno;
 	}
 	
 	@Override
 	public Usuario copyEntity(final Usuario original)
 	{
-		Usuario retorno=defaultUsuario();
+		Usuario retorno=defaultUsuarioDTO();
 		retorno.setCedula(original.getCedula());
 		retorno.setLogin(original.getLogin());
 		retorno.setNombre(original.getNombre());
