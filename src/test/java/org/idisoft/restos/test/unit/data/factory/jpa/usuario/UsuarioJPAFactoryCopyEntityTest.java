@@ -11,49 +11,70 @@ import org.junit.Test;
 
 public class UsuarioJPAFactoryCopyEntityTest {
 	
-	UsuarioJPAFactory factory;
-	Usuario validusuario;
+	private UsuarioJPAFactory factory;
+	private Usuario validusuario;
+	private Usuario usuariotest;
 	
 	@Before
 	public void instantiateFactory()
 	{
 		factory=new UsuarioJPAFactory();
 		validusuario=TestEntitiesFactory.validUsuario();
+		usuariotest=factory.copyEntity(validusuario);
 	}
 
 	@Test
 	public void CopyEntity_DefaultInvocation_UsuarioJPA() 
 	{
-		Usuario usuariotest=factory.copyEntity(validusuario);
 		assertTrue(usuariotest instanceof UsuarioJPA);
 	}
 	
 	@Test
 	public void CopyEntity_DefaultInvocation_SameCedula()
 	{
-		Usuario usuariotest=factory.copyEntity(validusuario);
 		assertEquals(validusuario.getCedula(), usuariotest.getCedula());
 	}
 	
 	@Test
 	public void CopyEntity_DefaultInvocation_SameLogin()
 	{
-		Usuario usuariotest=factory.copyEntity(validusuario);
 		assertEquals(validusuario.getLogin(), usuariotest.getLogin());
 	}
 	
 	@Test
 	public void CopyEntity_DefaultInvocation_SamePassword()
 	{
-		Usuario usuariotest=factory.copyEntity(validusuario);
 		assertEquals(validusuario.getPassword(), usuariotest.getPassword());
 	}
 	
 	@Test
 	public void CopyEntity_DefaultInvocation_SameNombre()
 	{
-		Usuario usuariotest=factory.copyEntity(validusuario);
 		assertEquals(validusuario.getNombre(), usuariotest.getNombre());
+	}
+	
+	@Test
+	public void CopyEntity_DefaultInvocation_SameApellido()
+	{
+		assertEquals(validusuario.getApellido(), usuariotest.getApellido());
+	}
+	
+	@Test
+	public void CopyEntity_DefaultInvocation_SameDireccion()
+	{
+		assertEquals(validusuario.getDireccion(), usuariotest.getDireccion());
+	}
+	
+	@Test
+	public void CopyEntity_DefaultInvocation_SameTelefono()
+	{
+		assertEquals(validusuario.getTelefono(), usuariotest.getTelefono());
+	}
+	
+	@Test
+	public void CopyEntity_DefaultInvocation_SameTipo()
+	{
+		assertEquals(validusuario.getTipo(), usuariotest.getTipo());
 	}
 
 }
