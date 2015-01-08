@@ -1,8 +1,23 @@
 package org.idisoft.restos.data.factory.jpa;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.idisoft.restos.data.factory.ModelFactory;
 
-public abstract class JPAFactory<T> extends ModelFactory<T> {
+public abstract class JPAFactory<T> implements ModelFactory<T> {
 	
-	public abstract T copyEntity(final T original);
+	@Override
+	public List<T> createList()
+	{
+		return new ArrayList<T>(0);
+	}
+	
+	@Override
+	public Set<T> createSet()
+	{
+		return new HashSet<T>(0);
+	}
 }

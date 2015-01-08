@@ -1,11 +1,8 @@
 package org.idisoft.restos.test.integration.services.usuario;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
 
 import javax.inject.Inject;
-import javax.persistence.EntityExistsException;
-import javax.validation.ValidationException;
 import javax.ws.rs.core.Response;
 
 import org.idisoft.restos.model.Usuario;
@@ -23,7 +20,6 @@ import org.jboss.arquillian.transaction.api.annotation.Transactional;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.runners.MockitoJUnitRunner;
 
 @RunWith(Arquillian.class)
 @Transactional(TransactionMode.ROLLBACK)

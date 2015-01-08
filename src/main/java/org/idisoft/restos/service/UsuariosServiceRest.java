@@ -51,7 +51,7 @@ public class UsuariosServiceRest implements UsuariosService {
 			if(password.equals(usuario.getPassword()))
 			{
 				builder=Response.status(Status.OK);
-				usuario=usuariodtofactory.createEntity(usuario);
+				usuario=usuariodtofactory.copyEntity(usuario);
 				builder.entity(usuario);
 			}
 			else
@@ -82,7 +82,7 @@ public class UsuariosServiceRest implements UsuariosService {
 			
 			Usuario usuarioregistro=usuariosrepository.add(usuariojpa);
 			
-			Usuario usuariodto=usuariodtofactory.createEntity(usuarioregistro);
+			Usuario usuariodto=usuariodtofactory.copyEntity(usuarioregistro);
 			
 			builder=Response.status(Status.OK);
 			builder.entity(usuariodto);

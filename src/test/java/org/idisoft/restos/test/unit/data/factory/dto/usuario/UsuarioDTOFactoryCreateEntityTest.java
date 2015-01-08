@@ -43,36 +43,12 @@ public class UsuarioDTOFactoryCreateEntityTest {
 	@Test
 	public void CreateEntity_DefaultInvocation_DefaultPassword()
 	{
-		String defaultPassword="";
+		String defaultPassword=UsuarioDTOFactory.RESTRICTED_PASSWORD;
 		Usuario usuariotest=factory.createEntity();
 		assertEquals(defaultPassword,usuariotest.getPassword());
 	}
 	
-	@Test
-	public void CreateEntity_PassEntity_CopyCedula()
-	{
-		Usuario usuariofirst=factory.createEntity();
-		usuariofirst.setCedula("V123456789");
-		Usuario usuariosecond=factory.createEntity(usuariofirst);
-		assertEquals(usuariofirst.getCedula(),usuariosecond.getCedula());
-	}
 	
-	@Test
-	public void CreateEntity_PassEntity_CopyLogin()
-	{
-		Usuario usuariofirst=factory.createEntity();
-		usuariofirst.setLogin("abcdef");
-		Usuario usuariosecond=factory.createEntity(usuariofirst);
-		assertEquals(usuariofirst.getLogin(),usuariosecond.getLogin());
-	}
 	
-	@Test
-	public void CreateEntity_PassEntity_CopyPassword()
-	{
-		Usuario usuariofirst=factory.createEntity();
-		usuariofirst.setPassword("abcdefgh");
-		Usuario usuariosecond=factory.createEntity(usuariofirst);
-		assertEquals(usuariofirst.getPassword(),usuariosecond.getPassword());
-	}
 
 }

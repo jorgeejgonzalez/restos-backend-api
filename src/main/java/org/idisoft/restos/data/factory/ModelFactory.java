@@ -1,22 +1,16 @@
 package org.idisoft.restos.data.factory;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public abstract class ModelFactory<T> {
+public interface ModelFactory<T> {
 	
-	public abstract T createEntity();
+	public T createEntity();
 	
-	public List<T> createList()
-	{
-		return new ArrayList<T>();
-	}
+	public T copyEntity(final T original); 
 	
-	public Set<T> createSet()
-	{
-		return new HashSet<T>();
-	}
+	public List<T> createList();
+	
+	public Set<T> createSet();
 
 }

@@ -14,6 +14,7 @@ import org.idisoft.restos.test.unit.service.usuarios.*;
 	UsuarioJPABeanValidationTest.class,
 	UsuarioJPAEqualsTest.class,
 	UsuarioDTOFactoryCreateEntityTest.class,
+	UsuarioDTOFactoryCopyEntityTest.class,
 	UsuarioJPAFactoryCreateEntityTest.class,
 	UsuarioJPAFactoryCopyEntityTest.class,
 	UsuariosRepositoryFindByLoginTest.class,
