@@ -6,19 +6,11 @@ import static org.mockito.Mockito.*;
 import javax.persistence.NoResultException;
 import javax.ws.rs.core.Response;
 
-import org.idisoft.restos.data.factory.dto.UsuarioDTOFactory;
-import org.idisoft.restos.data.factory.jpa.UsuarioJPAFactory;
-import org.idisoft.restos.data.repository.UsuariosRepository;
 import org.idisoft.restos.model.Usuario;
 import org.idisoft.restos.model.dto.UsuarioDTO;
-import org.idisoft.restos.service.UsuariosService;
-import org.idisoft.restos.service.UsuariosServiceRest;
-import org.idisoft.restos.test.unit.service.AbstractRestServiceTest;
-import org.idisoft.restos.test.util.TestEntitiesFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)

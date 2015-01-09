@@ -1,6 +1,5 @@
 package org.idisoft.restos.data.repository;
 
-import javax.inject.Inject;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -23,7 +22,6 @@ public abstract class Repository<T extends Registro> {
 	{
 	}
 	
-	@Inject
 	public Repository(final DataAccessObject<T> dataaccessobject, BeanValidator<T> beanvalidator)
 	{
 		this.dataaccessobject=dataaccessobject;

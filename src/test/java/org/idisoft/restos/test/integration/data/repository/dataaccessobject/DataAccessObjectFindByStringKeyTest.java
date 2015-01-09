@@ -4,15 +4,8 @@ import static org.junit.Assert.*;
 
 import javax.inject.Inject;
 import javax.persistence.NoResultException;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
 
 import org.idisoft.restos.data.repository.DataAccessObject;
-import org.idisoft.restos.data.repository.DataAccessObject.Filter;
-import org.idisoft.restos.model.jpa.ConstantesORM;
 import org.idisoft.restos.model.jpa.UsuarioJPA;
 import org.idisoft.restos.test.util.ArquillianArchiver;
 import org.jboss.arquillian.container.test.api.Deployment;
