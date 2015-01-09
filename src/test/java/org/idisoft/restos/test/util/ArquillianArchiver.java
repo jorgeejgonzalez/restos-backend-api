@@ -20,14 +20,14 @@ public class ArquillianArchiver {
 				org.idisoft.restos.model.Registro.class,
 				org.idisoft.restos.model.Usuario.class,
 				org.idisoft.restos.model.jpa.BeanValidator.class,
-				org.idisoft.restos.model.jpa.UsuarioJPA.class,
+				org.idisoft.restos.model.jpa.UsuarioEntity.class,
 				org.idisoft.restos.model.dto.UsuarioDTO.class);
 		
 		war.addClasses(org.idisoft.restos.data.factory.ModelFactory.class,
 				org.idisoft.restos.data.factory.dto.DTOFactory.class,
 				org.idisoft.restos.data.factory.dto.UsuarioDTOFactory.class,
-				org.idisoft.restos.data.factory.jpa.JPAFactory.class,
-				org.idisoft.restos.data.factory.jpa.UsuarioJPAFactory.class);
+				org.idisoft.restos.data.factory.jpa.EntityFactory.class,
+				org.idisoft.restos.data.factory.jpa.UsuarioEntityFactory.class);
 		
 		war.addClasses(org.idisoft.restos.data.repository.DataAccessObject.class,
 				org.idisoft.restos.data.repository.Repository.class,

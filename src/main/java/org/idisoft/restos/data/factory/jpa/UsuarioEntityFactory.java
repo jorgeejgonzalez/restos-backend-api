@@ -9,14 +9,14 @@ import org.idisoft.restos.data.factory.ModelFactory;
 import org.idisoft.restos.model.EstatusRegistro;
 import org.idisoft.restos.model.TipoUsuario;
 import org.idisoft.restos.model.Usuario;
-import org.idisoft.restos.model.jpa.UsuarioJPA;
+import org.idisoft.restos.model.jpa.UsuarioEntity;
 
 @RequestScoped
-public class UsuarioJPAFactory implements ModelFactory<UsuarioJPA> {
+public class UsuarioEntityFactory implements ModelFactory<UsuarioEntity> {
 
-	private UsuarioJPA defaultUsuarioJPA()
+	private UsuarioEntity defaultUsuarioJPA()
 	{
-		UsuarioJPA retorno=new UsuarioJPA();
+		UsuarioEntity retorno=new UsuarioEntity();
 		retorno.setCedula("V00000000");
 		retorno.setLogin("");
 		retorno.setPassword("");
@@ -31,12 +31,12 @@ public class UsuarioJPAFactory implements ModelFactory<UsuarioJPA> {
 	}
 	
 	@Override
-	public UsuarioJPA createEntity() {
-		UsuarioJPA retorno=defaultUsuarioJPA();
+	public UsuarioEntity createEntity() {
+		UsuarioEntity retorno=defaultUsuarioJPA();
 		return retorno;
 	}
 	
-	public UsuarioJPA createEntity(
+	public UsuarioEntity createEntity(
 			String cedula,
 			String login,
 			String password,
@@ -46,7 +46,7 @@ public class UsuarioJPAFactory implements ModelFactory<UsuarioJPA> {
 			String direccion,
 			String telefono)
 	{
-		UsuarioJPA retorno=defaultUsuarioJPA();
+		UsuarioEntity retorno=defaultUsuarioJPA();
 		retorno.setCedula(cedula);
 		retorno.setLogin(login);
 		retorno.setPassword(password);
@@ -58,8 +58,8 @@ public class UsuarioJPAFactory implements ModelFactory<UsuarioJPA> {
 		return retorno;
 	}
 	
-	public UsuarioJPA copyEntity(Usuario original) {
-		UsuarioJPA copia=defaultUsuarioJPA();
+	public UsuarioEntity copyEntity(Usuario original) {
+		UsuarioEntity copia=defaultUsuarioJPA();
 		copia.setCedula(original.getCedula());
 		copia.setLogin(original.getLogin());
 		copia.setPassword(original.getPassword());
@@ -73,18 +73,18 @@ public class UsuarioJPAFactory implements ModelFactory<UsuarioJPA> {
 	}
 
 	@Override
-	public UsuarioJPA copyEntity(UsuarioJPA original) {
+	public UsuarioEntity copyEntity(UsuarioEntity original) {
 		return this.copyEntity((Usuario)original);
 	}
 
 	@Override
-	public List<UsuarioJPA> createList() {
+	public List<UsuarioEntity> createList() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Set<UsuarioJPA> createSet() {
+	public Set<UsuarioEntity> createSet() {
 		// TODO Auto-generated method stub
 		return null;
 	}

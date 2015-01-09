@@ -6,31 +6,31 @@ import javax.persistence.EntityExistsException;
 import javax.persistence.NoResultException;
 import javax.validation.ValidationException;
 
-import org.idisoft.restos.data.factory.jpa.UsuarioJPAFactory;
+import org.idisoft.restos.data.factory.jpa.UsuarioEntityFactory;
 import org.idisoft.restos.model.Usuario;
 import org.idisoft.restos.model.jpa.BeanValidator;
 import org.idisoft.restos.model.jpa.ConstantesORM;
-import org.idisoft.restos.model.jpa.UsuarioJPA;
+import org.idisoft.restos.model.jpa.UsuarioEntity;
 
 @RequestScoped
-public class UsuariosRepository extends Repository<UsuarioJPA> {
+public class UsuariosRepository extends Repository<UsuarioEntity> {
 	
 	
-	private UsuarioJPAFactory factory;
+	private UsuarioEntityFactory factory;
 	
 	public UsuariosRepository()
 	{
-		this.entityclass=UsuarioJPA.class;
+		this.entityclass=UsuarioEntity.class;
 	}
 	
 	@Inject
-	public UsuariosRepository(final DataAccessObject<UsuarioJPA> daousuariojpa,
-			final BeanValidator<UsuarioJPA> beanvalidator,
-			final UsuarioJPAFactory entityfactory)
+	public UsuariosRepository(final DataAccessObject<UsuarioEntity> daousuariojpa,
+			final BeanValidator<UsuarioEntity> beanvalidator,
+			final UsuarioEntityFactory entityfactory)
 	{
 		super(daousuariojpa,beanvalidator, entityfactory);		
-		this.entityclass=UsuarioJPA.class;
-		this.dataAccessObject.setEntityClass(UsuarioJPA.class);
+		this.entityclass=UsuarioEntity.class;
+		this.dataAccessObject.setEntityClass(UsuarioEntity.class);
 		this.factory=entityfactory;
 	}
 	
@@ -47,18 +47,18 @@ public class UsuariosRepository extends Repository<UsuarioJPA> {
 			throw new IllegalArgumentException();
 		}
 		
-		DataAccessObject<UsuarioJPA>.Filter loginfilter=dataAccessObject.createFilter(
+		DataAccessObject<UsuarioEntity>.Filter loginfilter=dataAccessObject.createFilter(
 				ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, 
 				login);
 		
-		UsuarioJPA retorno=dataAccessObject.findSingle(loginfilter);
+		UsuarioEntity retorno=dataAccessObject.findSingle(loginfilter);
 		
 		return retorno;
 	}
 	
 	public Usuario add(final Usuario usuario) throws ValidationException, EntityExistsException
 	{	
-		UsuarioJPA entity=factory.copyEntity(usuario);
+		UsuarioEntity entity=factory.copyEntity(usuario);
 		
 		if(!isValidEntity(entity))
 		{

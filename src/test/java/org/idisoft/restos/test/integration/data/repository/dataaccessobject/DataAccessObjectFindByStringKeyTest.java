@@ -6,7 +6,7 @@ import javax.inject.Inject;
 import javax.persistence.NoResultException;
 
 import org.idisoft.restos.data.repository.DataAccessObject;
-import org.idisoft.restos.model.jpa.UsuarioJPA;
+import org.idisoft.restos.model.jpa.UsuarioEntity;
 import org.idisoft.restos.test.util.ArquillianArchiver;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -26,7 +26,7 @@ import org.junit.runner.RunWith;
 public class DataAccessObjectFindByStringKeyTest {
 	
 	@Inject
-	private DataAccessObject<UsuarioJPA> daousuariojpa;
+	private DataAccessObject<UsuarioEntity> daousuariojpa;
 	
 	private String cedulaindataset="V123456789";
 	private String ceduladeleted="V987654321";
@@ -42,14 +42,14 @@ public class DataAccessObjectFindByStringKeyTest {
 	@Before
 	public void setEntityClass()
 	{
-		daousuariojpa.setEntityClass(UsuarioJPA.class);
+		daousuariojpa.setEntityClass(UsuarioEntity.class);
 	}
 	
 	@Test
 	public void FindByStringKey_FilterValueInDatabase_ReturnsT()
 	{	
 		
-		UsuarioJPA usuariocheck=daousuariojpa.findByStringKey(cedulaindataset);
+		UsuarioEntity usuariocheck=daousuariojpa.findByStringKey(cedulaindataset);
 		assertNotNull(usuariocheck);
 	}
 	
@@ -57,14 +57,14 @@ public class DataAccessObjectFindByStringKeyTest {
 	public void FindByStringKey_FilterValueNotInDatabase_ThrowsNoResultFoundException()
 	{
 		@SuppressWarnings("unused")
-		UsuarioJPA usuariocheck=daousuariojpa.findByStringKey(cedulanotindataset);
+		UsuarioEntity usuariocheck=daousuariojpa.findByStringKey(cedulanotindataset);
 	}
 	
 	@Test(expected=NoResultException.class)
 	public void FindByStringKey_EstatusRegistroDeleted_ThrowsNoResultFoundException()
 	{
 		@SuppressWarnings("unused")
-		UsuarioJPA usuariocheck=daousuariojpa.findByStringKey(ceduladeleted);
+		UsuarioEntity usuariocheck=daousuariojpa.findByStringKey(ceduladeleted);
 	}
 	
 }

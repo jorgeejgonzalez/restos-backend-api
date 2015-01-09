@@ -7,7 +7,7 @@ import java.util.Set;
 
 import org.idisoft.restos.data.factory.ModelFactory;
 
-public abstract class JPAFactory<T> implements ModelFactory<T> {
+public abstract class EntityFactory<T> implements ModelFactory<T> {
 	
 	@Override
 	public List<T> createList()

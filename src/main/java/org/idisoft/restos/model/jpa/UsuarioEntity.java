@@ -28,7 +28,7 @@ import org.idisoft.restos.model.Usuario;
 				@UniqueConstraint(columnNames=ConstantesORM.USUARIO_EMAIL_ATTRIBUTE_NAME)
 		}
 )
-public class UsuarioJPA implements Usuario, Registro, Serializable {
+public class UsuarioEntity implements Usuario, Registro, Serializable {
 	
 	@Column(name=ConstantesORM.USUARIO_CEDULA_COLUMN_NAME)
 	@Id
@@ -196,9 +196,9 @@ public class UsuarioJPA implements Usuario, Registro, Serializable {
 	public boolean equals(Object o)
 	{
 		boolean check=false;
-		if(o instanceof UsuarioJPA)
+		if(o instanceof UsuarioEntity)
 		{
-			UsuarioJPA usuariocheck=(UsuarioJPA) o;
+			UsuarioEntity usuariocheck=(UsuarioEntity) o;
 			check=cedula.equals(usuariocheck.getCedula())
 					&& login.equals(usuariocheck.getLogin())
 					&& password.equals(usuariocheck.getPassword())

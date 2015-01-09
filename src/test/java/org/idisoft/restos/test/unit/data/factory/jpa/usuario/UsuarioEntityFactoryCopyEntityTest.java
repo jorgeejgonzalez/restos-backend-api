@@ -2,31 +2,31 @@ package org.idisoft.restos.test.unit.data.factory.jpa.usuario;
 
 import static org.junit.Assert.*;
 
-import org.idisoft.restos.data.factory.jpa.UsuarioJPAFactory;
+import org.idisoft.restos.data.factory.jpa.UsuarioEntityFactory;
 import org.idisoft.restos.model.Usuario;
-import org.idisoft.restos.model.jpa.UsuarioJPA;
+import org.idisoft.restos.model.jpa.UsuarioEntity;
 import org.idisoft.restos.test.util.TestEntitiesFactory;
 import org.junit.Before;
 import org.junit.Test;
 
-public class UsuarioJPAFactoryCopyEntityTest {
+public class UsuarioEntityFactoryCopyEntityTest {
 	
-	private UsuarioJPAFactory factory;
+	private UsuarioEntityFactory factory;
 	private Usuario validusuario;
 	private Usuario usuariotest;
 	
 	@Before
 	public void instantiateFactory()
 	{
-		factory=new UsuarioJPAFactory();
+		factory=new UsuarioEntityFactory();
 		validusuario=TestEntitiesFactory.validUsuario();
 		usuariotest=factory.copyEntity(validusuario);
 	}
 
 	@Test
-	public void CopyEntity_DefaultInvocation_UsuarioJPA() 
+	public void CopyEntity_DefaultInvocation_UsuarioEntity() 
 	{
-		assertTrue(usuariotest instanceof UsuarioJPA);
+		assertTrue(usuariotest instanceof UsuarioEntity);
 	}
 	
 	@Test

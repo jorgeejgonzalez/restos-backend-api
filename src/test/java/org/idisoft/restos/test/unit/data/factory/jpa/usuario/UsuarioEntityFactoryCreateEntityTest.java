@@ -2,15 +2,15 @@ package org.idisoft.restos.test.unit.data.factory.jpa.usuario;
 
 import static org.junit.Assert.*;
 
-import org.idisoft.restos.data.factory.jpa.UsuarioJPAFactory;
+import org.idisoft.restos.data.factory.jpa.UsuarioEntityFactory;
 import org.idisoft.restos.model.Usuario;
-import org.idisoft.restos.model.jpa.UsuarioJPA;
+import org.idisoft.restos.model.jpa.UsuarioEntity;
 import org.junit.Before;
 import org.junit.Test;
 
-public class UsuarioJPAFactoryCreateEntityTest {
+public class UsuarioEntityFactoryCreateEntityTest {
 	
-	private UsuarioJPAFactory factory;
+	private UsuarioEntityFactory factory;
 	
 	private String ceduladefault="V00000000";
 	private String logindefault="";
@@ -20,13 +20,13 @@ public class UsuarioJPAFactoryCreateEntityTest {
 	@Before
 	public void instantiateFactory()
 	{
-		factory=new UsuarioJPAFactory();
+		factory=new UsuarioEntityFactory();
 	}
 
 	@Test
-	public void CreateEntity_DefaultInvocation_UsuarioJPA() {
+	public void CreateEntity_DefaultInvocation_UsuarioEntity() {
 		Usuario usuariotest=factory.createEntity();
-		assertTrue(usuariotest instanceof UsuarioJPA);
+		assertTrue(usuariotest instanceof UsuarioEntity);
 	}
 	
 	@Test

@@ -5,19 +5,19 @@ import static org.junit.Assert.*;
 import javax.validation.Validation;
 
 import org.idisoft.restos.model.jpa.BeanValidator;
-import org.idisoft.restos.model.jpa.UsuarioJPA;
+import org.idisoft.restos.model.jpa.UsuarioEntity;
 import org.idisoft.restos.test.util.TestEntitiesFactory;
 import org.junit.Before;
 import org.junit.Test;
 
-public class UsuarioJPABeanValidationTest {
+public class UsuarioEntityBeanValidationTest {
 	
-	private UsuarioJPA validUsuario;
-	private UsuarioJPA invalidUsuario;
+	private UsuarioEntity validUsuario;
+	private UsuarioEntity invalidUsuario;
 	
-	private boolean isValid(UsuarioJPA usuario)
+	private boolean isValid(UsuarioEntity usuario)
 	{
-		BeanValidator<UsuarioJPA> usuariobeanvalidator=new BeanValidator<UsuarioJPA>(Validation.buildDefaultValidatorFactory());
+		BeanValidator<UsuarioEntity> usuariobeanvalidator=new BeanValidator<UsuarioEntity>(Validation.buildDefaultValidatorFactory());
 		usuariobeanvalidator.validate(usuario);
 		return usuariobeanvalidator.isValid();
 	}
@@ -25,8 +25,8 @@ public class UsuarioJPABeanValidationTest {
 	@Before
 	public void SetUpUsuariosForTest()
 	{
-		validUsuario=TestEntitiesFactory.validUsuarioJPA();
-		invalidUsuario=TestEntitiesFactory.validUsuarioJPA();
+		validUsuario=TestEntitiesFactory.validUsuarioEntity();
+		invalidUsuario=TestEntitiesFactory.validUsuarioEntity();
 	}
 
 	@Test

@@ -2,21 +2,21 @@ package org.idisoft.restos.test.unit.model.jpa.usuario;
 
 import static org.junit.Assert.*;
 
-import org.idisoft.restos.model.jpa.UsuarioJPA;
+import org.idisoft.restos.model.jpa.UsuarioEntity;
 import org.idisoft.restos.test.util.TestEntitiesFactory;
 import org.junit.Before;
 import org.junit.Test;
 
-public class UsuarioJPAEqualsTest {
+public class UsuarioEntityEqualsTest {
 	
-	private UsuarioJPA validusuario;
-	private UsuarioJPA compareusuario;
+	private UsuarioEntity validusuario;
+	private UsuarioEntity compareusuario;
 	
 	@Before
 	public void setUpUsuarios()
 	{
-		validusuario= TestEntitiesFactory.validUsuarioJPA();
-		compareusuario= TestEntitiesFactory.validUsuarioJPA();
+		validusuario= TestEntitiesFactory.validUsuarioEntity();
+		compareusuario= TestEntitiesFactory.validUsuarioEntity();
 	}
 	
 	@Test

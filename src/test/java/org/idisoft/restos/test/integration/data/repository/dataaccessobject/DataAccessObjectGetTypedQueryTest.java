@@ -12,7 +12,7 @@ import javax.persistence.criteria.Root;
 
 import org.idisoft.restos.data.repository.DataAccessObject;
 import org.idisoft.restos.model.jpa.ConstantesORM;
-import org.idisoft.restos.model.jpa.UsuarioJPA;
+import org.idisoft.restos.model.jpa.UsuarioEntity;
 import org.idisoft.restos.test.util.ArquillianArchiver;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -31,7 +31,7 @@ import org.junit.runner.RunWith;
 public class DataAccessObjectGetTypedQueryTest {
 	
 	@Inject
-	private DataAccessObject<UsuarioJPA> daousuariojpa;
+	private DataAccessObject<UsuarioEntity> daousuariojpa;
 	
 	@Inject
 	private CriteriaBuilder criteriabuilder;
@@ -49,8 +49,8 @@ public class DataAccessObjectGetTypedQueryTest {
 	@Test
 	public void GetTypedQuery_QueryValid_ReturnsTypedQuery()
 	{	
-		CriteriaQuery<UsuarioJPA> query=criteriabuilder.createQuery(UsuarioJPA.class);		
-		Root<UsuarioJPA> root=query.from(UsuarioJPA.class);
+		CriteriaQuery<UsuarioEntity> query=criteriabuilder.createQuery(UsuarioEntity.class);		
+		Root<UsuarioEntity> root=query.from(UsuarioEntity.class);
 		Predicate condition=criteriabuilder.equal(
 				root.get(ConstantesORM.USUARIO_CEDULA_ATTRIBUTE_NAME), 
 				cedulaindataset);
@@ -58,15 +58,15 @@ public class DataAccessObjectGetTypedQueryTest {
 		query=query.select(root);
 		query=query.where(condition);
 		
-		TypedQuery<UsuarioJPA> typedquerycheck= daousuariojpa.getTypedQuery(query);
+		TypedQuery<UsuarioEntity> typedquerycheck= daousuariojpa.getTypedQuery(query);
 		assertNotNull(typedquerycheck);
 	}
 	
 	@Test
 	public void GetTypedQuery_SingleResultSuccesful_ProvidesResults()
 	{
-		CriteriaQuery<UsuarioJPA> query=criteriabuilder.createQuery(UsuarioJPA.class);		
-		Root<UsuarioJPA> root=query.from(UsuarioJPA.class);
+		CriteriaQuery<UsuarioEntity> query=criteriabuilder.createQuery(UsuarioEntity.class);		
+		Root<UsuarioEntity> root=query.from(UsuarioEntity.class);
 		Predicate condition=criteriabuilder.equal(
 				root.get(ConstantesORM.USUARIO_CEDULA_ATTRIBUTE_NAME), 
 				cedulaindataset);
@@ -74,8 +74,8 @@ public class DataAccessObjectGetTypedQueryTest {
 		query=query.select(root);
 		query=query.where(condition);
 		
-		TypedQuery<UsuarioJPA> typedquerycheck= daousuariojpa.getTypedQuery(query);
-		UsuarioJPA usuariocheck=typedquerycheck.getSingleResult();
+		TypedQuery<UsuarioEntity> typedquerycheck= daousuariojpa.getTypedQuery(query);
+		UsuarioEntity usuariocheck=typedquerycheck.getSingleResult();
 		
 		assertNotNull(usuariocheck);
 	}
@@ -84,8 +84,8 @@ public class DataAccessObjectGetTypedQueryTest {
 	@Test(expected=NoResultException.class)
 	public void GetTypedQuery_SingleResultFailed_ThrowNoResultException()
 	{
-		CriteriaQuery<UsuarioJPA> query=criteriabuilder.createQuery(UsuarioJPA.class);		
-		Root<UsuarioJPA> root=query.from(UsuarioJPA.class);
+		CriteriaQuery<UsuarioEntity> query=criteriabuilder.createQuery(UsuarioEntity.class);		
+		Root<UsuarioEntity> root=query.from(UsuarioEntity.class);
 		Predicate condition=criteriabuilder.equal(
 				root.get(ConstantesORM.USUARIO_CEDULA_ATTRIBUTE_NAME), 
 				cedulanotindataset);
@@ -93,7 +93,7 @@ public class DataAccessObjectGetTypedQueryTest {
 		query=query.select(root);
 		query=query.where(condition);
 		
-		TypedQuery<UsuarioJPA> typedquerycheck= daousuariojpa.getTypedQuery(query);
-		UsuarioJPA usuariocheck=typedquerycheck.getSingleResult();	
+		TypedQuery<UsuarioEntity> typedquerycheck= daousuariojpa.getTypedQuery(query);
+		UsuarioEntity usuariocheck=typedquerycheck.getSingleResult();	
 	}
 }

@@ -7,7 +7,7 @@ import javax.persistence.NoResultException;
 
 import org.idisoft.restos.data.repository.DataAccessObject;
 import org.idisoft.restos.model.jpa.ConstantesORM;
-import org.idisoft.restos.model.jpa.UsuarioJPA;
+import org.idisoft.restos.model.jpa.UsuarioEntity;
 import org.idisoft.restos.test.util.ArquillianArchiver;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -27,7 +27,7 @@ import org.junit.runner.RunWith;
 public class DataAccessObjectFindSingleTest {
 	
 	@Inject
-	private DataAccessObject<UsuarioJPA> daousuariojpa;
+	private DataAccessObject<UsuarioEntity> daousuariojpa;
 	
 	private String cedulaindataset="V123456789";
 	private String ceduladeleted="V987654321";
@@ -43,40 +43,40 @@ public class DataAccessObjectFindSingleTest {
 	@Before
 	public void setEntityClass()
 	{
-		daousuariojpa.setEntityClass(UsuarioJPA.class);
+		daousuariojpa.setEntityClass(UsuarioEntity.class);
 	}
 	
 	@Test
 	public void FindSingle_FilterValueInDatabase_ReturnsT()
 	{	
-		DataAccessObject<UsuarioJPA>.Filter filter= daousuariojpa.createFilter(
+		DataAccessObject<UsuarioEntity>.Filter filter= daousuariojpa.createFilter(
 				ConstantesORM.USUARIO_CEDULA_ATTRIBUTE_NAME, 
 				cedulaindataset);
 		
-		UsuarioJPA usuariocheck=daousuariojpa.findSingle(filter);
+		UsuarioEntity usuariocheck=daousuariojpa.findSingle(filter);
 		assertNotNull(usuariocheck);
 	}
 	
 	@Test(expected=NoResultException.class)
 	public void FindSingle_FilterValueNotInDatabase_ThrowsNoResultFoundException()
 	{
-		DataAccessObject<UsuarioJPA>.Filter filter= daousuariojpa.createFilter(
+		DataAccessObject<UsuarioEntity>.Filter filter= daousuariojpa.createFilter(
 				ConstantesORM.USUARIO_CEDULA_ATTRIBUTE_NAME, 
 				cedulanotindataset);
 		
 		@SuppressWarnings("unused")
-		UsuarioJPA usuariocheck=daousuariojpa.findSingle(filter);
+		UsuarioEntity usuariocheck=daousuariojpa.findSingle(filter);
 	}
 	
 	@Test(expected=NoResultException.class)
 	public void FindSingle_EntityStatusDeleted_ThrowsNoResultFoundException()
 	{
-		DataAccessObject<UsuarioJPA>.Filter filter= daousuariojpa.createFilter(
+		DataAccessObject<UsuarioEntity>.Filter filter= daousuariojpa.createFilter(
 				ConstantesORM.USUARIO_CEDULA_ATTRIBUTE_NAME, 
 				ceduladeleted);
 		
 		@SuppressWarnings("unused")
-		UsuarioJPA usuariocheck=daousuariojpa.findSingle(filter);
+		UsuarioEntity usuariocheck=daousuariojpa.findSingle(filter);
 	}
 	
 }

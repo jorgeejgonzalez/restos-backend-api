@@ -4,7 +4,7 @@ import org.idisoft.restos.model.EstatusRegistro;
 import org.idisoft.restos.model.TipoUsuario;
 import org.idisoft.restos.model.Usuario;
 import org.idisoft.restos.model.dto.UsuarioDTO;
-import org.idisoft.restos.model.jpa.UsuarioJPA;
+import org.idisoft.restos.model.jpa.UsuarioEntity;
 
 public class TestEntitiesFactory {
 	
@@ -22,12 +22,12 @@ public class TestEntitiesFactory {
 	
 	public static Usuario validUsuario()
 	{
-		return validUsuarioJPA();
+		return validUsuarioEntity();
 	}
 	
 	public static Usuario invalidUsuario()
 	{
-		return invalidUsuarioJPA();
+		return invalidUsuarioEntity();
 	}
 	
 	private static Usuario assembleUsuario(Usuario usuario)
@@ -45,16 +45,16 @@ public class TestEntitiesFactory {
 		return usuario;
 	}
 	
-	public static UsuarioJPA validUsuarioJPA()
+	public static UsuarioEntity validUsuarioEntity()
 	{
-		UsuarioJPA retorno=(UsuarioJPA)assembleUsuario(new UsuarioJPA());
+		UsuarioEntity retorno=(UsuarioEntity)assembleUsuario(new UsuarioEntity());
 		retorno.setEstatusRegistro(DEFAULT_ESTATUSREGISTRO);
 		return retorno;
 	}
 	
-	public static UsuarioJPA invalidUsuarioJPA()
+	public static UsuarioEntity invalidUsuarioEntity()
 	{
-		UsuarioJPA retorno=(UsuarioJPA)assembleUsuario(new UsuarioJPA());
+		UsuarioEntity retorno=(UsuarioEntity)assembleUsuario(new UsuarioEntity());
 		retorno.setLogin("");
 		return retorno;
 	}
@@ -67,7 +67,7 @@ public class TestEntitiesFactory {
 	
 	public Usuario usuarioDeleted()
 	{
-		UsuarioJPA retorno=(UsuarioJPA)assembleUsuario(new UsuarioJPA());
+		UsuarioEntity retorno=(UsuarioEntity)assembleUsuario(new UsuarioEntity());
 		retorno.setCedula("V00000000");
 		retorno.setEstatusRegistro(EstatusRegistro.ELIMINADO);
 		return retorno;
@@ -75,7 +75,7 @@ public class TestEntitiesFactory {
 	
 	public static Usuario usuarioIntegration()
 	{
-		UsuarioJPA retorno=new UsuarioJPA();
+		UsuarioEntity retorno=new UsuarioEntity();
 		retorno.setCedula("V123456789");
 		retorno.setLogin("integrationtest");
 		retorno.setPassword("integrationtest");

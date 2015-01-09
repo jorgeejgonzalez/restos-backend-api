@@ -8,7 +8,7 @@ import javax.persistence.NoResultException;
 import org.idisoft.restos.data.repository.DataAccessObject;
 import org.idisoft.restos.model.Usuario;
 import org.idisoft.restos.model.jpa.ConstantesORM;
-import org.idisoft.restos.model.jpa.UsuarioJPA;
+import org.idisoft.restos.model.jpa.UsuarioEntity;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
@@ -21,7 +21,7 @@ public class UsuariosRepositoryFindByLoginTest extends AbstractUsuariosRepositor
 	{
 		instantiateEntities();
 		
-		DataAccessObject<UsuarioJPA>.Filter filter=usuariojpadaostub.new Filter(ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, loginInRepository);
+		DataAccessObject<UsuarioEntity>.Filter filter=usuariojpadaostub.new Filter(ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, loginInRepository);
 		
 		when(usuariojpadaostub.createFilter(ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, loginInRepository)).thenReturn(filter);
 		when(usuariojpadaostub.findSingle(filter)).thenReturn(validUsuarioEntity);
@@ -37,7 +37,7 @@ public class UsuariosRepositoryFindByLoginTest extends AbstractUsuariosRepositor
 	{
 		instantiateEntities();
 		
-		DataAccessObject<UsuarioJPA>.Filter filter=usuariojpadaostub.new Filter(ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, loginNotInRepository);
+		DataAccessObject<UsuarioEntity>.Filter filter=usuariojpadaostub.new Filter(ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, loginNotInRepository);
 		
 		when(usuariojpadaostub.createFilter(ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, loginNotInRepository)).thenReturn(filter);
 		when(usuariojpadaostub.findSingle(filter)).thenThrow(new NoResultException());
@@ -69,7 +69,7 @@ public class UsuariosRepositoryFindByLoginTest extends AbstractUsuariosRepositor
 	{
 		instantiateEntities();
 		
-		DataAccessObject<UsuarioJPA>.Filter filter=usuariojpadaostub.new Filter(ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, loginNotInRepository);
+		DataAccessObject<UsuarioEntity>.Filter filter=usuariojpadaostub.new Filter(ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, loginNotInRepository);
 		
 		when(usuariojpadaostub.createFilter(ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, loginNotInRepository)).thenReturn(filter);
 		when(usuariojpadaostub.findSingle(filter)).thenThrow(new NoResultException());
