@@ -22,12 +22,14 @@ public class UsuariosRepositoryAddTest extends AbstractUsuariosRepositoryTest {
 	public void Add_UsuarioIsNotInRepository_ReturnsUsuario() throws Exception
 	{
 		instantiateEntities();
-		when(usuariojpafactorystub.copyEntity(validusuariojpa)).thenReturn(validusuariojpa);
-		when(usuariojpadaostub.persist(validusuariojpa)).thenReturn(validusuariojpa);
 		instantiateRepositoryWithMocks();
-		when(repository.findByCedula(validusuario.getCedula())).thenThrow(new NoResultException());
-		when(repository.findByLogin(validusuario.getLogin())).thenThrow(new NoResultException());
-		Usuario added=repository.add(validusuario);
+		
+		when(usuariojpafactorystub.copyEntity(validUsuarioEntity)).thenReturn(validUsuarioEntity);
+		when(usuariojpadaostub.persist(validUsuarioEntity)).thenReturn(validUsuarioEntity);
+		when(repository.findByCedula(validUsuario.getCedula())).thenThrow(new NoResultException());
+		when(repository.findByLogin(validUsuario.getLogin())).thenThrow(new NoResultException());
+		
+		Usuario added=repository.add(validUsuario);
 		assertNotNull(added);
 	}
 	
@@ -36,11 +38,11 @@ public class UsuariosRepositoryAddTest extends AbstractUsuariosRepositoryTest {
 	public void Add_CedulaIsInRepository_ThrowEntityExistsException() throws Exception
 	{
 		instantiateEntities();
-		when(usuariojpafactorystub.copyEntity(validusuariojpa)).thenReturn(validusuariojpa);
-		when(usuariojpadaostub.findByStringKey(validusuario.getCedula())).thenReturn(validusuariojpa);
 		instantiateRepositoryWithMocks();
-		
-		Usuario added=repository.add(validusuario);
+		when(usuariojpafactorystub.copyEntity(validUsuarioEntity)).thenReturn(validUsuarioEntity);
+		when(usuariojpadaostub.findByStringKey(validUsuario.getCedula())).thenReturn(validUsuarioEntity);
+				
+		Usuario added=repository.add(validUsuario);
 	}
 	
 	@SuppressWarnings("unused")
@@ -48,13 +50,15 @@ public class UsuariosRepositoryAddTest extends AbstractUsuariosRepositoryTest {
 	public void Add_LoginIsInRepository_ThrowEntityExistsException() throws Exception
 	{
 		instantiateEntities();
-		DataAccessObject<UsuarioJPA>.Filter filter=usuariojpadaostub.new Filter(ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, logininrepository);
-		when(usuariojpadaostub.createFilter(ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, logininrepository)).thenReturn(filter);
-		when(usuariojpafactorystub.copyEntity(validusuariojpa)).thenReturn(validusuariojpa);
-		when(usuariojpadaostub.findSingle(filter)).thenReturn(validusuariojpa);
 		instantiateRepositoryWithMocks();
 		
-		Usuario added=repository.add(validusuariojpa);
+		DataAccessObject<UsuarioJPA>.Filter filter=usuariojpadaostub.new Filter(ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, loginInRepository);
+		
+		when(usuariojpadaostub.createFilter(ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, loginInRepository)).thenReturn(filter);
+		when(usuariojpafactorystub.copyEntity(validUsuarioEntity)).thenReturn(validUsuarioEntity);
+		when(usuariojpadaostub.findSingle(filter)).thenReturn(validUsuarioEntity);
+				
+		Usuario added=repository.add(validUsuarioEntity);
 	}
 	
 	@SuppressWarnings("unused")
@@ -62,9 +66,11 @@ public class UsuariosRepositoryAddTest extends AbstractUsuariosRepositoryTest {
 	public void Add_UsuarioIsNotValid_ThrowValidationException() throws Exception
 	{
 		instantiateEntities();
-		validusuariojpa.setNombre("");
-		when(usuariojpafactorystub.copyEntity(validusuariojpa)).thenReturn(validusuariojpa);
 		instantiateRepositoryWithMocks();
-		Usuario added=repository.add(validusuariojpa);
+		
+		when(usuariojpafactorystub.copyEntity(invalidUsuarioEntity)).thenReturn(invalidUsuarioEntity);
+		when(usuariojpafactorystub.copyEntity(invalidUsuario)).thenReturn(invalidUsuarioEntity);
+		
+		Usuario added=repository.add(invalidUsuarioEntity);
 	}
 }

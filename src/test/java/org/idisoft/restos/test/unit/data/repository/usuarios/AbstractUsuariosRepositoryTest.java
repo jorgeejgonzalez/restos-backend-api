@@ -25,27 +25,33 @@ public abstract class AbstractUsuariosRepositoryTest
 	
 	protected BeanValidator<UsuarioJPA> beanvalidatorusuariojpa;
 	
-	protected Usuario validusuario;
-	protected UsuarioJPA validusuariojpa;
-	protected UsuarioDTO validusuariodto;
+	protected Usuario invalidUsuario;
+	protected Usuario validUsuario;
+	protected UsuarioJPA validUsuarioEntity;
+	protected UsuarioJPA invalidUsuarioEntity;
+	protected UsuarioDTO validUsuarioTransfer;
 	
-	protected String cedulainrepository="V123456789";
-	protected String cedulanotinrepository="V987654321";
-	protected String logininrepository="test";
-	protected String loginnotinrepository="notest";
-	protected String loginempty="";
-	protected String loginnull=null;
+	protected String cedulaInRepository="V123456789";
+	protected String cedulaNotInRepository="V987654321";
+	protected String loginInRepository="test";
+	protected String loginNotInRepository="notest";
+	protected String loginEmpty="";
+	protected String loginNull=null;
 	
 	protected void instantiateEntities()
 	{
-		validusuario=TestEntitiesFactory.validUsuario();
-		validusuariojpa=TestEntitiesFactory.validUsuarioJPA();
-		validusuariodto=TestEntitiesFactory.validUsuarioDTO();
+		invalidUsuario=TestEntitiesFactory.validUsuario();
+		invalidUsuario.setLogin(loginEmpty);
+		invalidUsuarioEntity=TestEntitiesFactory.validUsuarioJPA();
+		invalidUsuarioEntity.setLogin(loginEmpty);
+		validUsuario=TestEntitiesFactory.validUsuario();
+		validUsuarioEntity=TestEntitiesFactory.validUsuarioJPA();
+		validUsuarioTransfer=TestEntitiesFactory.validUsuarioDTO();
 	}
 	
 	protected void setUpMockitoRules()
 	{
-		when(usuariojpafactorystub.copyEntity(validusuario)).thenReturn(validusuariojpa);
+		when(usuariojpafactorystub.copyEntity(validUsuario)).thenReturn(validUsuarioEntity);
 	}
 	
 	protected void instantiateRepositoryWithMocks()

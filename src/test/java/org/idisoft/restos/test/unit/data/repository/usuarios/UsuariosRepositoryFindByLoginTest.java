@@ -21,14 +21,14 @@ public class UsuariosRepositoryFindByLoginTest extends AbstractUsuariosRepositor
 	{
 		instantiateEntities();
 		
-		DataAccessObject<UsuarioJPA>.Filter filter=usuariojpadaostub.new Filter(ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, logininrepository);
+		DataAccessObject<UsuarioJPA>.Filter filter=usuariojpadaostub.new Filter(ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, loginInRepository);
 		
-		when(usuariojpadaostub.createFilter(ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, logininrepository)).thenReturn(filter);
-		when(usuariojpadaostub.findSingle(filter)).thenReturn(validusuariojpa);
+		when(usuariojpadaostub.createFilter(ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, loginInRepository)).thenReturn(filter);
+		when(usuariojpadaostub.findSingle(filter)).thenReturn(validUsuarioEntity);
 		
 		instantiateRepositoryWithMocks();
 		
-		Usuario usuariocheck= repository.findByLogin(logininrepository);
+		Usuario usuariocheck= repository.findByLogin(loginInRepository);
 		assertNotNull(usuariocheck);
 	}
 	
@@ -37,15 +37,15 @@ public class UsuariosRepositoryFindByLoginTest extends AbstractUsuariosRepositor
 	{
 		instantiateEntities();
 		
-		DataAccessObject<UsuarioJPA>.Filter filter=usuariojpadaostub.new Filter(ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, loginnotinrepository);
+		DataAccessObject<UsuarioJPA>.Filter filter=usuariojpadaostub.new Filter(ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, loginNotInRepository);
 		
-		when(usuariojpadaostub.createFilter(ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, loginnotinrepository)).thenReturn(filter);
+		when(usuariojpadaostub.createFilter(ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, loginNotInRepository)).thenReturn(filter);
 		when(usuariojpadaostub.findSingle(filter)).thenThrow(new NoResultException());
 		
 		instantiateRepositoryWithMocks();
 		
 		@SuppressWarnings("unused")
-		Usuario usuariocheck= repository.findByLogin(loginnotinrepository);
+		Usuario usuariocheck= repository.findByLogin(loginNotInRepository);
 	}
 	
 	@SuppressWarnings("unused")
@@ -53,7 +53,7 @@ public class UsuariosRepositoryFindByLoginTest extends AbstractUsuariosRepositor
 	public void FindByLogin_LoginIsNull_ThrowsIllegalArgumenException()
 	{
 		instantiateRepositoryWithMocks();
-		Usuario usuariocheck= repository.findByLogin(loginnull);
+		Usuario usuariocheck= repository.findByLogin(loginNull);
 	}
 	
 	@SuppressWarnings("unused")
@@ -61,7 +61,7 @@ public class UsuariosRepositoryFindByLoginTest extends AbstractUsuariosRepositor
 	public void FindByLogin_LoginIsEmpty_ThrowsIllegalArgumenException()
 	{
 		instantiateRepositoryWithMocks();
-		Usuario usuariocheck= repository.findByLogin(loginempty);
+		Usuario usuariocheck= repository.findByLogin(loginEmpty);
 	}
 	
 	@Test(expected=NoResultException.class)
@@ -69,15 +69,15 @@ public class UsuariosRepositoryFindByLoginTest extends AbstractUsuariosRepositor
 	{
 		instantiateEntities();
 		
-		DataAccessObject<UsuarioJPA>.Filter filter=usuariojpadaostub.new Filter(ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, loginnotinrepository);
+		DataAccessObject<UsuarioJPA>.Filter filter=usuariojpadaostub.new Filter(ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, loginNotInRepository);
 		
-		when(usuariojpadaostub.createFilter(ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, loginnotinrepository)).thenReturn(filter);
+		when(usuariojpadaostub.createFilter(ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, loginNotInRepository)).thenReturn(filter);
 		when(usuariojpadaostub.findSingle(filter)).thenThrow(new NoResultException());
 		
 		instantiateRepositoryWithMocks();
 		
 		@SuppressWarnings("unused")
-		Usuario usuariocheck= repository.findByLogin(loginnotinrepository);
+		Usuario usuariocheck= repository.findByLogin(loginNotInRepository);
 	}
 
 }

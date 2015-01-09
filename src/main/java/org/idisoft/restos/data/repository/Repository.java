@@ -1,11 +1,6 @@
 package org.idisoft.restos.data.repository;
 
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
-
+import org.idisoft.restos.data.factory.ModelFactory;
 import org.idisoft.restos.model.Registro;
 import org.idisoft.restos.model.jpa.BeanValidator;
 
@@ -13,40 +8,27 @@ public abstract class Repository<T extends Registro> {
 	
 	protected Class<T> entityclass;
 	
-	protected DataAccessObject<T> dataaccessobject;
-	protected BeanValidator<T> beanvalidator;
-	protected CriteriaBuilder criteriabuilder;
-	protected CriteriaQuery<T> criteriaquery;
+	protected DataAccessObject<T> dataAccessObject;
+	protected BeanValidator<T> beanValidator;
+	protected ModelFactory<T> entityFactory;
 	
 	public Repository()
 	{
 	}
 	
-	public Repository(final DataAccessObject<T> dataaccessobject, BeanValidator<T> beanvalidator)
+	public Repository(final DataAccessObject<T> dataaccessobject, 
+			final BeanValidator<T> beanvalidator,
+			final ModelFactory<T> entityFactory)
 	{
-		this.dataaccessobject=dataaccessobject;
-		this.criteriabuilder=dataaccessobject.getCriteriaBuilder();
-		this.criteriaquery=dataaccessobject.getCriteriaQuery();
-		
-		this.beanvalidator=beanvalidator;
-	}
-	
-	protected TypedQuery<T> assembleTypedQuery(final CriteriaQuery<T> query,
-			final Root<T> root, 
-			final Predicate condition)
-	{
-		CriteriaQuery<T> criteria =query.select(root);
-		criteria.where(condition);
-		
-		TypedQuery<T> typedquery=dataaccessobject.getTypedQuery(criteria);
-		
-		return typedquery;
+		this.dataAccessObject=dataaccessobject;
+		this.beanValidator=beanvalidator;
+		this.entityFactory=entityFactory;
 	}
 	
 	protected boolean isValidEntity(final T entity)
 	{
-		beanvalidator.validate(entity);
-		return beanvalidator.isValid();
+		beanValidator.validate(entityFactory.copyEntity(entity));
+		return beanValidator.isValid();
 	}
 
 }

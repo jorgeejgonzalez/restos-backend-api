@@ -15,6 +15,7 @@ import org.idisoft.restos.model.jpa.UsuarioJPA;
 @RequestScoped
 public class UsuariosRepository extends Repository<UsuarioJPA> {
 	
+	
 	private UsuarioJPAFactory factory;
 	
 	public UsuariosRepository()
@@ -25,17 +26,17 @@ public class UsuariosRepository extends Repository<UsuarioJPA> {
 	@Inject
 	public UsuariosRepository(final DataAccessObject<UsuarioJPA> daousuariojpa,
 			final BeanValidator<UsuarioJPA> beanvalidator,
-			final UsuarioJPAFactory factory)
+			final UsuarioJPAFactory entityfactory)
 	{
-		super(daousuariojpa,beanvalidator);
-		this.factory=factory;
+		super(daousuariojpa,beanvalidator, entityfactory);		
 		this.entityclass=UsuarioJPA.class;
-		this.dataaccessobject.setEntityClass(UsuarioJPA.class);
+		this.dataAccessObject.setEntityClass(UsuarioJPA.class);
+		this.factory=entityfactory;
 	}
 	
 	public Usuario findByCedula(final String cedula) throws NoResultException
 	{
-		Usuario retorno=dataaccessobject.findByStringKey(cedula);
+		Usuario retorno=dataAccessObject.findByStringKey(cedula);
 		return retorno;
 	}
 	
@@ -46,18 +47,18 @@ public class UsuariosRepository extends Repository<UsuarioJPA> {
 			throw new IllegalArgumentException();
 		}
 		
-		DataAccessObject<UsuarioJPA>.Filter loginfilter=dataaccessobject.createFilter(
+		DataAccessObject<UsuarioJPA>.Filter loginfilter=dataAccessObject.createFilter(
 				ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, 
 				login);
 		
-		UsuarioJPA retorno=dataaccessobject.findSingle(loginfilter);
+		UsuarioJPA retorno=dataAccessObject.findSingle(loginfilter);
 		
 		return retorno;
 	}
 	
 	public Usuario add(final Usuario usuario) throws ValidationException, EntityExistsException
 	{	
-		UsuarioJPA entity=(UsuarioJPA)factory.copyEntity(usuario);
+		UsuarioJPA entity=factory.copyEntity(usuario);
 		
 		if(!isValidEntity(entity))
 		{
@@ -82,7 +83,7 @@ public class UsuariosRepository extends Repository<UsuarioJPA> {
 			//do nothing
 		}
 			
-		Usuario retorno=dataaccessobject.persist(entity);
+		Usuario retorno=dataAccessObject.persist(entity);
 		return retorno;
 	}
 }
