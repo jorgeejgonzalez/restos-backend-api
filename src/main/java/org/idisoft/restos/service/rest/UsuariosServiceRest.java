@@ -1,4 +1,4 @@
-package org.idisoft.restos.service;
+package org.idisoft.restos.service.rest;
 
 import javax.inject.Inject;
 import javax.persistence.EntityExistsException;
@@ -9,15 +9,14 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import org.idisoft.restos.data.factory.dto.UsuarioDTOFactory;
-import org.idisoft.restos.data.factory.jpa.UsuarioJPAFactory;
 import org.idisoft.restos.data.repository.UsuariosRepository;
 import org.idisoft.restos.model.Usuario;
+import org.idisoft.restos.service.UsuariosService;
 
 public class UsuariosServiceRest implements UsuariosService {
 	
 	private UsuariosRepository usuariosrepository;
 	private UsuarioDTOFactory usuariodtofactory;
-	private UsuarioJPAFactory usuariojpafactory;
 	
 	public UsuariosServiceRest()
 	{
@@ -26,12 +25,10 @@ public class UsuariosServiceRest implements UsuariosService {
 	
 	@Inject
 	public UsuariosServiceRest(final UsuariosRepository usuariosrepository,
-			final UsuarioDTOFactory usuariodtofactory,
-			final UsuarioJPAFactory usuariojpafactory)
+			final UsuarioDTOFactory usuariodtofactory)
 	{
 		this.usuariosrepository=usuariosrepository;
 		this.usuariodtofactory=usuariodtofactory;
-		this.usuariojpafactory=usuariojpafactory;
 	}
 
 	@Override
@@ -78,9 +75,7 @@ public class UsuariosServiceRest implements UsuariosService {
 		Response.ResponseBuilder builder=null;
 		try
 		{
-			Usuario usuariojpa= usuariojpafactory.copyEntity(usuario);
-			
-			Usuario usuarioregistro=usuariosrepository.add(usuariojpa);
+			Usuario usuarioregistro=usuariosrepository.add(usuario);
 			
 			Usuario usuariodto=usuariodtofactory.copyEntity(usuarioregistro);
 			

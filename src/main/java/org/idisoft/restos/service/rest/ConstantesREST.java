@@ -1,4 +1,4 @@
-package org.idisoft.restos.service;
+package org.idisoft.restos.service.rest;
 
 import org.idisoft.restos.model.jpa.ConstantesBeanValidation;
 

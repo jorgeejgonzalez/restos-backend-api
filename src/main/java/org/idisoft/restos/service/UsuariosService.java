@@ -11,6 +11,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.idisoft.restos.model.Usuario;
+import org.idisoft.restos.service.rest.ConstantesREST;
 
 @Path(ConstantesREST.USUARIOS_SERVICE)
 public interface UsuariosService {
