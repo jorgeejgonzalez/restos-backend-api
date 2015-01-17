@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 import javax.persistence.EntityExistsException;
-import javax.validation.ValidationException;
 
 import org.idisoft.restos.administracionusuarios.Usuario;
 import org.idisoft.restos.administracionusuarios.business.UsuarioDTO;
@@ -46,8 +45,13 @@ public class RegistrarUsuarioTest extends AbstractAdministradorUsuariosBeanTest 
 		assertTrue(usuarioCheck instanceof UsuarioDTO);
 	}
 	
-	@Test(expected=ValidationException.class)
-	public void RegistrarUsuario_InvalidUsuario_ThrowValidationException() {
+	@Test(expected=IllegalArgumentException.class)
+	public void RegistrarUsuario_UsuarioNull_ThrowIllegalArgumentException() {
+		administradorUsuarios.registrarUsuario(null);		
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void RegistrarUsuario_InvalidUsuario_ThrowIllegalArgumentException() {
 		administradorUsuarios.registrarUsuario(invalidUsuario);		
 	}
 	

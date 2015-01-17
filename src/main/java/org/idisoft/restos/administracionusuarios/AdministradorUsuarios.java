@@ -2,7 +2,6 @@ package org.idisoft.restos.administracionusuarios;
 
 import javax.persistence.EntityExistsException;
 import javax.persistence.NoResultException;
-import javax.validation.ValidationException;
 
 import org.apache.http.auth.AuthenticationException;
 
@@ -12,6 +11,6 @@ public interface AdministradorUsuarios {
 	throws NoResultException,IllegalArgumentException,AuthenticationException;
 	
 	public Usuario registrarUsuario(final Usuario usuario)
-	throws EntityExistsException, ValidationException;
+	throws EntityExistsException, IllegalArgumentException;
 
 }

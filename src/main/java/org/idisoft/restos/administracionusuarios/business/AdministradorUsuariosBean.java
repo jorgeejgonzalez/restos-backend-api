@@ -5,8 +5,6 @@ import javax.inject.Inject;
 import javax.persistence.EntityExistsException;
 import javax.persistence.NoResultException;
 import javax.validation.ValidationException;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
 
 import org.apache.http.auth.AuthenticationException;
 import org.idisoft.restos.administracionusuarios.AdministradorUsuarios;
@@ -55,10 +53,23 @@ public class AdministradorUsuariosBean implements AdministradorUsuarios {
 
 	@Override
 	public Usuario registrarUsuario(Usuario usuario)
-			throws EntityExistsException, ValidationException 
-	{
-		Usuario usuarioRegistrado=usuariosRepository.add(usuario);
-		return usuarioDTOsFactory.copyEntity(usuarioRegistrado);
+			throws EntityExistsException, IllegalArgumentException 
+	{		
+		try
+		{
+			if(usuario==null)
+			{
+				throw new ValidationException();
+			}
+			
+			Usuario usuarioRegistrado=usuariosRepository.add(usuario);
+			
+			return usuarioDTOsFactory.copyEntity(usuarioRegistrado);
+		}
+		catch(ValidationException ex)
+		{
+			throw new IllegalArgumentException();
+		}
 	}
 
 }
