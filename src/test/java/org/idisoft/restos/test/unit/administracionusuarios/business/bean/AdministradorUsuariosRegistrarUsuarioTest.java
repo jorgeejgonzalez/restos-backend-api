@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
-public class RegistrarUsuarioTest extends AbstractAdministradorUsuariosBeanTest {
+public class AdministradorUsuariosRegistrarUsuarioTest extends AbstractAdministradorUsuariosBeanTest {
 	
 	private Usuario validUsuario;
 	private Usuario invalidUsuario;
