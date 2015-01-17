@@ -8,8 +8,8 @@ import javax.persistence.NoResultException;
 import javax.validation.ValidationException;
 
 import org.idisoft.restos.administracionusuarios.Usuario;
+import org.idisoft.restos.administracionusuarios.business.repository.UsuarioEntityConstantesORM;
 import org.idisoft.restos.administracionusuarios.business.repository.UsuarioEntity;
-import org.idisoft.restos.data.ConstantesORM;
 import org.idisoft.restos.data.DataAccessObject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -52,9 +52,9 @@ public class UsuariosRepositoryAddTest extends AbstractUsuariosRepositoryTest {
 		instantiateEntities();
 		instantiateRepositoryWithMocks();
 		
-		DataAccessObject<UsuarioEntity>.Filter filter=usuariojpadaostub.new Filter(ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, loginInRepository);
+		DataAccessObject<UsuarioEntity>.Filter filter=usuariojpadaostub.new Filter(UsuarioEntityConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, loginInRepository);
 		
-		when(usuariojpadaostub.createFilter(ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, loginInRepository)).thenReturn(filter);
+		when(usuariojpadaostub.createFilter(UsuarioEntityConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, loginInRepository)).thenReturn(filter);
 		when(usuariojpafactorystub.copyEntity(validUsuarioEntity)).thenReturn(validUsuarioEntity);
 		when(usuariojpadaostub.findSingle(filter)).thenReturn(validUsuarioEntity);
 				

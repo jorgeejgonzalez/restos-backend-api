@@ -1,6 +1,6 @@
-package org.idisoft.restos.data;
+package org.idisoft.restos.administracionusuarios.business.repository;
 
-public class ConstantesBeanValidation 
+public class UsuarioEntityConstantesValidation 
 {
 	/*
 	 * Entity: Usuario

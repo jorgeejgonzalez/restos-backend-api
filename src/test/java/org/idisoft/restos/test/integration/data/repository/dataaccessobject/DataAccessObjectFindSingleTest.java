@@ -5,8 +5,8 @@ import static org.junit.Assert.*;
 import javax.inject.Inject;
 import javax.persistence.NoResultException;
 
+import org.idisoft.restos.administracionusuarios.business.repository.UsuarioEntityConstantesORM;
 import org.idisoft.restos.administracionusuarios.business.repository.UsuarioEntity;
-import org.idisoft.restos.data.ConstantesORM;
 import org.idisoft.restos.data.DataAccessObject;
 import org.idisoft.restos.test.util.ArquillianArchiver;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -50,7 +50,7 @@ public class DataAccessObjectFindSingleTest {
 	public void FindSingle_FilterValueInDatabase_ReturnsT()
 	{	
 		DataAccessObject<UsuarioEntity>.Filter filter= daousuariojpa.createFilter(
-				ConstantesORM.USUARIO_CEDULA_ATTRIBUTE_NAME, 
+				UsuarioEntityConstantesORM.USUARIO_CEDULA_ATTRIBUTE_NAME, 
 				cedulaindataset);
 		
 		UsuarioEntity usuariocheck=daousuariojpa.findSingle(filter);
@@ -61,7 +61,7 @@ public class DataAccessObjectFindSingleTest {
 	public void FindSingle_FilterValueNotInDatabase_ThrowsNoResultFoundException()
 	{
 		DataAccessObject<UsuarioEntity>.Filter filter= daousuariojpa.createFilter(
-				ConstantesORM.USUARIO_CEDULA_ATTRIBUTE_NAME, 
+				UsuarioEntityConstantesORM.USUARIO_CEDULA_ATTRIBUTE_NAME, 
 				cedulanotindataset);
 		
 		@SuppressWarnings("unused")
@@ -72,7 +72,7 @@ public class DataAccessObjectFindSingleTest {
 	public void FindSingle_EntityStatusDeleted_ThrowsNoResultFoundException()
 	{
 		DataAccessObject<UsuarioEntity>.Filter filter= daousuariojpa.createFilter(
-				ConstantesORM.USUARIO_CEDULA_ATTRIBUTE_NAME, 
+				UsuarioEntityConstantesORM.USUARIO_CEDULA_ATTRIBUTE_NAME, 
 				ceduladeleted);
 		
 		@SuppressWarnings("unused")

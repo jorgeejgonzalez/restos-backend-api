@@ -6,8 +6,8 @@ import static org.mockito.Mockito.*;
 import javax.persistence.NoResultException;
 
 import org.idisoft.restos.administracionusuarios.Usuario;
+import org.idisoft.restos.administracionusuarios.business.repository.UsuarioEntityConstantesORM;
 import org.idisoft.restos.administracionusuarios.business.repository.UsuarioEntity;
-import org.idisoft.restos.data.ConstantesORM;
 import org.idisoft.restos.data.DataAccessObject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,9 +21,9 @@ public class UsuariosRepositoryFindByLoginTest extends AbstractUsuariosRepositor
 	{
 		instantiateEntities();
 		
-		DataAccessObject<UsuarioEntity>.Filter filter=usuariojpadaostub.new Filter(ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, loginInRepository);
+		DataAccessObject<UsuarioEntity>.Filter filter=usuariojpadaostub.new Filter(UsuarioEntityConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, loginInRepository);
 		
-		when(usuariojpadaostub.createFilter(ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, loginInRepository)).thenReturn(filter);
+		when(usuariojpadaostub.createFilter(UsuarioEntityConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, loginInRepository)).thenReturn(filter);
 		when(usuariojpadaostub.findSingle(filter)).thenReturn(validUsuarioEntity);
 		
 		instantiateRepositoryWithMocks();
@@ -37,9 +37,9 @@ public class UsuariosRepositoryFindByLoginTest extends AbstractUsuariosRepositor
 	{
 		instantiateEntities();
 		
-		DataAccessObject<UsuarioEntity>.Filter filter=usuariojpadaostub.new Filter(ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, loginNotInRepository);
+		DataAccessObject<UsuarioEntity>.Filter filter=usuariojpadaostub.new Filter(UsuarioEntityConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, loginNotInRepository);
 		
-		when(usuariojpadaostub.createFilter(ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, loginNotInRepository)).thenReturn(filter);
+		when(usuariojpadaostub.createFilter(UsuarioEntityConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, loginNotInRepository)).thenReturn(filter);
 		when(usuariojpadaostub.findSingle(filter)).thenThrow(new NoResultException());
 		
 		instantiateRepositoryWithMocks();
@@ -69,9 +69,9 @@ public class UsuariosRepositoryFindByLoginTest extends AbstractUsuariosRepositor
 	{
 		instantiateEntities();
 		
-		DataAccessObject<UsuarioEntity>.Filter filter=usuariojpadaostub.new Filter(ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, loginNotInRepository);
+		DataAccessObject<UsuarioEntity>.Filter filter=usuariojpadaostub.new Filter(UsuarioEntityConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, loginNotInRepository);
 		
-		when(usuariojpadaostub.createFilter(ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, loginNotInRepository)).thenReturn(filter);
+		when(usuariojpadaostub.createFilter(UsuarioEntityConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, loginNotInRepository)).thenReturn(filter);
 		when(usuariojpadaostub.findSingle(filter)).thenThrow(new NoResultException());
 		
 		instantiateRepositoryWithMocks();

@@ -7,7 +7,6 @@ import javax.persistence.NoResultException;
 import javax.validation.ValidationException;
 
 import org.idisoft.restos.administracionusuarios.Usuario;
-import org.idisoft.restos.data.ConstantesORM;
 import org.idisoft.restos.data.EntityValidator;
 import org.idisoft.restos.data.Repository;
 import org.idisoft.restos.data.DataAccessObject;
@@ -48,7 +47,7 @@ public class UsuariosRepository extends Repository<UsuarioEntity> {
 		}
 		
 		DataAccessObject<UsuarioEntity>.Filter loginfilter=dataAccessObject.createFilter(
-				ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, 
+				UsuarioEntityConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME, 
 				login);
 		
 		UsuarioEntity retorno=dataAccessObject.findSingle(loginfilter);
