@@ -8,12 +8,13 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import org.apache.http.auth.AuthenticationException;
 import org.idisoft.restos.administracionusuarios.AdministradorUsuarios;
 import org.idisoft.restos.administracionusuarios.Usuario;
 import org.idisoft.restos.administracionusuarios.business.UsuarioDTOFactory;
 import org.idisoft.restos.administracionusuarios.business.repository.UsuariosRepository;
 
-public class UsuariosServiceRest implements UsuariosService {
+public class UsuariosServiceRest extends AbstractRestService  implements UsuariosService {
 	
 	private AdministradorUsuarios administradorUsuarios;
 	
@@ -25,19 +26,56 @@ public class UsuariosServiceRest implements UsuariosService {
 	@Inject
 	public UsuariosServiceRest(final AdministradorUsuarios administradorUsuarios)
 	{
-		this.administradorUsuarios=administradorUsuarios;
+		this.administradorUsuarios = administradorUsuarios;
 	}
 
 	@Override
 	public Response authenticateUsuario(final String login, final String password) 
 	{
+		Response serviceResponse = null;
+		
+		try
+		{
+			Object entity = administradorUsuarios.auntenticarUsuario(login, password);
+			serviceResponse = buildResponse(Status.OK, entity);
+		}
+		catch(IllegalArgumentException exception)
+		{
+			serviceResponse = buildResponse(Status.NOT_ACCEPTABLE, exception.getMessage());
+		}
+		catch(NoResultException exception)
+		{
+			serviceResponse = buildResponse(Status.NOT_FOUND, exception.getMessage());
+		}
+		catch(AuthenticationException exception)
+		{
+			serviceResponse = buildResponse(Status.UNAUTHORIZED, exception.getMessage());
+		}
+		
+		return serviceResponse;
 		
 	}
 
 	@Override
 	public Response registerUsuario(final Usuario usuario) 
 	{
-		return null;
+		Response serviceResponse = null;
+		
+		try
+		{
+			Object entity = administradorUsuarios.registrarUsuario(usuario);
+			serviceResponse = buildResponse(Status.CREATED, entity);		
+		}
+		catch(IllegalArgumentException exception)
+		{
+			serviceResponse = buildResponse(Status.NOT_ACCEPTABLE, exception.getMessage());
+		}
+		catch(EntityExistsException exception)
+		{
+			serviceResponse = buildResponse(Status.CONFLICT, exception.getMessage());
+		}		
+		
+		return serviceResponse;
 	}
 
 }
