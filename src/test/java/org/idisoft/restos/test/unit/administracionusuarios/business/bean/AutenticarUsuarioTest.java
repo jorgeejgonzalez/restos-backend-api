@@ -16,7 +16,7 @@ import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
-public class AutenticarUsuarioTest extends AbstractAdministradorUsuarioBeanTest {
+public class AutenticarUsuarioTest extends AbstractAdministradorUsuariosBeanTest {
 	
 	
 	private String loginNotInRepository="notest";

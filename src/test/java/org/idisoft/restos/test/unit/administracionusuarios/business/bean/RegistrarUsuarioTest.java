@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
-public class RegistrarUsuarioTest extends AbstractAdministradorUsuarioBeanTest {
+public class RegistrarUsuarioTest extends AbstractAdministradorUsuariosBeanTest {
 	
 	@Before
 	public void setUpInstanciacion()
