@@ -7,47 +7,35 @@ import javax.persistence.NoResultException;
 
 import org.apache.http.auth.AuthenticationException;
 import org.idisoft.restos.administracionusuarios.Usuario;
-import org.idisoft.restos.administracionusuarios.business.AdministradorUsuariosBean;
 import org.idisoft.restos.administracionusuarios.business.UsuarioDTO;
-import org.idisoft.restos.administracionusuarios.business.UsuarioDTOFactory;
-import org.idisoft.restos.administracionusuarios.business.repository.UsuariosRepository;
 import org.idisoft.restos.test.util.TestEntitiesFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
+
 import org.mockito.runners.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
-public class AutenticarUsuarioTest {
+public class AutenticarUsuarioTest extends AbstractAdministradorUsuarioBeanTest {
 	
-	private AdministradorUsuariosBean administradorUsuarios;
-	
-	@Mock
-	private UsuariosRepository usuariosRepositoryMock;	
-	@Mock
-	private UsuarioDTOFactory usuarioDTOsFactoryMock;
 	
 	private String loginNotInRepository="notest";
 	private String loginTest;
 	private String passwordTest;	
 	
-	
 	@Before
-	public void instanciacion()
+	public void setUpInstanciacion()
 	{
-		administradorUsuarios=new AdministradorUsuariosBean(usuarioDTOsFactoryMock,usuariosRepositoryMock);
+		instanciacion();
 		loginTest=TestEntitiesFactory.VALID_LOGIN;
 		passwordTest=TestEntitiesFactory.VALID_PASSWORD;
 	}
 	
 	@Before
-	public void mockitoRules()
+	public void setUpMockitoRules()
 	{
-		when(usuariosRepositoryMock.findByLogin(TestEntitiesFactory.VALID_LOGIN)).thenReturn(TestEntitiesFactory.validUsuario());
-		when(usuariosRepositoryMock.findByLogin(loginNotInRepository)).thenThrow(new NoResultException());
-		
-		when(usuarioDTOsFactoryMock.copyEntity(TestEntitiesFactory.validUsuario())).thenReturn(TestEntitiesFactory.validUsuarioDTO());
+		mockitoRules();
+		when(usuariosRepositoryMock.findByLogin(loginNotInRepository)).thenThrow(new NoResultException());	
 	}
 	
 	@Test
