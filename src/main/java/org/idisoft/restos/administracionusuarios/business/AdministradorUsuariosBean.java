@@ -57,8 +57,8 @@ public class AdministradorUsuariosBean implements AdministradorUsuarios {
 	public Usuario registrarUsuario(Usuario usuario)
 			throws EntityExistsException, ValidationException 
 	{
-		// TODO Auto-generated method stub
-		return null;
+		Usuario usuarioRegistrado=usuariosRepository.add(usuario);
+		return usuarioDTOsFactory.copyEntity(usuarioRegistrado);
 	}
 
 }
