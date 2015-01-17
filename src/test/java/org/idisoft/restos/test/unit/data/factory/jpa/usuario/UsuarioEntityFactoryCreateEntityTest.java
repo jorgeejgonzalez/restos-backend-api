@@ -22,6 +22,12 @@ public class UsuarioEntityFactoryCreateEntityTest {
 	{
 		factory=new UsuarioEntityFactory();
 	}
+	
+	@Test
+	public void CreateEntity_DefaultInvocation_NotNull() {
+		Usuario usuariotest=factory.createEntity();
+		assertNotNull(usuariotest);
+	}
 
 	@Test
 	public void CreateEntity_DefaultInvocation_UsuarioEntity() {
