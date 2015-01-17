@@ -4,11 +4,9 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 import javax.persistence.EntityExistsException;
-import javax.validation.ValidationException;
 import javax.ws.rs.core.Response;
 
 import org.idisoft.restos.administracionusuarios.Usuario;
-import org.idisoft.restos.administracionusuarios.business.UsuarioDTO;
 import org.idisoft.restos.test.util.TestEntitiesFactory;
 import org.junit.Before;
 import org.junit.Test;
@@ -38,6 +36,17 @@ public class UsuariosServiceRegisterUsuarioTest extends AbstractUsuarioServiceTe
 		Response responseCheck = usuarioService.registerUsuario(validUsuario);
 		
 		assertCreated(responseCheck);
+	}
+	
+	@Test
+	public void RegisterUsuario_Success_ResponseEntityUsuario()
+	{
+		when(administradorUsuariosMock.registrarUsuario(validUsuario)
+		).thenReturn(validUsuario);
+			
+		Response responseCheck = usuarioService.registerUsuario(validUsuario);
+			
+		assertTrue(responseCheck.getEntity() instanceof Usuario);
 	}
 	
 	@Test
