@@ -4,8 +4,8 @@ import static org.junit.Assert.*;
 
 import javax.validation.Validation;
 
-import org.idisoft.restos.model.jpa.BeanValidator;
-import org.idisoft.restos.model.jpa.UsuarioEntity;
+import org.idisoft.restos.administracionusuarios.business.repository.UsuarioEntity;
+import org.idisoft.restos.data.EntityValidator;
 import org.idisoft.restos.test.util.TestEntitiesFactory;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,7 +17,7 @@ public class UsuarioEntityBeanValidationTest {
 	
 	private boolean isValid(UsuarioEntity usuario)
 	{
-		BeanValidator<UsuarioEntity> usuariobeanvalidator=new BeanValidator<UsuarioEntity>(Validation.buildDefaultValidatorFactory());
+		EntityValidator<UsuarioEntity> usuariobeanvalidator=new EntityValidator<UsuarioEntity>(Validation.buildDefaultValidatorFactory());
 		usuariobeanvalidator.validate(usuario);
 		return usuariobeanvalidator.isValid();
 	}

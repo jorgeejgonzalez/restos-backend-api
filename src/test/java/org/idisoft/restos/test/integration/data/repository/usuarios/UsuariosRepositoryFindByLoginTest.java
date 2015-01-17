@@ -5,8 +5,8 @@ import static org.junit.Assert.*;
 import javax.inject.Inject;
 import javax.persistence.NoResultException;
 
-import org.idisoft.restos.data.repository.UsuariosRepository;
-import org.idisoft.restos.model.Usuario;
+import org.idisoft.restos.administracionusuarios.Usuario;
+import org.idisoft.restos.administracionusuarios.business.repository.UsuariosRepository;
 import org.idisoft.restos.test.util.ArquillianArchiver;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;

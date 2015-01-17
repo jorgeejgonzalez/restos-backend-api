@@ -15,30 +15,30 @@ public class ArquillianArchiver {
 		war.addAsWebInfResource("restostest-ds.xml");
 		
 		war.addClasses(
-				org.idisoft.restos.model.TipoUsuario.class,
-				org.idisoft.restos.model.EstatusRegistro.class,
-				org.idisoft.restos.model.Registro.class,
-				org.idisoft.restos.model.Usuario.class,
-				org.idisoft.restos.model.jpa.BeanValidator.class,
-				org.idisoft.restos.model.jpa.UsuarioEntity.class,
-				org.idisoft.restos.model.dto.UsuarioDTO.class);
+				org.idisoft.restos.administracionusuarios.TipoUsuario.class,
+				org.idisoft.restos.data.EstatusRegistro.class,
+				org.idisoft.restos.data.Registro.class,
+				org.idisoft.restos.administracionusuarios.Usuario.class,
+				org.idisoft.restos.data.EntityValidator.class,
+				org.idisoft.restos.administracionusuarios.business.repository.UsuarioEntity.class,
+				org.idisoft.restos.administracionusuarios.business.UsuarioDTO.class);
 		
-		war.addClasses(org.idisoft.restos.data.factory.ModelFactory.class,
-				org.idisoft.restos.data.factory.dto.DTOFactory.class,
-				org.idisoft.restos.data.factory.dto.UsuarioDTOFactory.class,
-				org.idisoft.restos.data.factory.jpa.EntityFactory.class,
-				org.idisoft.restos.data.factory.jpa.UsuarioEntityFactory.class);
+		war.addClasses(org.idisoft.restos.factory.ModelFactory.class,
+				org.idisoft.restos.factory.DTOFactory.class,
+				org.idisoft.restos.administracionusuarios.business.UsuarioDTOFactory.class,
+				org.idisoft.restos.factory.EntityFactory.class,
+				org.idisoft.restos.administracionusuarios.business.repository.UsuarioEntityFactory.class);
 		
-		war.addClasses(org.idisoft.restos.data.repository.DataAccessObject.class,
-				org.idisoft.restos.data.repository.Repository.class,
-				org.idisoft.restos.data.repository.UsuariosRepository.class);
+		war.addClasses(org.idisoft.restos.data.DataAccessObject.class,
+				org.idisoft.restos.data.Repository.class,
+				org.idisoft.restos.administracionusuarios.business.repository.UsuariosRepository.class);
 		
-		war.addClasses(org.idisoft.restos.service.rest.JaxRsActivator.class,
-				org.idisoft.restos.service.UsuariosService.class,
-				org.idisoft.restos.service.rest.UsuariosServiceRest.class);
+		war.addClasses(org.idisoft.restos.rest.JaxRsActivator.class,
+				org.idisoft.restos.rest.UsuariosService.class,
+				org.idisoft.restos.rest.UsuariosServiceRest.class);
 		
 		
-		war.addClass(org.idisoft.restos.util.CDIPersistenceResources.class);
+		war.addClass(org.idisoft.restos.data.CDIPersistenceResources.class);
 		
 		war.addClass(org.idisoft.restos.test.unit.service.AbstractRestServiceTest.class);
 		war.addClass(org.idisoft.restos.test.integration.services.AbstractRestServiceIntegrationTest.class);

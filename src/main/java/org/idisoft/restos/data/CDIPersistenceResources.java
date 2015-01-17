@@ -1,4 +1,4 @@
-package org.idisoft.restos.util;
+package org.idisoft.restos.data;
 
 import javax.enterprise.inject.Produces;
 import javax.persistence.EntityManager;

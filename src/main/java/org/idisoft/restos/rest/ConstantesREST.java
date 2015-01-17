@@ -1,6 +1,6 @@
-package org.idisoft.restos.service.rest;
+package org.idisoft.restos.rest;
 
-import org.idisoft.restos.model.jpa.ConstantesBeanValidation;
+import org.idisoft.restos.data.ConstantesBeanValidation;
 
 public class ConstantesREST {
 	

@@ -6,8 +6,8 @@ import javax.inject.Inject;
 import javax.persistence.EntityExistsException;
 import javax.validation.ValidationException;
 
-import org.idisoft.restos.data.repository.UsuariosRepository;
-import org.idisoft.restos.model.Usuario;
+import org.idisoft.restos.administracionusuarios.Usuario;
+import org.idisoft.restos.administracionusuarios.business.repository.UsuariosRepository;
 import org.idisoft.restos.test.util.ArquillianArchiver;
 import org.idisoft.restos.test.util.ConstantesDataTestFiles;
 import org.idisoft.restos.test.util.TestEntitiesFactory;

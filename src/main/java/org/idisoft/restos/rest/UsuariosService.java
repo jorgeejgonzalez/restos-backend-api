@@ -1,4 +1,4 @@
-package org.idisoft.restos.service;
+package org.idisoft.restos.rest;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
@@ -10,8 +10,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.idisoft.restos.model.Usuario;
-import org.idisoft.restos.service.rest.ConstantesREST;
+import org.idisoft.restos.administracionusuarios.Usuario;
 
 @Path(ConstantesREST.USUARIOS_SERVICE)
 public interface UsuariosService {

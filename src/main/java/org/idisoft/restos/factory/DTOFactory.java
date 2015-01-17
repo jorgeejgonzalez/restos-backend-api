@@ -1,11 +1,9 @@
-package org.idisoft.restos.data.factory.dto;
+package org.idisoft.restos.factory;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import org.idisoft.restos.data.factory.ModelFactory;
 
 public abstract class DTOFactory<T> implements ModelFactory<T>{
 	

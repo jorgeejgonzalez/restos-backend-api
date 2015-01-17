@@ -1,4 +1,4 @@
-package org.idisoft.restos.model.jpa;
+package org.idisoft.restos.data;
 
 import java.util.Set;
 
@@ -8,17 +8,15 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
-import org.idisoft.restos.model.Registro;
-
 @Dependent
-public class BeanValidator<T extends Registro> {
+public class EntityValidator<T extends Registro> {
 	
 	private ValidatorFactory validatorfactory;
 	private Set<ConstraintViolation<T>> violations;
 	
 	
 	@Inject
-	public BeanValidator(ValidatorFactory validatorfactory)
+	public EntityValidator(ValidatorFactory validatorfactory)
 	{
 		this.validatorfactory=validatorfactory;
 	}

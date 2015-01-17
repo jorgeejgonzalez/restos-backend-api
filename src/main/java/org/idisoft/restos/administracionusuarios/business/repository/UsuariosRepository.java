@@ -1,4 +1,4 @@
-package org.idisoft.restos.data.repository;
+package org.idisoft.restos.administracionusuarios.business.repository;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -6,11 +6,12 @@ import javax.persistence.EntityExistsException;
 import javax.persistence.NoResultException;
 import javax.validation.ValidationException;
 
-import org.idisoft.restos.data.factory.jpa.UsuarioEntityFactory;
-import org.idisoft.restos.model.Usuario;
-import org.idisoft.restos.model.jpa.BeanValidator;
-import org.idisoft.restos.model.jpa.ConstantesORM;
-import org.idisoft.restos.model.jpa.UsuarioEntity;
+import org.idisoft.restos.administracionusuarios.Usuario;
+import org.idisoft.restos.data.ConstantesORM;
+import org.idisoft.restos.data.EntityValidator;
+import org.idisoft.restos.data.Repository;
+import org.idisoft.restos.data.DataAccessObject;
+import org.idisoft.restos.data.DataAccessObject.Filter;
 
 @RequestScoped
 public class UsuariosRepository extends Repository<UsuarioEntity> {
@@ -25,7 +26,7 @@ public class UsuariosRepository extends Repository<UsuarioEntity> {
 	
 	@Inject
 	public UsuariosRepository(final DataAccessObject<UsuarioEntity> daousuariojpa,
-			final BeanValidator<UsuarioEntity> beanvalidator,
+			final EntityValidator<UsuarioEntity> beanvalidator,
 			final UsuarioEntityFactory entityfactory)
 	{
 		super(daousuariojpa,beanvalidator, entityfactory);		

@@ -1,4 +1,4 @@
-package org.idisoft.restos.model;
+package org.idisoft.restos.administracionusuarios;
 
 public enum TipoUsuario {
 	FINAL,

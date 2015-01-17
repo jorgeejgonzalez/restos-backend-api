@@ -1,4 +1,4 @@
-package org.idisoft.restos.service.rest;
+package org.idisoft.restos.rest;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

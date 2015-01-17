@@ -1,11 +1,9 @@
-package org.idisoft.restos.data.factory.jpa;
+package org.idisoft.restos.factory;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import org.idisoft.restos.data.factory.ModelFactory;
 
 public abstract class EntityFactory<T> implements ModelFactory<T> {
 	

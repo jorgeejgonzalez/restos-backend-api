@@ -1,7 +1,7 @@
-package org.idisoft.restos.model.dto;
+package org.idisoft.restos.administracionusuarios.business;
 
-import org.idisoft.restos.model.TipoUsuario;
-import org.idisoft.restos.model.Usuario;
+import org.idisoft.restos.administracionusuarios.TipoUsuario;
+import org.idisoft.restos.administracionusuarios.Usuario;
 
 public class UsuarioDTO implements Usuario {
 

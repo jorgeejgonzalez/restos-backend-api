@@ -1,4 +1,4 @@
-package org.idisoft.restos.service.rest;
+package org.idisoft.restos.rest;
 
 import javax.inject.Inject;
 import javax.persistence.EntityExistsException;
@@ -8,10 +8,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import org.idisoft.restos.data.factory.dto.UsuarioDTOFactory;
-import org.idisoft.restos.data.repository.UsuariosRepository;
-import org.idisoft.restos.model.Usuario;
-import org.idisoft.restos.service.UsuariosService;
+import org.idisoft.restos.administracionusuarios.Usuario;
+import org.idisoft.restos.administracionusuarios.business.UsuarioDTOFactory;
+import org.idisoft.restos.administracionusuarios.business.repository.UsuariosRepository;
 
 public class UsuariosServiceRest implements UsuariosService {
 	

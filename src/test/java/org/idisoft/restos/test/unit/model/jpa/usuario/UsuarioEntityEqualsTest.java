@@ -2,7 +2,7 @@ package org.idisoft.restos.test.unit.model.jpa.usuario;
 
 import static org.junit.Assert.*;
 
-import org.idisoft.restos.model.jpa.UsuarioEntity;
+import org.idisoft.restos.administracionusuarios.business.repository.UsuarioEntity;
 import org.idisoft.restos.test.util.TestEntitiesFactory;
 import org.junit.Before;
 import org.junit.Test;

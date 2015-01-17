@@ -1,4 +1,4 @@
-package org.idisoft.restos.data.repository;
+package org.idisoft.restos.data;
 
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
@@ -10,9 +10,6 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-
-import org.idisoft.restos.model.EstatusRegistro;
-import org.idisoft.restos.model.Registro;
 
 @Dependent
 public class DataAccessObject<T extends Registro> {

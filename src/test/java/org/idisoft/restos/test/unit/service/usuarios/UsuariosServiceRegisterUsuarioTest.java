@@ -7,7 +7,7 @@ import javax.persistence.EntityExistsException;
 import javax.validation.ValidationException;
 import javax.ws.rs.core.Response;
 
-import org.idisoft.restos.model.dto.UsuarioDTO;
+import org.idisoft.restos.administracionusuarios.business.UsuarioDTO;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,4 +1,4 @@
-package org.idisoft.restos.model.jpa;
+package org.idisoft.restos.administracionusuarios.business.repository;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -13,10 +13,12 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
-import org.idisoft.restos.model.EstatusRegistro;
-import org.idisoft.restos.model.Registro;
-import org.idisoft.restos.model.TipoUsuario;
-import org.idisoft.restos.model.Usuario;
+import org.idisoft.restos.administracionusuarios.TipoUsuario;
+import org.idisoft.restos.administracionusuarios.Usuario;
+import org.idisoft.restos.data.ConstantesBeanValidation;
+import org.idisoft.restos.data.ConstantesORM;
+import org.idisoft.restos.data.EstatusRegistro;
+import org.idisoft.restos.data.Registro;
 
 @SuppressWarnings("serial")
 @Entity

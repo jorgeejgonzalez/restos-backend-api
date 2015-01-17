@@ -1,15 +1,14 @@
-package org.idisoft.restos.data.factory.jpa;
+package org.idisoft.restos.administracionusuarios.business.repository;
 
 import java.util.List;
 import java.util.Set;
 
 import javax.enterprise.context.RequestScoped;
 
-import org.idisoft.restos.data.factory.ModelFactory;
-import org.idisoft.restos.model.EstatusRegistro;
-import org.idisoft.restos.model.TipoUsuario;
-import org.idisoft.restos.model.Usuario;
-import org.idisoft.restos.model.jpa.UsuarioEntity;
+import org.idisoft.restos.administracionusuarios.TipoUsuario;
+import org.idisoft.restos.administracionusuarios.Usuario;
+import org.idisoft.restos.data.EstatusRegistro;
+import org.idisoft.restos.factory.ModelFactory;
 
 @RequestScoped
 public class UsuarioEntityFactory implements ModelFactory<UsuarioEntity> {

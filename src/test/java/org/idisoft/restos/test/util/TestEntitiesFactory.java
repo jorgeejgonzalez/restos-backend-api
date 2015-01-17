@@ -1,10 +1,10 @@
 package org.idisoft.restos.test.util;
 
-import org.idisoft.restos.model.EstatusRegistro;
-import org.idisoft.restos.model.TipoUsuario;
-import org.idisoft.restos.model.Usuario;
-import org.idisoft.restos.model.dto.UsuarioDTO;
-import org.idisoft.restos.model.jpa.UsuarioEntity;
+import org.idisoft.restos.administracionusuarios.TipoUsuario;
+import org.idisoft.restos.administracionusuarios.Usuario;
+import org.idisoft.restos.administracionusuarios.business.UsuarioDTO;
+import org.idisoft.restos.administracionusuarios.business.repository.UsuarioEntity;
+import org.idisoft.restos.data.EstatusRegistro;
 
 public class TestEntitiesFactory {
 	

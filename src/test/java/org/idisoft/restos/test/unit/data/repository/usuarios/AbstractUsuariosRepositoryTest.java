@@ -4,13 +4,13 @@ import static org.mockito.Mockito.when;
 
 import javax.validation.Validation;
 
-import org.idisoft.restos.data.factory.jpa.UsuarioEntityFactory;
-import org.idisoft.restos.data.repository.DataAccessObject;
-import org.idisoft.restos.data.repository.UsuariosRepository;
-import org.idisoft.restos.model.Usuario;
-import org.idisoft.restos.model.dto.UsuarioDTO;
-import org.idisoft.restos.model.jpa.BeanValidator;
-import org.idisoft.restos.model.jpa.UsuarioEntity;
+import org.idisoft.restos.administracionusuarios.Usuario;
+import org.idisoft.restos.administracionusuarios.business.UsuarioDTO;
+import org.idisoft.restos.administracionusuarios.business.repository.UsuarioEntity;
+import org.idisoft.restos.administracionusuarios.business.repository.UsuarioEntityFactory;
+import org.idisoft.restos.administracionusuarios.business.repository.UsuariosRepository;
+import org.idisoft.restos.data.EntityValidator;
+import org.idisoft.restos.data.DataAccessObject;
 import org.idisoft.restos.test.util.TestEntitiesFactory;
 import org.mockito.Mock;
 
@@ -23,7 +23,7 @@ public abstract class AbstractUsuariosRepositoryTest
 	@Mock
 	protected DataAccessObject<UsuarioEntity> usuariojpadaostub;
 	
-	protected BeanValidator<UsuarioEntity> beanvalidatorusuariojpa;
+	protected EntityValidator<UsuarioEntity> beanvalidatorusuariojpa;
 	
 	protected Usuario invalidUsuario;
 	protected Usuario validUsuario;
@@ -54,7 +54,7 @@ public abstract class AbstractUsuariosRepositoryTest
 	
 	protected void instantiateRepositoryWithMocks()
 	{	
-		beanvalidatorusuariojpa=new BeanValidator<UsuarioEntity>(Validation.buildDefaultValidatorFactory());
+		beanvalidatorusuariojpa=new EntityValidator<UsuarioEntity>(Validation.buildDefaultValidatorFactory());
 		setUpMockitoRules();
 		repository=new UsuariosRepository(
 				usuariojpadaostub,

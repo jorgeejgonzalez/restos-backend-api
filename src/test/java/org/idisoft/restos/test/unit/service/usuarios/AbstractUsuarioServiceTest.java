@@ -1,10 +1,10 @@
 package org.idisoft.restos.test.unit.service.usuarios;
 
-import org.idisoft.restos.data.factory.dto.UsuarioDTOFactory;
-import org.idisoft.restos.data.repository.UsuariosRepository;
-import org.idisoft.restos.model.Usuario;
-import org.idisoft.restos.service.UsuariosService;
-import org.idisoft.restos.service.rest.UsuariosServiceRest;
+import org.idisoft.restos.administracionusuarios.Usuario;
+import org.idisoft.restos.administracionusuarios.business.UsuarioDTOFactory;
+import org.idisoft.restos.administracionusuarios.business.repository.UsuariosRepository;
+import org.idisoft.restos.rest.UsuariosService;
+import org.idisoft.restos.rest.UsuariosServiceRest;
 import org.idisoft.restos.test.unit.service.AbstractRestServiceTest;
 import org.idisoft.restos.test.util.TestEntitiesFactory;
 import org.mockito.Mock;

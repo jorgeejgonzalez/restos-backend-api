@@ -7,10 +7,10 @@ import javax.persistence.EntityExistsException;
 import javax.persistence.NoResultException;
 import javax.validation.ValidationException;
 
-import org.idisoft.restos.data.repository.DataAccessObject;
-import org.idisoft.restos.model.Usuario;
-import org.idisoft.restos.model.jpa.ConstantesORM;
-import org.idisoft.restos.model.jpa.UsuarioEntity;
+import org.idisoft.restos.administracionusuarios.Usuario;
+import org.idisoft.restos.administracionusuarios.business.repository.UsuarioEntity;
+import org.idisoft.restos.data.ConstantesORM;
+import org.idisoft.restos.data.DataAccessObject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;

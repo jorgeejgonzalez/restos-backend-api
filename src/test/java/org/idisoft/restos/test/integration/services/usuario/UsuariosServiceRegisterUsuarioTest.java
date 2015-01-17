@@ -5,9 +5,9 @@ import static org.junit.Assert.*;
 import javax.inject.Inject;
 import javax.ws.rs.core.Response;
 
-import org.idisoft.restos.model.Usuario;
-import org.idisoft.restos.model.dto.UsuarioDTO;
-import org.idisoft.restos.service.UsuariosService;
+import org.idisoft.restos.administracionusuarios.Usuario;
+import org.idisoft.restos.administracionusuarios.business.UsuarioDTO;
+import org.idisoft.restos.rest.UsuariosService;
 import org.idisoft.restos.test.integration.services.AbstractRestServiceIntegrationTest;
 import org.idisoft.restos.test.util.TestEntitiesFactory;
 import org.jboss.arquillian.junit.Arquillian;

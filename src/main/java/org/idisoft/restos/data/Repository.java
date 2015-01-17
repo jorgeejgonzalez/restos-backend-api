@@ -1,15 +1,13 @@
-package org.idisoft.restos.data.repository;
+package org.idisoft.restos.data;
 
-import org.idisoft.restos.data.factory.ModelFactory;
-import org.idisoft.restos.model.Registro;
-import org.idisoft.restos.model.jpa.BeanValidator;
+import org.idisoft.restos.factory.ModelFactory;
 
 public abstract class Repository<T extends Registro> {
 	
 	protected Class<T> entityclass;
 	
 	protected DataAccessObject<T> dataAccessObject;
-	protected BeanValidator<T> beanValidator;
+	protected EntityValidator<T> beanValidator;
 	protected ModelFactory<T> entityFactory;
 	
 	public Repository()
@@ -17,7 +15,7 @@ public abstract class Repository<T extends Registro> {
 	}
 	
 	public Repository(final DataAccessObject<T> dataaccessobject, 
-			final BeanValidator<T> beanvalidator,
+			final EntityValidator<T> beanvalidator,
 			final ModelFactory<T> entityFactory)
 	{
 		this.dataAccessObject=dataaccessobject;

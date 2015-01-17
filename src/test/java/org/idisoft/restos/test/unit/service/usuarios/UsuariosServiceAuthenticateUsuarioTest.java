@@ -6,8 +6,8 @@ import static org.mockito.Mockito.*;
 import javax.persistence.NoResultException;
 import javax.ws.rs.core.Response;
 
-import org.idisoft.restos.model.Usuario;
-import org.idisoft.restos.model.dto.UsuarioDTO;
+import org.idisoft.restos.administracionusuarios.Usuario;
+import org.idisoft.restos.administracionusuarios.business.UsuarioDTO;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

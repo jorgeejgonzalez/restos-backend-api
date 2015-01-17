@@ -1,4 +1,4 @@
-package org.idisoft.restos.model.jpa;
+package org.idisoft.restos.data;
 
 public class ConstantesBeanValidation 
 {

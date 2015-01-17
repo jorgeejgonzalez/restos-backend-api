@@ -1,4 +1,4 @@
-package org.idisoft.restos.data.factory;
+package org.idisoft.restos.factory;
 
 import java.util.List;
 import java.util.Set;

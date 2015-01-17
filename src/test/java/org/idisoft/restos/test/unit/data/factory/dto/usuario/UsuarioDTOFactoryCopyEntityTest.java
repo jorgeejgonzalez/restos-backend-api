@@ -2,9 +2,9 @@ package org.idisoft.restos.test.unit.data.factory.dto.usuario;
 
 import static org.junit.Assert.*;
 
-import org.idisoft.restos.data.factory.dto.UsuarioDTOFactory;
-import org.idisoft.restos.model.Usuario;
-import org.idisoft.restos.model.dto.UsuarioDTO;
+import org.idisoft.restos.administracionusuarios.Usuario;
+import org.idisoft.restos.administracionusuarios.business.UsuarioDTO;
+import org.idisoft.restos.administracionusuarios.business.UsuarioDTOFactory;
 import org.idisoft.restos.test.util.TestEntitiesFactory;
 import org.junit.Before;
 import org.junit.Test;

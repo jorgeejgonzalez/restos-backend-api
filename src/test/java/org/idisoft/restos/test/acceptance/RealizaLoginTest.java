@@ -7,7 +7,7 @@ import java.net.URL;
 import javax.ws.rs.core.Response;
 
 import org.apache.http.HttpStatus;
-import org.idisoft.restos.service.UsuariosService;
+import org.idisoft.restos.rest.UsuariosService;
 import org.idisoft.restos.test.util.ArquillianArchiver;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
