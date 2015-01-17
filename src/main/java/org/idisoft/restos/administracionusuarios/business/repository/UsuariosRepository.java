@@ -11,7 +11,6 @@ import org.idisoft.restos.data.ConstantesORM;
 import org.idisoft.restos.data.EntityValidator;
 import org.idisoft.restos.data.Repository;
 import org.idisoft.restos.data.DataAccessObject;
-import org.idisoft.restos.data.DataAccessObject.Filter;
 
 @RequestScoped
 public class UsuariosRepository extends Repository<UsuarioEntity> {
