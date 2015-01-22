@@ -1,13 +1,12 @@
 package org.idisoft.restos.test.unit.service.usuarios;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 import javax.persistence.NoResultException;
 import javax.ws.rs.core.Response;
 
-import org.idisoft.restos.administracionusuarios.Usuario;
-import org.idisoft.restos.administracionusuarios.business.UsuarioDTO;
+import org.apache.http.auth.AuthenticationException;
+import org.idisoft.restos.test.util.TestEntitiesFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,76 +15,76 @@ import org.mockito.runners.MockitoJUnitRunner;
 @RunWith(MockitoJUnitRunner.class)
 public class UsuariosServiceAuthenticateUsuarioTest extends AbstractUsuarioServiceTest
 {
+	private String testLogin;
+	private String testPassword;
 	
 	@Before
-	public void setUpMockitoRules()
+	public void setUpInstanciacion()
 	{
-		setUpEntities();
+		instanciacion();
+		testLogin=TestEntitiesFactory.VALID_LOGIN;
+		testPassword=TestEntitiesFactory.VALID_PASSWORD;
+	}	
+	
+	
+	@Test
+	public void AuthenticateUsuario_Success_ReturnsResponseOK() throws Exception
+	{
+		when(administradorUsuariosMock.auntenticarUsuario(
+				TestEntitiesFactory.VALID_LOGIN,
+				TestEntitiesFactory.VALID_PASSWORD)
+		).thenReturn(TestEntitiesFactory.validUsuario());
 		
-		when(usuariosrepository.findByLogin(loginInDataset)).thenReturn(validUsuario);
-		when(usuariosrepository.findByLogin(loginNotInDataset)).thenThrow(new NoResultException());
-		when(usuariosrepository.findByLogin(loginEmpty)).thenThrow(new IllegalArgumentException());
-		when(usuariosrepository.findByLogin(loginNull)).thenThrow(new IllegalArgumentException());
+		Response responseCheck = usuarioService.authenticateUsuario(testLogin, testPassword);
+		assertOK(responseCheck);		
+	}
+	
+	@Test
+	public void AuthenticateUsuario_InvalidLogin_ReturnsResponseNotAcceptable() throws Exception
+	{
+		when(administradorUsuariosMock.auntenticarUsuario(
+				"", 
+				TestEntitiesFactory.VALID_PASSWORD)
+		).thenThrow(new IllegalArgumentException());
 		
-		setUpService();
-	}
-	
-	
-	@Test
-	public void AuthenticateUser_LoginAndPasswordMatch_ResponseOK()
-	{
-		Response response=usuarioService.authenticateUsuario(loginInDataset, passwordInDataset);
-		assertOK(response);
+		Response responseCheck = usuarioService.authenticateUsuario("", testPassword);
+		assertNotAcceptable(responseCheck);	
 	}
 	
 	@Test
-	public void AuthenticateUser_LoginAndPasswordMatch_EntityUsuarioDTO()
+	public void AuthenticateUsuario_InvalidPassword_ReturnsResponseNotAcceptable() throws Exception
 	{
-		Response response=usuarioService.authenticateUsuario(loginInDataset, passwordInDataset);
-		Usuario entity=(Usuario)response.getEntity();
-		assertTrue(entity instanceof UsuarioDTO);
+		when(administradorUsuariosMock.auntenticarUsuario(
+				TestEntitiesFactory.VALID_LOGIN, 
+				"")
+		).thenThrow(new IllegalArgumentException());
+		
+		Response responseCheck = usuarioService.authenticateUsuario(testLogin,"");
+		assertNotAcceptable(responseCheck);	
 	}
 	
 	@Test
-	public void AuthenticateUser_LoginIsNotInDatabase_ResponseNotFound()
+	public void AuthenticateUsuario_LoginNotFound_ReturnsResponseNotFound() throws Exception
 	{
-		Response response=usuarioService.authenticateUsuario(loginNotInDataset, passwordNotInDataset);
-		assertNotFound(response);
+		when(administradorUsuariosMock.auntenticarUsuario(
+				TestEntitiesFactory.VALID_LOGIN, 
+				TestEntitiesFactory.VALID_PASSWORD)
+		).thenThrow(new NoResultException());
+		
+		Response responseCheck = usuarioService.authenticateUsuario(testLogin,testPassword);
+		assertNotFound(responseCheck);	
 	}
 	
 	@Test
-	public void AuthenticateUser_LoginAndPassworDoNotMatch_ResponseUnauthorized()
+	public void AuthenticateUsuario_PasswordNoMatch_ReturnsResponseUnauthorized() throws Exception
 	{
-		Response response=usuarioService.authenticateUsuario(loginInDataset, passwordNotInDataset);
-		assertUnauthorized(response);
+		when(administradorUsuariosMock.auntenticarUsuario(
+				TestEntitiesFactory.VALID_LOGIN, 
+				"anything")
+		).thenThrow(new AuthenticationException());
+		
+		Response responseCheck = usuarioService.authenticateUsuario(testLogin,"anything");
+		assertUnauthorized(responseCheck);	
 	}
 	
-	@Test
-	public void AuthenticateUser_LoginIsNull_ResponseNotAcceptable()
-	{
-		Response response=usuarioService.authenticateUsuario(loginNull, passwordInDataset);
-		assertNotAcceptable(response);
-	}
-	
-	@Test
-	public void AuthenticateUser_LoginIsEmpty_ResponseNotAcceptable()
-	{
-		Response response=usuarioService.authenticateUsuario(loginEmpty, passwordInDataset);
-		assertNotAcceptable(response);
-	}
-	
-	@Test
-	public void AuthenticateUser_PasswordIsNull_ResponseNotAcceptable()
-	{
-		Response response=usuarioService.authenticateUsuario(loginInDataset, passwordNull);
-		assertNotAcceptable(response);
-	}
-	
-	@Test
-	public void AuthenticateUser_PasswordIsEmpty_ResponseNotAcceptable()
-	{
-		Response response=usuarioService.authenticateUsuario(loginInDataset, passwordEmpty);
-		assertNotAcceptable(response);
-	}
-
 }

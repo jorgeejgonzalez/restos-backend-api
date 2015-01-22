@@ -10,8 +10,8 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import org.idisoft.restos.administracionusuarios.business.repository.UsuarioEntityConstantesORM;
 import org.idisoft.restos.administracionusuarios.business.repository.UsuarioEntity;
-import org.idisoft.restos.data.ConstantesORM;
 import org.idisoft.restos.data.DataAccessObject;
 import org.idisoft.restos.test.util.ArquillianArchiver;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -52,7 +52,7 @@ public class DataAccessObjectGetTypedQueryTest {
 		CriteriaQuery<UsuarioEntity> query=criteriabuilder.createQuery(UsuarioEntity.class);		
 		Root<UsuarioEntity> root=query.from(UsuarioEntity.class);
 		Predicate condition=criteriabuilder.equal(
-				root.get(ConstantesORM.USUARIO_CEDULA_ATTRIBUTE_NAME), 
+				root.get(UsuarioEntityConstantesORM.USUARIO_CEDULA_ATTRIBUTE_NAME), 
 				cedulaindataset);
 		
 		query=query.select(root);
@@ -68,7 +68,7 @@ public class DataAccessObjectGetTypedQueryTest {
 		CriteriaQuery<UsuarioEntity> query=criteriabuilder.createQuery(UsuarioEntity.class);		
 		Root<UsuarioEntity> root=query.from(UsuarioEntity.class);
 		Predicate condition=criteriabuilder.equal(
-				root.get(ConstantesORM.USUARIO_CEDULA_ATTRIBUTE_NAME), 
+				root.get(UsuarioEntityConstantesORM.USUARIO_CEDULA_ATTRIBUTE_NAME), 
 				cedulaindataset);
 		
 		query=query.select(root);
@@ -87,7 +87,7 @@ public class DataAccessObjectGetTypedQueryTest {
 		CriteriaQuery<UsuarioEntity> query=criteriabuilder.createQuery(UsuarioEntity.class);		
 		Root<UsuarioEntity> root=query.from(UsuarioEntity.class);
 		Predicate condition=criteriabuilder.equal(
-				root.get(ConstantesORM.USUARIO_CEDULA_ATTRIBUTE_NAME), 
+				root.get(UsuarioEntityConstantesORM.USUARIO_CEDULA_ATTRIBUTE_NAME), 
 				cedulanotindataset);
 		
 		query=query.select(root);

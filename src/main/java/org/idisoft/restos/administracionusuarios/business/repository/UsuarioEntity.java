@@ -15,80 +15,78 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.idisoft.restos.administracionusuarios.TipoUsuario;
 import org.idisoft.restos.administracionusuarios.Usuario;
-import org.idisoft.restos.data.ConstantesBeanValidation;
-import org.idisoft.restos.data.ConstantesORM;
 import org.idisoft.restos.data.EstatusRegistro;
 import org.idisoft.restos.data.Registro;
 
 @SuppressWarnings("serial")
 @Entity
 @Table(
-		name = ConstantesORM.USUARIO_TABLE_NAME,
+		name = UsuarioEntityConstantesORM.USUARIO_TABLE_NAME,
 		uniqueConstraints=
 		{
-				@UniqueConstraint(columnNames=ConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME),
-				@UniqueConstraint(columnNames=ConstantesORM.USUARIO_EMAIL_ATTRIBUTE_NAME)
+				@UniqueConstraint(columnNames=UsuarioEntityConstantesORM.USUARIO_LOGIN_ATTRIBUTE_NAME),
+				@UniqueConstraint(columnNames=UsuarioEntityConstantesORM.USUARIO_EMAIL_ATTRIBUTE_NAME)
 		}
 )
 public class UsuarioEntity implements Usuario, Registro, Serializable {
 	
-	@Column(name=ConstantesORM.USUARIO_CEDULA_COLUMN_NAME)
+	@Column(name=UsuarioEntityConstantesORM.USUARIO_CEDULA_COLUMN_NAME)
 	@Id
 	@NotNull
-	@Pattern(regexp=ConstantesBeanValidation.USUARIO_CEDULA_REGEXP)
-	@Size(min=ConstantesBeanValidation.USUARIO_CEDULA_MIN_SIZE,
-			max=ConstantesBeanValidation.USUARIO_CEDULA_MAX_SIZE)
+	@Pattern(regexp=UsuarioEntityConstantesValidation.USUARIO_CEDULA_REGEXP)
+	@Size(min=UsuarioEntityConstantesValidation.USUARIO_CEDULA_MIN_SIZE,
+			max=UsuarioEntityConstantesValidation.USUARIO_CEDULA_MAX_SIZE)
 	private String cedula;
 	
-	@Column(name=ConstantesORM.USUARIO_LOGIN_COLUMN_NAME)
+	@Column(name=UsuarioEntityConstantesORM.USUARIO_LOGIN_COLUMN_NAME)
 	@NotNull
-	@Pattern(regexp=ConstantesBeanValidation.USUARIO_LOGIN_REGEXP)
-	@Size(min=ConstantesBeanValidation.USUARIO_LOGIN_MIN_SIZE,
-			max=ConstantesBeanValidation.USUARIO_LOGIN_MAX_SIZE)
+	@Pattern(regexp=UsuarioEntityConstantesValidation.USUARIO_LOGIN_REGEXP)
+	@Size(min=UsuarioEntityConstantesValidation.USUARIO_LOGIN_MIN_SIZE,
+			max=UsuarioEntityConstantesValidation.USUARIO_LOGIN_MAX_SIZE)
 	private String login;
 	
-	@Column(name=ConstantesORM.USUARIO_PASSWORD_COLUMN_NAME)
+	@Column(name=UsuarioEntityConstantesORM.USUARIO_PASSWORD_COLUMN_NAME)
 	@NotNull
-	@Size(min=ConstantesBeanValidation.USUARIO_PASSWORD_MIN_SIZE,
-			max=ConstantesBeanValidation.USUARIO_PASSWORD_MAX_SIZE)
+	@Size(min=UsuarioEntityConstantesValidation.USUARIO_PASSWORD_MIN_SIZE,
+			max=UsuarioEntityConstantesValidation.USUARIO_PASSWORD_MAX_SIZE)
 	private String password;
 	
-	@Column(name=ConstantesORM.USUARIO_EMAIL_COLUMN_NAME)
+	@Column(name=UsuarioEntityConstantesORM.USUARIO_EMAIL_COLUMN_NAME)
 	@NotNull
 	@Email
 	private String email;
 	
-	@Column(name=ConstantesORM.USUARIO_TIPO_COLUMN_NAME)
+	@Column(name=UsuarioEntityConstantesORM.USUARIO_TIPO_COLUMN_NAME)
 	@NotNull
 	private TipoUsuario tipo;
 	
-	@Column(name=ConstantesORM.USUARIO_NOMBRE_COLUMN_NAME)
+	@Column(name=UsuarioEntityConstantesORM.USUARIO_NOMBRE_COLUMN_NAME)
 	@NotNull
-	@Pattern(regexp=ConstantesBeanValidation.USUARIO_NOMBRE_REGEXP)
-	@Size(min=ConstantesBeanValidation.USUARIO_NOMBRE_MIN_SIZE,
-			max=ConstantesBeanValidation.USUARIO_NOMBRE_MAX_SIZE)
+	@Pattern(regexp=UsuarioEntityConstantesValidation.USUARIO_NOMBRE_REGEXP)
+	@Size(min=UsuarioEntityConstantesValidation.USUARIO_NOMBRE_MIN_SIZE,
+			max=UsuarioEntityConstantesValidation.USUARIO_NOMBRE_MAX_SIZE)
 	private String nombre;
 	
-	@Column(name=ConstantesORM.USUARIO_APELLIDO_COLUMN_NAME)
+	@Column(name=UsuarioEntityConstantesORM.USUARIO_APELLIDO_COLUMN_NAME)
 	@NotNull
-	@Pattern(regexp=ConstantesBeanValidation.USUARIO_APELLIDO_REGEXP)
-	@Size(min=ConstantesBeanValidation.USUARIO_APELLIDO_MIN_SIZE,
-			max=ConstantesBeanValidation.USUARIO_APELLIDO_MAX_SIZE)
+	@Pattern(regexp=UsuarioEntityConstantesValidation.USUARIO_APELLIDO_REGEXP)
+	@Size(min=UsuarioEntityConstantesValidation.USUARIO_APELLIDO_MIN_SIZE,
+			max=UsuarioEntityConstantesValidation.USUARIO_APELLIDO_MAX_SIZE)
 	private String apellido;
 	
-	@Column(name=ConstantesORM.USUARIO_DIRECCION_COLUMN_NAME)
+	@Column(name=UsuarioEntityConstantesORM.USUARIO_DIRECCION_COLUMN_NAME)
 	@NotNull
-	@Size(max=ConstantesBeanValidation.USUARIO_DIRECCION_MAX_SIZE)
+	@Size(max=UsuarioEntityConstantesValidation.USUARIO_DIRECCION_MAX_SIZE)
 	private String direccion;
 	
-	@Column(name=ConstantesORM.USUARIO_TELEFONO_COLUMN_NAME)
+	@Column(name=UsuarioEntityConstantesORM.USUARIO_TELEFONO_COLUMN_NAME)
 	@NotNull
-	@Pattern(regexp=ConstantesBeanValidation.USUARIO_TELEFONO_REGEXP)
-	@Size(min=ConstantesBeanValidation.USUARIO_TELEFONO_MIN_SIZE, 
-			max=ConstantesBeanValidation.USUARIO_TELEFONO_MAX_SIZE)
+	@Pattern(regexp=UsuarioEntityConstantesValidation.USUARIO_TELEFONO_REGEXP)
+	@Size(min=UsuarioEntityConstantesValidation.USUARIO_TELEFONO_MIN_SIZE, 
+			max=UsuarioEntityConstantesValidation.USUARIO_TELEFONO_MAX_SIZE)
 	private String telefono;
 	
-	@Column(name=ConstantesORM.USUARIO_ESTATUSREGISTRO_COLUMN_NAME)
+	@Column(name=UsuarioEntityConstantesORM.USUARIO_ESTATUSREGISTRO_COLUMN_NAME)
 	@NotNull
 	private EstatusRegistro estatusregistro;
 

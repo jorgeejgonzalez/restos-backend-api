@@ -12,6 +12,11 @@ public abstract class AbstractRestServiceTest {
 		assertEquals(Status.OK.getStatusCode(), response.getStatus());
 	}
 	
+	protected void assertCreated(Response response)
+	{
+		assertEquals(Status.CREATED.getStatusCode(), response.getStatus());
+	}
+	
 	protected void assertNotFound(Response response)
 	{
 		assertEquals(Status.NOT_FOUND.getStatusCode(), response.getStatus());

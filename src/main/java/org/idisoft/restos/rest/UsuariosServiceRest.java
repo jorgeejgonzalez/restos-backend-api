@@ -3,19 +3,16 @@ package org.idisoft.restos.rest;
 import javax.inject.Inject;
 import javax.persistence.EntityExistsException;
 import javax.persistence.NoResultException;
-import javax.validation.ValidationException;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import org.apache.http.auth.AuthenticationException;
+import org.idisoft.restos.administracionusuarios.AdministradorUsuarios;
 import org.idisoft.restos.administracionusuarios.Usuario;
-import org.idisoft.restos.administracionusuarios.business.UsuarioDTOFactory;
-import org.idisoft.restos.administracionusuarios.business.repository.UsuariosRepository;
 
-public class UsuariosServiceRest implements UsuariosService {
+public class UsuariosServiceRest extends AbstractRestService  implements UsuariosService {
 	
-	private UsuariosRepository usuariosrepository;
-	private UsuarioDTOFactory usuariodtofactory;
+	private AdministradorUsuarios administradorUsuarios;
 	
 	public UsuariosServiceRest()
 	{
@@ -23,74 +20,58 @@ public class UsuariosServiceRest implements UsuariosService {
 	}
 	
 	@Inject
-	public UsuariosServiceRest(final UsuariosRepository usuariosrepository,
-			final UsuarioDTOFactory usuariodtofactory)
+	public UsuariosServiceRest(final AdministradorUsuarios administradorUsuarios)
 	{
-		this.usuariosrepository=usuariosrepository;
-		this.usuariodtofactory=usuariodtofactory;
+		this.administradorUsuarios = administradorUsuarios;
 	}
 
 	@Override
 	public Response authenticateUsuario(final String login, final String password) 
 	{
-		Response.ResponseBuilder builder=null;
+		Response serviceResponse = null;
 		
 		try
 		{
-			if(password==null || password.isEmpty())
-			{
-				throw new IllegalArgumentException();
-			}
-			
-			Usuario usuario=usuariosrepository.findByLogin(login);
-			
-			if(password.equals(usuario.getPassword()))
-			{
-				builder=Response.status(Status.OK);
-				usuario=usuariodtofactory.copyEntity(usuario);
-				builder.entity(usuario);
-			}
-			else
-			{
-				builder=Response.status(Status.UNAUTHORIZED);
-			}
+			Object entity = administradorUsuarios.auntenticarUsuario(login, password);
+			serviceResponse = buildResponse(Status.OK, entity);
 		}
-		catch(IllegalArgumentException ex)
+		catch(IllegalArgumentException exception)
 		{
-			builder=Response.status(Status.NOT_ACCEPTABLE);
+			serviceResponse = buildResponse(Status.NOT_ACCEPTABLE, exception.getMessage());
 		}
-		catch(NoResultException ex)
+		catch(NoResultException exception)
 		{
-			builder=Response.status(Status.NOT_FOUND);
+			serviceResponse = buildResponse(Status.NOT_FOUND, exception.getMessage());
+		}
+		catch(AuthenticationException exception)
+		{
+			serviceResponse = buildResponse(Status.UNAUTHORIZED, exception.getMessage());
 		}
 		
-		builder.type(MediaType.APPLICATION_JSON);
-		return builder.build();
+		return serviceResponse;
+		
 	}
 
 	@Override
 	public Response registerUsuario(final Usuario usuario) 
 	{
-		Response.ResponseBuilder builder=null;
+		Response serviceResponse = null;
+		
 		try
 		{
-			Usuario usuarioregistro=usuariosrepository.add(usuario);
-			
-			Usuario usuariodto=usuariodtofactory.copyEntity(usuarioregistro);
-			
-			builder=Response.status(Status.OK);
-			builder.entity(usuariodto);
+			Object entity = administradorUsuarios.registrarUsuario(usuario);
+			serviceResponse = buildResponse(Status.CREATED, entity);		
 		}
-		catch(ValidationException exception)
+		catch(IllegalArgumentException exception)
 		{
-			builder=Response.status(Status.NOT_ACCEPTABLE);
+			serviceResponse = buildResponse(Status.NOT_ACCEPTABLE, exception.getMessage());
 		}
 		catch(EntityExistsException exception)
 		{
-			builder=Response.status(Status.CONFLICT);
-		}
+			serviceResponse = buildResponse(Status.CONFLICT, exception.getMessage());
+		}		
 		
-		return builder.build();
+		return serviceResponse;
 	}
 
 }

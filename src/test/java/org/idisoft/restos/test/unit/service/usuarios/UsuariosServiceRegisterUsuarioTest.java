@@ -4,10 +4,10 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 import javax.persistence.EntityExistsException;
-import javax.validation.ValidationException;
 import javax.ws.rs.core.Response;
 
-import org.idisoft.restos.administracionusuarios.business.UsuarioDTO;
+import org.idisoft.restos.administracionusuarios.Usuario;
+import org.idisoft.restos.test.util.TestEntitiesFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,49 +16,61 @@ import org.mockito.runners.MockitoJUnitRunner;
 @RunWith(MockitoJUnitRunner.class)
 public class UsuariosServiceRegisterUsuarioTest extends AbstractUsuarioServiceTest
 {	
+	private Usuario validUsuario;
+	private Usuario invalidUsuario;	
 	
 	@Before
-	public void setUpTest()
+	public void setUpInstanciacion()
 	{
-		setUpEntities();
-		when(usuariosrepository.add(validUsuario)).thenReturn(validUsuario);
-		when(usuariosrepository.add(invalidUsuario)).thenThrow(new ValidationException());
-		setUpService();
+		instanciacion();
+		validUsuario = TestEntitiesFactory.validUsuarioDTO();
+		invalidUsuario = TestEntitiesFactory.invalidUsuario(); 
 	}
 	
 	@Test
-	public void RegisterUsuario_ValidParameters_ResponseOK()
-	{	
-		Response response=usuarioService.registerUsuario(validUsuario);
-		assertOK(response);
-	}
-	
-	@Test
-	public void RegisterUsuario_ValidParameters_EntityNotNull()
-	{	
-		Response response=usuarioService.registerUsuario(validUsuario);
-		assertNotNull(response.getEntity());
-	}
-	
-	@Test
-	public void RegisterUsuario_ValidParameters_EntityUsuarioDTO()
+	public void RegisterUsuario_Success_ResponseCreated()
 	{
-		Response response=usuarioService.registerUsuario(validUsuario);
-		assertTrue(response.getEntity() instanceof UsuarioDTO);
+		when(administradorUsuariosMock.registrarUsuario(validUsuario)
+		).thenReturn(validUsuario);
+		
+		Response responseCheck = usuarioService.registerUsuario(validUsuario);
+		
+		assertCreated(responseCheck);
 	}
 	
 	@Test
-	public void RegisterUsuario_RepositoryThrowsEntityExistsException_ResponseConflict()
+	public void RegisterUsuario_Success_ResponseEntityUsuario()
 	{
-		when(usuariosrepository.add(validUsuario)).thenThrow(new EntityExistsException());
-		Response response=usuarioService.registerUsuario(validUsuario);
-		assertConflict(response);
+		when(administradorUsuariosMock.registrarUsuario(validUsuario)
+		).thenReturn(validUsuario);
+			
+		Response responseCheck = usuarioService.registerUsuario(validUsuario);
+			
+		assertTrue(responseCheck.getEntity() instanceof Usuario);
 	}
 	
 	@Test
-	public void RegisterUsuario_RepositoryThrowsValidationException_ResponseNotAcceptable()
+	public void RegisterUsuario_UsuarioExists_ResponseConflict()
 	{
-		Response response=usuarioService.registerUsuario(invalidUsuario);
-		assertNotAcceptable(response);
+		when(administradorUsuariosMock.registrarUsuario(validUsuario)
+		).thenThrow(new EntityExistsException());
+		
+		Response responseCheck = usuarioService.registerUsuario(validUsuario);
+		
+		assertConflict(responseCheck);
 	}
+	
+	@Test
+	public void RegisterUsuario_InvalidUsuario_ResponseNotAcceptable()
+	{
+		when(administradorUsuariosMock.registrarUsuario(invalidUsuario)
+		).thenThrow(new IllegalArgumentException());
+				
+		Response responseCheck = usuarioService.registerUsuario(invalidUsuario);
+				
+		assertNotAcceptable(responseCheck);
+	}
+	
+	
+	
 }
