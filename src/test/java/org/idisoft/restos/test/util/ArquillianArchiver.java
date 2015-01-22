@@ -33,6 +33,9 @@ public class ArquillianArchiver {
 				org.idisoft.restos.data.Repository.class,
 				org.idisoft.restos.administracionusuarios.business.repository.UsuariosRepository.class);
 		
+		war.addClasses(org.idisoft.restos.administracionusuarios.AdministradorUsuarios.class,
+				org.idisoft.restos.administracionusuarios.business.AdministradorUsuariosBean.class);
+		
 		war.addClasses(org.idisoft.restos.rest.JaxRsActivator.class,
 				org.idisoft.restos.rest.UsuariosService.class,
 				org.idisoft.restos.rest.UsuariosServiceRest.class);
