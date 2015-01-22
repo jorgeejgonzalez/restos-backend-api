@@ -6,7 +6,7 @@ import javax.persistence.NoResultException;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import org.apache.http.auth.AuthenticationException;
+import javax.security.sasl.AuthenticationException;
 import org.idisoft.restos.administracionusuarios.AdministradorUsuarios;
 import org.idisoft.restos.administracionusuarios.Usuario;
 

@@ -6,7 +6,7 @@ import javax.persistence.EntityExistsException;
 import javax.persistence.NoResultException;
 import javax.validation.ValidationException;
 
-import org.apache.http.auth.AuthenticationException;
+import javax.security.sasl.AuthenticationException;
 import org.idisoft.restos.administracionusuarios.AdministradorUsuarios;
 import org.idisoft.restos.administracionusuarios.Usuario;
 import org.idisoft.restos.administracionusuarios.business.repository.UsuariosRepository;
@@ -36,7 +36,7 @@ public class AdministradorUsuariosBean implements AdministradorUsuarios {
 			throws NoResultException, IllegalArgumentException,
 			AuthenticationException 
 	{
-		if(login==null || login.isEmpty() || password==null)
+		if(login==null || login.isEmpty() || password==null || password.isEmpty())
 		{
 			throw new IllegalArgumentException();
 		}
@@ -45,7 +45,7 @@ public class AdministradorUsuariosBean implements AdministradorUsuarios {
 		
 		if(!usuarioParaAutenticar.getPassword().equals(password))
 		{
-			throw new AuthenticationException();
+			throw new javax.security.sasl.AuthenticationException();
 		}
 		
 		return usuarioDTOsFactory.copyEntity(usuarioParaAutenticar);
